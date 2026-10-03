@@ -18,8 +18,9 @@ jobs:
           fetch-depth: 0
 
       - name: Replace team section
-        shell: python
+        shell: bash
         run: |
+          python - <<'PY'
           from pathlib import Path
 
           path = Path('README.md')
@@ -62,6 +63,7 @@ jobs:
 '''
 
           path.write_text(before + team + end + after, encoding='utf-8')
+          PY
 
       - name: Commit README update
         run: |
