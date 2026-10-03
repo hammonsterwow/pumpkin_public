@@ -2,6 +2,8 @@
 
 이 디렉터리는 현재 canonical Structure B NLU 데이터 **24,019개**를 새 Task-Oriented Dialogue(TOD) 학습 형식으로 변환하고, 이전 대화가 필요한 샘플에는 안전한 멀티턴 문맥을 자동으로 붙인다.
 
+> **제출본 데이터 정책:** 공개 제출 저장소에서는 canonical Structure B 데이터와 최종 Qwen 학습용 `*_qwen_train.jsonl`, `*_qwen_validation.jsonl`, `*_qwen_test.jsonl`, 통계·검수 결과만 보관합니다. 아래 파이프라인의 `pumpkin_tod_v1_train_valid`, `multiturn`, `sft` 계열 중간 JSONL은 이 스크립트들로 재생성할 수 있어 저장소에서 제외했습니다.
+
 핵심 원칙은 다음과 같다.
 
 - 학습된 NLU 모델의 prediction을 새 정답으로 사용하지 않는다.
