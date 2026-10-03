@@ -128,7 +128,7 @@ class RealtimeFaceRecognizer:
         )
         self.cache = FirestoreCustomerCache(
             project_id,
-            refresh_sec=float(os.getenv("PUMPKIN_FACE_CACHE_REFRESH_SEC", "60")),
+            refresh_sec=float(os.getenv("PUMPKIN_FACE_CACHE_REFRESH_SEC", "5")),
         )
         self.stabilizer = RecognitionStabilizer(
             window_size=int(os.getenv("PUMPKIN_FACE_VOTE_WINDOW", "5")),

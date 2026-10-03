@@ -114,9 +114,17 @@ class ActionNode(Node):
 
     def stt_status_callback(self, msg):
         status = msg.data.strip()
+
         if status in {"ready", "recording", "transcribing", "done"}:
             return
         if status.startswith("error") or status in {"empty", "too_quiet", "rejected"}:
+            # A wake-gate capture is started directly by HandQuantityDecisionNode,
+            # so ActionNode has no pending listen token for it. If there is no
+            # pending token, stay completely silent and let the wake gate re-arm.
+            # This prevents background/noisy speech from producing STT_RETRY
+            # ("다시 말씀해 주세요") + SHAKE/UNSURE while waiting for "주문할게요".
+            if not self._listen_pending:
+                return
             self.handle_stt_failed(status)
 
     def tts_status_callback(self, msg):

@@ -5,6 +5,21 @@
 
 ---
 
+## **🔎 평가용 저장소 빠른 안내**
+
+- **통합 시연 실행**: `scripts/run_robot_with_monitor.sh`
+- **ROS2 인식–판단–행동 파이프라인**: `ros2_ws/src/robot_controller/`
+- **현재 NLU 추론 코드**: `nlu/`
+- **KIPS Item Query 비교 실험**: `experiments/nlu/kips_2026_item_query/`
+- **TOD SLM 학습·평가 코드**: `experiments/tod_slm/`
+- **고객 앱**: `apps/customer-mobile/`
+- **주문·고객·얼굴 API**: `api/`
+- **서비스 메뉴 기준**: `config/menu_catalog.json`
+
+> 제출용 공개 저장소에서는 임시 staging 파일, 중복 노트북, 과거 archive/legacy 코드, 재생성 가능한 중간 산출물을 제외했습니다.
+
+---
+
 ## **💡1. 프로젝트 개요**
 
 ### **1-1. 프로젝트 소개**
@@ -113,7 +128,8 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A[고객 감지] --> B[인사 및 주문 입력]
+    A[고객 감지] --> W[주문할게요 wake phrase 감지]
+    W --> B[인사 및 주문 입력]
     B --> C[STT 음성 인식]
     C --> D[NLU 주문 구조화]
     D --> E{필수 정보가 모두 있는가?}
@@ -180,7 +196,8 @@ def make_user_gesture_decision(self, gesture: str):
 
 ### **5-2. 주문 NLU 모델**
 
-- **학습 노트북** : [`notebooks/koelectra_structure_b_item_query_decoder.ipynb`](notebooks/koelectra_structure_b_item_query_decoder.ipynb)
+- **비교 실험 및 재현 코드** : [`experiments/nlu/kips_2026_item_query/`](experiments/nlu/kips_2026_item_query/)
+- **현재 추론 코드** : [`nlu/`](nlu/)
 - **설명** : koELECTRA Encoder가 문장의 문맥 특징을 추출하고, 학습 가능한 Item Query를 Transformer Decoder에 입력하여 복수 주문의 **메뉴·온도·수량을 항목별로 예측**합니다.
 
 ### **5-3. 얼굴 등록 및 실시간 식별**
@@ -203,9 +220,10 @@ pumpkin_public/
 │   └── monitor-web/      # 로봇 5인치 고객 화면
 ├── cloud_relay/     # Cloud Run 주문 Relay
 ├── config/          # 메뉴 카탈로그 및 공통 설정
-├── data/            # NLU 학습·테스트 데이터
+├── data/            # 제출본에 필요한 학습·테스트 데이터
+├── experiments/     # KIPS NLU 비교 실험 및 TOD SLM 학습·평가
 ├── face_backend/    # 얼굴 임베딩 Cloud Run Backend
-├── notebooks/       # NLU 학습 노트북
+├── nlu/             # 현재 NLU 추론 코드
 ├── robot_face/      # ESP32 LCD 및 얼굴 표시 제어
 ├── ros2_ws/         # ROS2 기반 로봇 통합 Runtime
 └── scripts/         # 실행·테스트·시연 스크립트
@@ -228,3 +246,17 @@ pumpkin_public/
 → Jetson 얼굴 인식 및 고객 식별
 → 개인화 주문 제안 / 사전주문 픽업 안내
 ```
+
+
+---
+
+## **🚀 실물 로봇 시연 실행**
+
+Jetson Orin Nano에서 5인치 고객 화면과 ROS2 로봇 파이프라인을 함께 실행하는 최종 시연 진입점입니다.
+
+```bash
+cd ~/pumpkin
+bash scripts/run_robot_with_monitor.sh
+```
+
+현재 production runtime은 STT, Vision, NLU, Decision FSM, TTS, LCD 표정, 고개·팔 제어를 ROS2로 통합합니다.

@@ -2,8 +2,6 @@
 
 ## 문서 상태와 기준
 
-저장소 정리 및 문서 기준은 [`REPOSITORY_CLEANUP_2026-08-10.md`](./REPOSITORY_CLEANUP_2026-08-10.md)를 먼저 확인한다.
-
 - **현재 사양/정책 문서**: 새 기능과 리팩터링의 기준으로 사용한다.
 - **실험·디버깅 로그**: 특정 시점의 관찰과 해결 기록이며 현재 사양의 최종 기준으로 사용하지 않는다.
 - **Legacy/Archive 문서**: 과거 구현을 보존하기 위한 참고 자료다.
@@ -13,7 +11,7 @@
 
 - 고객 유형 및 화면 역할: [`service_customer_and_display_policy.md`](./service_customer_and_display_policy.md) → 단골/사전주문 조합별 로봇 응대와 POS 웹·시연 웹·가슴 모니터 웹의 역할을 정의한 현재 서비스 기준
 - 메뉴 카탈로그 및 공식 `menu_id`: [`menu_catalog_policy.md`](./menu_catalog_policy.md) → `config/menu_catalog.json`을 서비스 메뉴의 Single Source of Truth로 사용
-- 관리자 웹: 기존 `web/` 구현은 보존하며, 신규 관리자 웹은 재구축 예정. 자세한 원칙은 [`REPOSITORY_CLEANUP_2026-08-10.md`](./REPOSITORY_CLEANUP_2026-08-10.md) 참고
+- 관리자 웹과 주문 API의 현재 구현은 `web/`, `api/` 및 각 README를 기준으로 확인한다.
 
 ## NLU 및 데이터셋
 
