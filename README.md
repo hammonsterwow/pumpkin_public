@@ -5,21 +5,6 @@
 
 ---
 
-## **🔎 평가용 저장소 빠른 안내**
-
-- **통합 시연 실행**: `scripts/run_robot_with_monitor.sh`
-- **ROS2 인식–판단–행동 파이프라인**: `ros2_ws/src/robot_controller/`
-- **현재 NLU 추론 코드**: `nlu/`
-- **KIPS Item Query 비교 실험**: `experiments/nlu/kips_2026_item_query/`
-- **TOD SLM 학습·평가 코드**: `experiments/tod_slm/`
-- **고객 앱**: `apps/customer-mobile/`
-- **주문·고객·얼굴 API**: `api/`
-- **서비스 메뉴 기준**: `config/menu_catalog.json`
-
-> 제출용 공개 저장소에서는 임시 staging 파일, 중복 노트북, 과거 archive/legacy 코드, 재생성 가능한 중간 산출물을 제외했습니다.
-
----
-
 ## **💡1. 프로젝트 개요**
 
 ### **1-1. 프로젝트 소개**
