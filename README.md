@@ -872,13 +872,6 @@ created = self.client.submit_confirmed_order(
 
 </details>
 
-<details>
-<summary><strong>tools/</strong> — 개발 보조 도구 (1개)</summary>
 
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`tools/stt-button/server.py`](tools/stt-button/server.py) | server 기능을 구현하는 Python 소스입니다. | 9.7 KB |
-
-</details>
 
 
