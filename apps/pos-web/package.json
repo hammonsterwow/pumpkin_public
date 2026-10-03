@@ -1,0 +1,30 @@
+{
+  "name": "pumpkin-pos-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "concurrently -k \"node --watch server/index.mjs\" \"vite --host 0.0.0.0\"",
+    "dev:server": "node --watch server/index.mjs",
+    "dev:web": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "start": "node server/index.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "firebase-admin": "^13.10.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}

@@ -1,0 +1,68 @@
+experiment:
+  name: qwen3_0.6b_lora_v1
+  seed: 42
+
+model:
+  name_or_path: Qwen/Qwen3-0.6B
+  dtype: float16
+  trust_remote_code: false
+  use_cache: false
+
+data:
+  train_file: data/tod/qwen/pumpkin_tod_v1_qwen_train.jsonl
+  validation_file: data/tod/qwen/pumpkin_tod_v1_qwen_validation.jsonl
+  test_file: data/tod/qwen/pumpkin_tod_v1_qwen_test.jsonl
+  max_length: 512
+  enable_thinking: false
+  overlength_policy: error
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  bias: none
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+training:
+  # Student v1 first pass: one full epoch, then decide whether to continue
+  # from the saved checkpoint using validation results.
+  epochs: 1
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 5
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  lr_scheduler_type: cosine
+  max_grad_norm: 1.0
+  # Qwen3-0.6B fits in 12 GB TITAN Xp memory without recomputation.
+  gradient_checkpointing: false
+  bf16: false
+  fp16: true
+  logging_steps: 20
+  eval_steps: 200
+  save_steps: 200
+  save_total_limit: 3
+  metric_for_best_model: eval_loss
+  greater_is_better: false
+  load_best_model_at_end: true
+  report_to:
+    - tensorboard
+
+# Generation settings used by evaluate.py. The first baseline is deterministic.
+evaluation:
+  batch_size: 8
+  max_new_tokens: 512
+  do_sample: false
+  temperature: 1.0
+  top_p: 1.0
+
+output:
+  root_dir: outputs/tod_slm/qwen3_0.6b_lora_v1

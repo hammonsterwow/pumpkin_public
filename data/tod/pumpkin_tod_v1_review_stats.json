@@ -1,0 +1,46 @@
+{
+  "multiturn": {
+    "source": "data/tod/pumpkin_tod_v1_multiturn_review_sample.jsonl",
+    "selected_total": 200,
+    "scenario_counts": {
+      "affirm": 40,
+      "cancel": 40,
+      "deny": 40,
+      "modify": 40,
+      "order_contextual_slot_answer": 40
+    }
+  },
+  "base_data": {
+    "source": "data/tod/pumpkin_tod_v1_train_valid.jsonl",
+    "source_fully_supervised": 19332,
+    "test_rows_used_for_human_review": 0,
+    "sampling": "deterministic midpoint systematic sampling within each scenario bucket",
+    "available_counts": {
+      "guide": 192,
+      "order_complete": 12200,
+      "order_missing_quantity": 1000,
+      "order_missing_temperature": 300,
+      "order_multi_complete": 2500,
+      "order_multi_missing_quantity": 1420,
+      "order_multi_missing_temperature": 1080,
+      "unknown": 640
+    },
+    "selected_counts": {
+      "guide": 15,
+      "order_complete": 40,
+      "order_missing_quantity": 25,
+      "order_missing_temperature": 20,
+      "order_multi_complete": 35,
+      "order_multi_missing_quantity": 25,
+      "order_multi_missing_temperature": 25,
+      "unknown": 15
+    },
+    "selected_total": 200
+  },
+  "combined_total": 400,
+  "combined_output": "data/tod/pumpkin_tod_v1_review_sample.jsonl",
+  "policy": {
+    "human_review_test_split": false,
+    "reason": "keep fixed test untouched while iterating generation rules"
+  }
+}

@@ -1,0 +1,4 @@
+# Install a JetPack-compatible NVIDIA PyTorch build before this file.
+# Do not install the desktop torch==2.2.2 pin from the root requirements.txt on Jetson.
+transformers==4.40.2
+numpy<2

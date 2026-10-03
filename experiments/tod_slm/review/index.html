@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pumpkin TOD 데이터 검수</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --text: #18212b;
+      --muted: #66717d;
+      --line: #dce1e6;
+      --accent: #26384a;
+      --soft: #eef2f5;
+      --pass: #e7f5ec;
+      --pass-text: #17643a;
+      --fail: #fdeceb;
+      --fail-text: #9a302b;
+      --user: #fff7df;
+      --shadow: 0 8px 28px rgba(24,33,43,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    button, select, textarea { font: inherit; }
+    .shell { max-width: 1260px; margin: 0 auto; padding: 24px; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    h1 { font-size: 24px; margin: 0 0 6px; }
+    .sub { color: var(--muted); font-size: 14px; }
+    .progress-card {
+      min-width: 300px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .progress-row { display:flex; justify-content:space-between; gap:12px; font-size:14px; }
+    .bar { height: 8px; background:#e9edf1; border-radius:999px; overflow:hidden; margin-top:10px; }
+    .bar > div { height:100%; width:0; background:var(--accent); transition:width .2s ease; }
+    .layout { display:grid; grid-template-columns: minmax(0, 1fr) 300px; gap:18px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .main { padding: 20px; }
+    .sidebar { padding: 18px; align-self:start; position:sticky; top:18px; }
+    .toolbar {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+      padding-bottom:14px;
+      margin-bottom:18px;
+    }
+    select, .ghost {
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:#fff;
+      padding:9px 11px;
+      color:var(--text);
+    }
+    .ghost { cursor:pointer; }
+    .ghost:hover { background:var(--soft); }
+    .counter { margin-left:auto; color:var(--muted); font-size:14px; }
+    .badges { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .badge { background:var(--soft); border-radius:999px; padding:5px 9px; font-size:12px; font-weight:700; }
+    .badge.pass { background:var(--pass); color:var(--pass-text); }
+    .badge.fail { background:var(--fail); color:var(--fail-text); }
+    .section { border-top:1px solid var(--line); padding:16px 0; }
+    .section:first-of-type { border-top:0; }
+    .label { font-size:12px; font-weight:800; color:var(--muted); letter-spacing:.03em; margin-bottom:7px; }
+    .value { font-size:17px; line-height:1.55; white-space:pre-wrap; word-break:keep-all; }
+    .order-list { display:flex; flex-direction:column; gap:8px; }
+    .order-item { background:var(--soft); border-radius:10px; padding:10px 12px; font-size:15px; }
+    .user-box { background:var(--user); border-radius:12px; padding:15px; font-size:20px; font-weight:700; line-height:1.55; }
+    .decision { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight:800; font-size:17px; }
+    .review-box { margin-top:8px; border-top:2px solid var(--line); padding-top:18px; }
+    .review-title { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px; }
+    .review-title h2 { margin:0; font-size:18px; }
+    .buttons { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:9px; }
+    .review-btn {
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:11px;
+      padding:11px 8px;
+      cursor:pointer;
+      font-weight:700;
+      min-height:48px;
+    }
+    .review-btn:hover { background:var(--soft); }
+    .review-btn.pass { background:var(--pass); color:var(--pass-text); border-color:#b9dfc7; }
+    .review-btn.fail { background:var(--fail); color:var(--fail-text); border-color:#efc2bf; }
+    .key { display:inline-block; min-width:20px; padding:2px 5px; margin-right:4px; border:1px solid currentColor; border-radius:5px; font-size:11px; opacity:.7; }
+    textarea {
+      width:100%; min-height:76px; resize:vertical; margin-top:12px;
+      border:1px solid var(--line); border-radius:10px; padding:10px 12px;
+    }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:12px; }
+    .save-state { color:var(--muted); font-size:13px; }
+    .stats h3 { margin:0 0 10px; font-size:15px; }
+    .metric { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid #eef1f3; font-size:14px; }
+    .metric:last-child { border-bottom:0; }
+    .scenario { padding:9px 0; border-bottom:1px solid #eef1f3; }
+    .scenario:last-child { border-bottom:0; }
+    .scenario-head { display:flex; justify-content:space-between; gap:8px; font-size:13px; font-weight:700; }
+    .scenario-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+    .help { margin-top:18px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.65; }
+    .empty { padding:50px 20px; text-align:center; color:var(--muted); }
+    .error-banner { display:none; margin-bottom:14px; padding:10px 12px; border-radius:10px; background:var(--fail); color:var(--fail-text); }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns:1fr; }
+      .sidebar { position:static; }
+      .topbar { flex-direction:column; }
+      .progress-card { width:100%; min-width:0; }
+    }
+    @media (max-width: 640px) {
+      .shell { padding:12px; }
+      .main { padding:14px; }
+      .buttons { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+      .counter { width:100%; margin-left:0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div>
+        <h1>Pumpkin TOD 데이터 검수</h1>
+        <div class="sub" id="fileInfo">검수 데이터를 불러오는 중...</div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-row"><strong>전체 진행률</strong><span id="progressText">0 / 0</span></div>
+        <div class="bar"><div id="progressBar"></div></div>
+        <div class="progress-row" style="margin-top:9px"><span id="passFailText">정상 0 · 오류 0</span><span id="remainingText">남음 0</span></div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <main class="panel main">
+        <div class="error-banner" id="errorBanner"></div>
+        <div class="toolbar">
+          <select id="statusFilter" aria-label="검수 상태 필터">
+            <option value="UNREVIEWED">미검수만</option>
+            <option value="ALL">전체</option>
+            <option value="FAIL">오류만</option>
+            <option value="PASS">정상만</option>
+          </select>
+          <select id="scenarioFilter" aria-label="시나리오 필터">
+            <option value="ALL">모든 유형</option>
+          </select>
+          <button class="ghost" id="firstUnreviewedBtn">첫 미검수로</button>
+          <span class="counter" id="itemCounter">0 / 0</span>
+        </div>
+
+        <div id="content"></div>
+      </main>
+
+      <aside class="panel sidebar">
+        <div class="stats">
+          <h3>검수 통계</h3>
+          <div class="metric"><span>전체</span><strong id="statTotal">0</strong></div>
+          <div class="metric"><span>검수 완료</span><strong id="statReviewed">0</strong></div>
+          <div class="metric"><span>정상</span><strong id="statPassed">0</strong></div>
+          <div class="metric"><span>오류</span><strong id="statFailed">0</strong></div>
+        </div>
+        <div class="stats" style="margin-top:20px">
+          <h3>유형별</h3>
+          <div id="scenarioStats"></div>
+        </div>
+        <div class="stats" style="margin-top:20px">
+          <h3>오류 유형</h3>
+          <div id="errorStats"><div class="scenario-sub">아직 오류 없음</div></div>
+        </div>
+        <div class="help">
+          <strong>키보드 단축키</strong><br>
+          1 정상 · 2 문맥 · 3 이전상태 · 4 이후상태<br>
+          5 판단 · 6 응답 · 7 기타<br>
+          ← 이전 · → 다음<br><br>
+          <strong>이름 구분</strong><br>
+          ORDER_CONFIRM = FSM 상태(전체 주문 확인 답변 대기)<br>
+          CONFIRM_ORDER = 동작(전체 주문을 읽고 확인 질문)<br>
+          ORDER_CONFIRMED = 동작(사용자가 전체 주문을 확인함)<br><br>
+          오류 데이터는 직접 수정하지 말고 생성 규칙을 고친 뒤 전체 재생성합니다.
+        </div>
+      </aside>
+    </div>
+  </div>
+
+<script>
+const ERROR_LABELS = {
+  CONTEXT: '문맥 오류',
+  STATE_BEFORE: '이전 상태 오류',
+  STATE_AFTER: '이후 상태 오류',
+  DECISION: '판단 오류',
+  RESPONSE: '응답 오류',
+  OTHER: '기타 오류'
+};
+const SCENARIO_LABELS = {
+  affirm: 'AFFIRM', deny: 'DENY', modify: 'MODIFY', cancel: 'CANCEL',
+  order_contextual_slot_answer: 'CONTEXTUAL ORDER'
+};
+
+let items = [];
+let reviews = {};
+let stats = {};
+let filteredIndexes = [];
+let currentFilteredPos = 0;
+let inputFile = '';
+let outputFile = '';
+
+const $ = (id) => document.getElementById(id);
+
+function scenarioLabel(value) {
+  return SCENARIO_LABELS[value] || value || 'UNKNOWN';
+}
+
+function formatOrder(state) {
+  const list = state && Array.isArray(state.items) ? state.items : [];
+  if (!list.length) return ['주문 없음'];
+  return list.map((item, idx) => {
+    const menu = item.menu || '메뉴 미정';
+    const temp = item.temperature === 'ICE' ? '아이스' : item.temperature === 'HOT' ? '따뜻한' : '온도 미정';
+    const qty = item.quantity == null ? '수량 미정' : `${item.quantity}잔`;
+    return `${idx + 1}. ${temp} ${menu} · ${qty}`;
+  });
+}
+
+function createSection(label, value, className='value') {
+  const section = document.createElement('div');
+  section.className = 'section';
+  const l = document.createElement('div');
+  l.className = 'label'; l.textContent = label;
+  const v = document.createElement('div');
+  v.className = className; v.textContent = value || '-';
+  section.append(l, v);
+  return section;
+}
+
+function createOrderSection(label, state) {
+  const section = document.createElement('div');
+  section.className = 'section';
+  const l = document.createElement('div');
+  l.className = 'label'; l.textContent = label;
+  const wrap = document.createElement('div'); wrap.className = 'order-list';
+  for (const line of formatOrder(state)) {
+    const item = document.createElement('div'); item.className = 'order-item'; item.textContent = line; wrap.appendChild(item);
+  }
+  section.append(l, wrap); return section;
+}
+
+function historyText(history) {
+  if (!Array.isArray(history) || !history.length) return '이전 로봇 발화 없음';
+  return history.map((turn) => `${turn.role === 'assistant' ? '로봇' : '사용자'}: ${turn.text || ''}`).join('\n');
+}
+
+function currentGlobalIndex() {
+  return filteredIndexes[currentFilteredPos] ?? -1;
+}
+
+function applyFilters(preferId=null) {
+  const status = $('statusFilter').value;
+  const scenario = $('scenarioFilter').value;
+  filteredIndexes = [];
+  items.forEach((item, index) => {
+    const review = reviews[item.id];
+    let statusOk = true;
+    if (status === 'UNREVIEWED') statusOk = !review;
+    else if (status === 'PASS') statusOk = review && review.verdict === 'PASS';
+    else if (status === 'FAIL') statusOk = review && review.verdict === 'FAIL';
+    const scenarioOk = scenario === 'ALL' || item.source_scenario === scenario;
+    if (statusOk && scenarioOk) filteredIndexes.push(index);
+  });
+
+  let nextPos = 0;
+  if (preferId) {
+    const global = items.findIndex((x) => x.id === preferId);
+    const found = filteredIndexes.indexOf(global);
+    if (found >= 0) nextPos = found;
+  }
+  currentFilteredPos = Math.min(nextPos, Math.max(0, filteredIndexes.length - 1));
+  renderCurrent();
+}
+
+function renderCurrent() {
+  const content = $('content'); content.replaceChildren();
+  $('itemCounter').textContent = filteredIndexes.length ? `${currentFilteredPos + 1} / ${filteredIndexes.length}` : '0 / 0';
+  const globalIndex = currentGlobalIndex();
+  if (globalIndex < 0) {
+    const empty = document.createElement('div'); empty.className = 'empty';
+    empty.textContent = $('statusFilter').value === 'UNREVIEWED' ? '이 조건의 미검수 데이터가 없습니다. 🎉' : '이 조건에 해당하는 데이터가 없습니다.';
+    content.appendChild(empty); return;
+  }
+
+  const item = items[globalIndex];
+  const review = reviews[item.id];
+  const badges = document.createElement('div'); badges.className = 'badges';
+  const type = document.createElement('span'); type.className = 'badge'; type.textContent = scenarioLabel(item.source_scenario); badges.appendChild(type);
+  const id = document.createElement('span'); id.className = 'badge'; id.textContent = item.id; badges.appendChild(id);
+  if (review) {
+    const r = document.createElement('span'); r.className = `badge ${review.verdict === 'PASS' ? 'pass' : 'fail'}`;
+    r.textContent = review.verdict === 'PASS' ? '검수 완료 · 정상' : `검수 완료 · ${ERROR_LABELS[review.error_type] || '오류'}`;
+    badges.appendChild(r);
+  }
+  content.appendChild(badges);
+  content.appendChild(createOrderSection('① 이전 주문 상태', item.state_before));
+  content.appendChild(createSection('② 로봇이 직전에 한 말', historyText(item.history)));
+
+  const userSection = document.createElement('div'); userSection.className = 'section';
+  const userLabel = document.createElement('div'); userLabel.className = 'label'; userLabel.textContent = '③ 사용자가 한 말';
+  const user = document.createElement('div'); user.className = 'user-box'; user.textContent = item.user_text || '-';
+  userSection.append(userLabel, user); content.appendChild(userSection);
+
+  content.appendChild(createOrderSection('④ 적용 후 주문 상태', item.state_after));
+  content.appendChild(createSection(
+    '⑤ FSM 상태 변화 · 대화가 어디에 있는지',
+    `${item.fsm_state_before || '-'} → ${item.fsm_state_after || '-'}`,
+    'value decision'
+  ));
+  content.appendChild(createSection(
+    '⑥ 이번 턴의 시스템 동작 · 무엇을 할지',
+    `${item.decision || '-'}${item.response_key ? `  [${item.response_key}]` : ''}`,
+    'value decision'
+  ));
+  content.appendChild(createSection('⑦ 로봇 응답', item.response));
+
+  const reviewBox = document.createElement('div'); reviewBox.className = 'review-box';
+  const title = document.createElement('div'); title.className = 'review-title';
+  const h2 = document.createElement('h2'); h2.textContent = '검수 결과';
+  const hint = document.createElement('span'); hint.className = 'save-state'; hint.id = 'saveState'; hint.textContent = review ? '저장된 검수 결과' : '버튼을 누르면 즉시 저장';
+  title.append(h2, hint); reviewBox.appendChild(title);
+
+  const defs = [
+    ['PASS', null, '1', '정상'], ['FAIL','CONTEXT','2','문맥'], ['FAIL','STATE_BEFORE','3','이전 상태'], ['FAIL','STATE_AFTER','4','이후 상태'],
+    ['FAIL','DECISION','5','판단'], ['FAIL','RESPONSE','6','응답'], ['FAIL','OTHER','7','기타']
+  ];
+  const buttons = document.createElement('div'); buttons.className = 'buttons';
+  for (const [verdict, errorType, key, text] of defs) {
+    const btn = document.createElement('button'); btn.className = `review-btn ${verdict === 'PASS' ? 'pass' : 'fail'}`;
+    const k = document.createElement('span'); k.className = 'key'; k.textContent = key;
+    btn.append(k, document.createTextNode(text)); btn.onclick = () => saveReview(verdict, errorType);
+    buttons.appendChild(btn);
+  }
+  reviewBox.appendChild(buttons);
+
+  const note = document.createElement('textarea'); note.id = 'note'; note.placeholder = '선택 사항: 오류 원인을 짧게 메모하세요.'; note.value = review?.note || '';
+  reviewBox.appendChild(note);
+
+  const nav = document.createElement('div'); nav.className = 'nav';
+  const prev = document.createElement('button'); prev.className = 'ghost'; prev.textContent = '← 이전'; prev.onclick = () => move(-1);
+  const center = document.createElement('span'); center.className = 'save-state'; center.textContent = `${globalIndex + 1} / ${items.length} (전체 기준)`;
+  const next = document.createElement('button'); next.className = 'ghost'; next.textContent = '다음 →'; next.onclick = () => move(1);
+  nav.append(prev, center, next); reviewBox.appendChild(nav);
+  content.appendChild(reviewBox);
+}
+
+function move(delta) {
+  if (!filteredIndexes.length) return;
+  currentFilteredPos = Math.max(0, Math.min(filteredIndexes.length - 1, currentFilteredPos + delta));
+  renderCurrent(); window.scrollTo({top:0, behavior:'smooth'});
+}
+
+async function saveReview(verdict, errorType) {
+  const globalIndex = currentGlobalIndex(); if (globalIndex < 0) return;
+  const item = items[globalIndex];
+  const nextGlobalIndex = filteredIndexes[currentFilteredPos + 1];
+  const nextId = Number.isInteger(nextGlobalIndex) ? items[nextGlobalIndex]?.id : null;
+  const note = $('note')?.value || '';
+  const saveState = $('saveState'); if (saveState) saveState.textContent = '저장 중...';
+  try {
+    const response = await fetch('/api/review', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:item.id, verdict, error_type:errorType, note})
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || '저장 실패');
+    reviews[item.id] = payload.review; stats = payload.stats; updateStats();
+    const status = $('statusFilter').value;
+    if (status === 'UNREVIEWED') {
+      applyFilters(nextId);
+    } else {
+      renderCurrent();
+      setTimeout(() => move(1), 80);
+    }
+  } catch (error) {
+    showError(error.message || String(error));
+    if (saveState) saveState.textContent = '저장 실패';
+  }
+}
+
+function updateStats() {
+  $('progressText').textContent = `${stats.reviewed || 0} / ${stats.total || 0}`;
+  const pct = stats.total ? Math.round(stats.reviewed / stats.total * 100) : 0;
+  $('progressBar').style.width = `${pct}%`;
+  $('passFailText').textContent = `정상 ${stats.passed || 0} · 오류 ${stats.failed || 0}`;
+  $('remainingText').textContent = `남음 ${stats.remaining || 0}`;
+  $('statTotal').textContent = stats.total || 0; $('statReviewed').textContent = stats.reviewed || 0;
+  $('statPassed').textContent = stats.passed || 0; $('statFailed').textContent = stats.failed || 0;
+
+  const scenarioStats = $('scenarioStats'); scenarioStats.replaceChildren();
+  for (const [scenario, data] of Object.entries(stats.scenarios || {})) {
+    const row = document.createElement('div'); row.className = 'scenario';
+    const head = document.createElement('div'); head.className = 'scenario-head';
+    const name = document.createElement('span'); name.textContent = scenarioLabel(scenario);
+    const count = document.createElement('span'); count.textContent = `${data.reviewed}/${data.total}`;
+    head.append(name, count);
+    const sub = document.createElement('div'); sub.className = 'scenario-sub'; sub.textContent = `오류 ${data.failed}`;
+    row.append(head, sub); scenarioStats.appendChild(row);
+  }
+
+  const errorStats = $('errorStats'); errorStats.replaceChildren();
+  const entries = Object.entries(stats.error_counts || {});
+  if (!entries.length) {
+    const empty = document.createElement('div'); empty.className = 'scenario-sub'; empty.textContent = '아직 오류 없음'; errorStats.appendChild(empty);
+  } else {
+    for (const [type, count] of entries) {
+      const row = document.createElement('div'); row.className = 'metric';
+      const name = document.createElement('span'); name.textContent = ERROR_LABELS[type] || type;
+      const value = document.createElement('strong'); value.textContent = count;
+      row.append(name, value); errorStats.appendChild(row);
+    }
+  }
+}
+
+function populateScenarioFilter() {
+  const select = $('scenarioFilter');
+  const scenarios = [...new Set(items.map(x => x.source_scenario))].sort();
+  for (const scenario of scenarios) {
+    const option = document.createElement('option'); option.value = scenario; option.textContent = scenarioLabel(scenario); select.appendChild(option);
+  }
+}
+
+function showError(message) {
+  const banner = $('errorBanner'); banner.textContent = message; banner.style.display = 'block';
+}
+
+async function load() {
+  try {
+    const response = await fetch('/api/state'); const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || '데이터 로드 실패');
+    items = payload.items || []; reviews = payload.reviews || {}; stats = payload.stats || {};
+    inputFile = payload.input_file || ''; outputFile = payload.output_file || '';
+    $('fileInfo').textContent = `입력: ${inputFile} · 결과: ${outputFile}`;
+    populateScenarioFilter(); updateStats(); applyFilters();
+  } catch (error) { showError(error.message || String(error)); }
+}
+
+$('statusFilter').addEventListener('change', () => applyFilters());
+$('scenarioFilter').addEventListener('change', () => applyFilters());
+$('firstUnreviewedBtn').addEventListener('click', () => {
+  $('statusFilter').value = 'UNREVIEWED'; $('scenarioFilter').value = 'ALL'; applyFilters();
+});
+
+document.addEventListener('keydown', (event) => {
+  const tag = document.activeElement?.tagName;
+  if (tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'SELECT') return;
+  const map = {
+    '1':['PASS',null], '2':['FAIL','CONTEXT'], '3':['FAIL','STATE_BEFORE'],
+    '4':['FAIL','STATE_AFTER'], '5':['FAIL','DECISION'], '6':['FAIL','RESPONSE'], '7':['FAIL','OTHER']
+  };
+  if (map[event.key]) { event.preventDefault(); saveReview(...map[event.key]); }
+  else if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
+  else if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
+});
+
+load();
+</script>
+</body>
+</html>

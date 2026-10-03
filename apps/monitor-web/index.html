@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="color-scheme" content="light" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Pumpkin 주문 안내</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /*
+     * 800x480 kiosk safety layer.
+     * Keep the customer screen visible even if the external stylesheet or
+     * live WebSocket state is delayed on the Jetson display.
+     */
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #f4f7fb;
+      color: #111827;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+    }
+
+    body {
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .monitor-shell {
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      background: #f4f7fb;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .status-panel,
+    .dialogue-panel,
+    .order-panel {
+      opacity: 1;
+      visibility: visible;
+      border: 2px solid #d7e0e8;
+      box-shadow: none;
+    }
+
+    .status-panel h1,
+    .status-panel p,
+    .speaker-label,
+    .subtitle,
+    .order-heading-row h2,
+    .order-hint,
+    .empty-order,
+    .slot-label,
+    .slot-value {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .display-ready-marker {
+      position: fixed;
+      top: 5px;
+      right: 8px;
+      z-index: 9999;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #111827;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="display-ready-marker" aria-hidden="true">PUMPKIN</div>
+
+  <main class="monitor-shell" aria-live="polite">
+    <section class="status-panel" id="statusPanel" data-mode="idle">
+      <div class="status-indicator" aria-hidden="true"></div>
+      <div class="status-copy">
+        <p class="status-kicker">현재 상태</p>
+        <h1 id="statusTitle">대기 중</h1>
+        <p id="statusDetail">고객을 기다리고 있어요.</p>
+      </div>
+    </section>
+
+    <section class="dialogue-panel" aria-label="최근 대화">
+      <div class="subtitle-row user-row">
+        <span class="speaker-label">고객</span>
+        <p id="userSubtitle" class="subtitle muted">말씀하신 내용이 여기에 보여요.</p>
+      </div>
+      <div class="subtitle-row robot-row">
+        <span class="speaker-label">로봇</span>
+        <p id="robotSubtitle" class="subtitle muted">로봇의 안내가 여기에 보여요.</p>
+      </div>
+    </section>
+
+    <section class="order-panel" aria-label="현재 주문">
+      <div class="order-heading-row">
+        <h2>현재 주문</h2>
+        <span id="orderHint" class="order-hint">아직 주문 정보가 없어요.</span>
+      </div>
+      <div id="orderGrid" class="order-grid empty">
+        <div class="empty-order">메뉴를 말씀하시면 인식된 주문이 표시됩니다.</div>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

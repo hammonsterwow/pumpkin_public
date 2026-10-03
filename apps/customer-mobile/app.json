@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Hanium Order",
+    "slug": "hanium-order",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "얼굴 등록을 위해 카메라 사용을 허용해 주세요."
+        }
+      ],
+      "expo-font",
+      "expo-status-bar"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hanium.order"
+    },
+    "android": {
+      "package": "com.hanium.order",
+      "permissions": [
+        "CAMERA"
+      ]
+    },
+    "extra": {
+      "projectPurpose": "Physical AI unmanned-store order app prototype"
+    }
+  }
+}

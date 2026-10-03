@@ -1,0 +1,641 @@
+{
+  "schema_version": "pumpkin_tod_rule_v1",
+  "generator": "experiments/tod_slm/data_generation/generate_rule_labels.py",
+  "rule_basis": {
+    "slot_priority": [
+      "menu",
+      "quantity",
+      "temperature"
+    ],
+    "item_policy": "finish one item before moving to the next",
+    "ice_only_default": "use robot_controller.menu_policy.default_temperature",
+    "response_source": "robot_controller.response_manager.ResponseManager",
+    "ground_truth_policy": "never call learned NLU predictor; preserve canonical source labels",
+    "context_policy": "do not invent prior state for context-dependent standalone utterances"
+  },
+  "total": 24019,
+  "expected_total": 24019,
+  "intent_counts": {
+    "AFFIRM": 400,
+    "CANCEL": 400,
+    "DENY": 320,
+    "GUIDE": 240,
+    "MODIFY": 980,
+    "ORDER": 20880,
+    "UNKNOWN": 799
+  },
+  "scenario_counts": {
+    "affirm": 400,
+    "cancel": 400,
+    "deny": 320,
+    "guide": 240,
+    "modify": 980,
+    "order_complete": 12248,
+    "order_contextual_slot_answer": 1660,
+    "order_missing_menu": 16,
+    "order_missing_quantity": 1076,
+    "order_missing_temperature": 320,
+    "order_multi_complete": 2740,
+    "order_multi_missing_menu": 40,
+    "order_multi_missing_quantity": 1584,
+    "order_multi_missing_temperature": 1196,
+    "unknown": 799
+  },
+  "supervision_counts": {
+    "context_required": 3760,
+    "fully_supervised": 20259
+  },
+  "decision_counts": {
+    "ASK_MENU": 56,
+    "ASK_QUANTITY": 2660,
+    "ASK_TEMPERATURE": 1516,
+    "CONFIRM_ORDER": 14988,
+    "CONTEXT_REQUIRED": 3760,
+    "GUIDE_CUSTOMER": 240,
+    "OUT_OF_POLICY": 799
+  },
+  "source_to_runtime_status_changes": {
+    "INCOMPLETE->VALID": 212,
+    "UNPARSABLE->INCOMPLETE": 16
+  },
+  "inferred_policy_slot_counts": {
+    "temperature=ICE": 424
+  },
+  "splits": [
+    {
+      "dataset": "structure_b_train_valid",
+      "input": "data/structure_b_train_valid.jsonl",
+      "output": "data/tod/pumpkin_tod_v1_train_valid.jsonl",
+      "total": 22512,
+      "intent_counts": {
+        "AFFIRM": 320,
+        "CANCEL": 320,
+        "DENY": 256,
+        "GUIDE": 192,
+        "MODIFY": 784,
+        "ORDER": 20000,
+        "UNKNOWN": 640
+      },
+      "scenario_counts": {
+        "affirm": 320,
+        "cancel": 320,
+        "deny": 256,
+        "guide": 192,
+        "modify": 784,
+        "order_complete": 12200,
+        "order_contextual_slot_answer": 1500,
+        "order_missing_quantity": 1000,
+        "order_missing_temperature": 300,
+        "order_multi_complete": 2500,
+        "order_multi_missing_quantity": 1420,
+        "order_multi_missing_temperature": 1080,
+        "unknown": 640
+      },
+      "supervision_counts": {
+        "context_required": 3180,
+        "fully_supervised": 19332
+      },
+      "decision_counts": {
+        "ASK_QUANTITY": 2420,
+        "ASK_TEMPERATURE": 1380,
+        "CONFIRM_ORDER": 14700,
+        "CONTEXT_REQUIRED": 3180,
+        "GUIDE_CUSTOMER": 192,
+        "OUT_OF_POLICY": 640
+      },
+      "source_order_status_counts": {
+        "INCOMPLETE": 5500,
+        "NONE": 2512,
+        "VALID": 14500
+      },
+      "target_order_status_counts": {
+        "INCOMPLETE": 5300,
+        "NONE": 2512,
+        "VALID": 14700
+      },
+      "source_to_runtime_status_changes": {
+        "INCOMPLETE->VALID": 200
+      },
+      "inferred_policy_slot_counts": {
+        "temperature=ICE": 400
+      },
+      "validation_error_count": 0,
+      "examples_by_scenario": {
+        "affirm": [
+          {
+            "id": "structure_b_train_valid_020000",
+            "user_text": "아 그러니까 어 그렇죠",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_train_valid_020001",
+            "user_text": "어 일단 어 응 맞아요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "cancel": [
+          {
+            "id": "structure_b_train_valid_021360",
+            "user_text": "그러니까 저 현재 주문 전체를 초기화해주세요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_train_valid_021361",
+            "user_text": "아 그러니까 아 현재 주문 전부 취소해주세요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "deny": [
+          {
+            "id": "structure_b_train_valid_020320",
+            "user_text": "어 그러면 맞지 않아요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_train_valid_020321",
+            "user_text": "어 그러면 그건 아닙니다",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "guide": [
+          {
+            "id": "structure_b_train_valid_021680",
+            "user_text": "그럼 일단 죄송한데 화장실 위치 어느 쪽에 있어요?",
+            "decision": "GUIDE_CUSTOMER",
+            "response": "화장실은 오른쪽에 있습니다. 제가 보는 방향으로 가시면 됩니다.",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_021681",
+            "user_text": "저기 화장실 위치 위치 좀 알려주세요",
+            "decision": "GUIDE_CUSTOMER",
+            "response": "화장실은 오른쪽에 있습니다. 제가 보는 방향으로 가시면 됩니다.",
+            "context_required": false
+          }
+        ],
+        "modify": [
+          {
+            "id": "structure_b_train_valid_020576",
+            "user_text": "그러니까 어 그러면 아메리카노로 수정해주세요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_train_valid_020577",
+            "user_text": "아 그러니까 그럼 선택한 메뉴 대신 아메리카노로 할게요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "order_complete": [
+          {
+            "id": "structure_b_train_valid_000000",
+            "user_text": "차가운 레모네이드 한잔 말아주이소",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 레몬에이드 1잔 맞으신가요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_000001",
+            "user_text": "아이스 카페라떼 열세개 주문 할게요",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 카페라떼 13잔 맞으신가요?",
+            "context_required": false
+          }
+        ],
+        "order_contextual_slot_answer": [
+          {
+            "id": "structure_b_train_valid_017000",
+            "user_text": "그럼 저는 핫으로 스무 잔 부탁해요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_train_valid_017001",
+            "user_text": "어 열아홉 잔 주문할게요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "order_missing_quantity": [
+          {
+            "id": "structure_b_train_valid_017003",
+            "user_text": "그럼 저는 바라 아이스로 할게요",
+            "decision": "ASK_QUANTITY",
+            "response": "아이스 바닐라라떼는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_017004",
+            "user_text": "아 네 메뉴는 카페라떼요",
+            "decision": "ASK_QUANTITY",
+            "response": "카페라떼는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          }
+        ],
+        "order_missing_temperature": [
+          {
+            "id": "structure_b_train_valid_017034",
+            "user_text": "그럼 저는 카페라테로 두 개 주세요",
+            "decision": "ASK_TEMPERATURE",
+            "response": "카페라떼는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_017040",
+            "user_text": "어 메뉴는 카페라떼, 수량은 열세 잔이요",
+            "decision": "ASK_TEMPERATURE",
+            "response": "카페라떼는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_complete": [
+          {
+            "id": "structure_b_train_valid_000013",
+            "user_text": "시원하게 라떼 2잔하고 딸기주스 일곱 잔, 그리고 따바라 1잔 부탁드려요.",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 카페라떼 2잔, 아이스 딸기스무디 7잔, 따뜻한 바닐라라떼 1잔 맞으신가요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_000017",
+            "user_text": "레모네이드 15잔, 바닐라라테 아홉 잔 주세요. 둘 모두 시원하게 해주세요.",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 레몬에이드 15잔, 아이스 바닐라라떼 9잔 맞으신가요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_missing_quantity": [
+          {
+            "id": "structure_b_train_valid_000037",
+            "user_text": "따아 2잔에다가 핫으로 바닐라라테 주문할게요.",
+            "decision": "ASK_QUANTITY",
+            "response": "따뜻한 바닐라라떼는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_000051",
+            "user_text": "시원하게 카페 라떼 10잔, 그리고 뜨아 주문할게요.",
+            "decision": "ASK_QUANTITY",
+            "response": "따뜻한 아메리카노는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_missing_temperature": [
+          {
+            "id": "structure_b_train_valid_000014",
+            "user_text": "바닐라 라떼 10잔에다가 뜨아 세 잔 부탁해요.",
+            "decision": "ASK_TEMPERATURE",
+            "response": "바닐라라떼는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_000024",
+            "user_text": "딸기 스무디 열일곱 잔에다가 바라 17잔 주문할게요.",
+            "decision": "ASK_TEMPERATURE",
+            "response": "바닐라라떼는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          }
+        ],
+        "unknown": [
+          {
+            "id": "structure_b_train_valid_021872",
+            "user_text": "아 그러니까 아 잘 모르겠는데",
+            "decision": "OUT_OF_POLICY",
+            "response": "주문하실 메뉴와 옵션을 말씀해 주세요.",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_train_valid_021873",
+            "user_text": "잠깐 글쎄 뭐로 하지",
+            "decision": "OUT_OF_POLICY",
+            "response": "주문하실 메뉴와 옵션을 말씀해 주세요.",
+            "context_required": false
+          }
+        ]
+      }
+    },
+    {
+      "dataset": "structure_b_test",
+      "input": "data/structure_b_test.jsonl",
+      "output": "data/tod/pumpkin_tod_v1_test.jsonl",
+      "total": 1507,
+      "intent_counts": {
+        "AFFIRM": 80,
+        "CANCEL": 80,
+        "DENY": 64,
+        "GUIDE": 48,
+        "MODIFY": 196,
+        "ORDER": 880,
+        "UNKNOWN": 159
+      },
+      "scenario_counts": {
+        "affirm": 80,
+        "cancel": 80,
+        "deny": 64,
+        "guide": 48,
+        "modify": 196,
+        "order_complete": 48,
+        "order_contextual_slot_answer": 160,
+        "order_missing_menu": 16,
+        "order_missing_quantity": 76,
+        "order_missing_temperature": 20,
+        "order_multi_complete": 240,
+        "order_multi_missing_menu": 40,
+        "order_multi_missing_quantity": 164,
+        "order_multi_missing_temperature": 116,
+        "unknown": 159
+      },
+      "supervision_counts": {
+        "context_required": 580,
+        "fully_supervised": 927
+      },
+      "decision_counts": {
+        "ASK_MENU": 56,
+        "ASK_QUANTITY": 240,
+        "ASK_TEMPERATURE": 136,
+        "CONFIRM_ORDER": 288,
+        "CONTEXT_REQUIRED": 580,
+        "GUIDE_CUSTOMER": 48,
+        "OUT_OF_POLICY": 159
+      },
+      "source_order_status_counts": {
+        "INCOMPLETE": 588,
+        "NONE": 627,
+        "UNPARSABLE": 16,
+        "VALID": 276
+      },
+      "target_order_status_counts": {
+        "INCOMPLETE": 592,
+        "NONE": 627,
+        "VALID": 288
+      },
+      "source_to_runtime_status_changes": {
+        "INCOMPLETE->VALID": 12,
+        "UNPARSABLE->INCOMPLETE": 16
+      },
+      "inferred_policy_slot_counts": {
+        "temperature=ICE": 24
+      },
+      "validation_error_count": 0,
+      "examples_by_scenario": {
+        "affirm": [
+          {
+            "id": "structure_b_test_000880",
+            "user_text": "네",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_test_000881",
+            "user_text": "웅",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "cancel": [
+          {
+            "id": "structure_b_test_001220",
+            "user_text": "이거 다 취소 할게요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_test_001221",
+            "user_text": "다시 주문할게요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "deny": [
+          {
+            "id": "structure_b_test_000960",
+            "user_text": "아니요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_test_000961",
+            "user_text": "아니라고",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "guide": [
+          {
+            "id": "structure_b_test_001300",
+            "user_text": "화장실이 어디에요?",
+            "decision": "GUIDE_CUSTOMER",
+            "response": "화장실은 오른쪽에 있습니다. 제가 보는 방향으로 가시면 됩니다.",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_001301",
+            "user_text": "화장실 어느 쪽이에요",
+            "decision": "GUIDE_CUSTOMER",
+            "response": "화장실은 오른쪽에 있습니다. 제가 보는 방향으로 가시면 됩니다.",
+            "context_required": false
+          }
+        ],
+        "modify": [
+          {
+            "id": "structure_b_test_001024",
+            "user_text": "그거 아메리카노로 바꿔주세요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_test_001025",
+            "user_text": "그거 아메리카노로 변경할게요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "order_complete": [
+          {
+            "id": "structure_b_test_000000",
+            "user_text": "아이스 아메리카노 한 잔 주세요",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 아메리카노 1잔 맞으신가요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000001",
+            "user_text": "아메리카노 한 잔 차갑게 주문이요",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 아메리카노 1잔 맞으신가요?",
+            "context_required": false
+          }
+        ],
+        "order_contextual_slot_answer": [
+          {
+            "id": "structure_b_test_000032",
+            "user_text": "시원한 음료수 열두 개 주세요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          },
+          {
+            "id": "structure_b_test_000033",
+            "user_text": "차가운 물 열두잔 줘요",
+            "decision": null,
+            "response": null,
+            "context_required": true
+          }
+        ],
+        "order_missing_menu": [
+          {
+            "id": "structure_b_test_000144",
+            "user_text": "커피 시키고 싶은데",
+            "decision": "ASK_MENU",
+            "response": "어떤 메뉴로 주문하시겠어요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000145",
+            "user_text": "이거 주문할려면 어떻게 해야하나",
+            "decision": "ASK_MENU",
+            "response": "어떤 메뉴로 주문하시겠어요?",
+            "context_required": false
+          }
+        ],
+        "order_missing_quantity": [
+          {
+            "id": "structure_b_test_000068",
+            "user_text": "아메리카노 따끈하게 줘",
+            "decision": "ASK_QUANTITY",
+            "response": "따뜻한 아메리카노는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000069",
+            "user_text": "아메라카노 따뜻하게 줘요",
+            "decision": "ASK_QUANTITY",
+            "response": "따뜻한 아메리카노는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          }
+        ],
+        "order_missing_temperature": [
+          {
+            "id": "structure_b_test_000048",
+            "user_text": "아메리카노 두 잔 줘유",
+            "decision": "ASK_TEMPERATURE",
+            "response": "아메리카노는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000049",
+            "user_text": "아메리카노 두 개 부탁 드립니다",
+            "decision": "ASK_TEMPERATURE",
+            "response": "아메리카노는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_complete": [
+          {
+            "id": "structure_b_test_000160",
+            "user_text": "아메리카노 하나는 차갑게 두개는 따뜻하게요",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 아메리카노 1잔, 따뜻한 아메리카노 2잔 맞으신가요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000161",
+            "user_text": "아이스아메리카노 한잔이랑 따뜻한 아메리카노 두잔이요",
+            "decision": "CONFIRM_ORDER",
+            "response": "아이스 아메리카노 1잔, 따뜻한 아메리카노 2잔 맞으신가요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_missing_menu": [
+          {
+            "id": "structure_b_test_000348",
+            "user_text": "찬 음료 있나요 차가운 음료 여덟잔 줘요. 그리고 딸기스무디는 열잔 주세요",
+            "decision": "ASK_MENU",
+            "response": "1번째 음료는 어떤 메뉴로 주문하시겠어요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000349",
+            "user_text": "차가운 음료 여덟잔 주시고 딸기스무디 좋네요 딸기스무디는 열잔 시킬게요",
+            "decision": "ASK_MENU",
+            "response": "1번째 음료는 어떤 메뉴로 주문하시겠어요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_missing_quantity": [
+          {
+            "id": "structure_b_test_000256",
+            "user_text": "아메리카노 아이스로 5잔 주시고요. 따뜻한 아메리카노도 주문할게요.",
+            "decision": "ASK_QUANTITY",
+            "response": "따뜻한 아메리카노는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000257",
+            "user_text": "아이스 아메리카노 5잔이랑 따뜻한 아메리카노도 주세요.",
+            "decision": "ASK_QUANTITY",
+            "response": "따뜻한 아메리카노는 몇 잔 주문하시겠어요?",
+            "context_required": false
+          }
+        ],
+        "order_multi_missing_temperature": [
+          {
+            "id": "structure_b_test_000224",
+            "user_text": "음 아이스 아메리카노 스무 잔이랑 카페라떼 한 잔이요.",
+            "decision": "ASK_TEMPERATURE",
+            "response": "카페라떼는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_000225",
+            "user_text": "아아 스무 잔이랑 카페라떼 한 잔 주문할게요",
+            "decision": "ASK_TEMPERATURE",
+            "response": "카페라떼는 아이스로 드릴까요, 따뜻하게 드릴까요?",
+            "context_required": false
+          }
+        ],
+        "unknown": [
+          {
+            "id": "structure_b_test_001348",
+            "user_text": "글쎄",
+            "decision": "OUT_OF_POLICY",
+            "response": "주문하실 메뉴와 옵션을 말씀해 주세요.",
+            "context_required": false
+          },
+          {
+            "id": "structure_b_test_001349",
+            "user_text": "왜 그러냐",
+            "decision": "OUT_OF_POLICY",
+            "response": "주문하실 메뉴와 옵션을 말씀해 주세요.",
+            "context_required": false
+          }
+        ]
+      }
+    }
+  ]
+}

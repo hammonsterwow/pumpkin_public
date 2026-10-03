@@ -1,0 +1,289 @@
+{
+  "split_version": "pumpkin_tod_source_group_split_v1",
+  "qwen_format_version": "pumpkin_tod_qwen_messages_v1",
+  "seed": "pumpkin-tod-v1-source-group-split-2026-09-03",
+  "validation_ratio_requested": 0.1,
+  "validation_ratio_actual_rows": 0.09999307287337213,
+  "group_key": "source.dataset + source.source_index",
+  "source_group_policy": "all rows derived from one canonical source stay in exactly one split",
+  "stratification": "source scenario family before deterministic stable-hash group selection",
+  "test_policy": "fixed 1,507-row SFT test is never resampled",
+  "chat_template": {
+    "format": "Hugging Face messages: system/user/assistant",
+    "recommended_qwen3_option": "apply_chat_template(..., enable_thinking=False)",
+    "assistant_output": "JSON only"
+  },
+  "split_meta": {
+    "source_groups": 22512,
+    "validation_source_groups": 2251,
+    "strata": {
+      "context::affirm": {
+        "source_groups": 320,
+        "validation_source_groups": 32,
+        "rows": 960,
+        "validation_rows": 96
+      },
+      "context::cancel": {
+        "source_groups": 320,
+        "validation_source_groups": 32,
+        "rows": 960,
+        "validation_rows": 96
+      },
+      "context::deny": {
+        "source_groups": 256,
+        "validation_source_groups": 26,
+        "rows": 768,
+        "validation_rows": 78
+      },
+      "context::modify": {
+        "source_groups": 784,
+        "validation_source_groups": 78,
+        "rows": 2352,
+        "validation_rows": 234
+      },
+      "context::order_contextual_slot_answer": {
+        "source_groups": 1500,
+        "validation_source_groups": 150,
+        "rows": 4500,
+        "validation_rows": 450
+      },
+      "guide": {
+        "source_groups": 192,
+        "validation_source_groups": 19,
+        "rows": 192,
+        "validation_rows": 19
+      },
+      "order_complete": {
+        "source_groups": 12200,
+        "validation_source_groups": 1220,
+        "rows": 12200,
+        "validation_rows": 1220
+      },
+      "order_missing_quantity": {
+        "source_groups": 1000,
+        "validation_source_groups": 100,
+        "rows": 1000,
+        "validation_rows": 100
+      },
+      "order_missing_temperature": {
+        "source_groups": 300,
+        "validation_source_groups": 30,
+        "rows": 300,
+        "validation_rows": 30
+      },
+      "order_multi_complete": {
+        "source_groups": 2500,
+        "validation_source_groups": 250,
+        "rows": 2500,
+        "validation_rows": 250
+      },
+      "order_multi_missing_quantity": {
+        "source_groups": 1420,
+        "validation_source_groups": 142,
+        "rows": 1420,
+        "validation_rows": 142
+      },
+      "order_multi_missing_temperature": {
+        "source_groups": 1080,
+        "validation_source_groups": 108,
+        "rows": 1080,
+        "validation_rows": 108
+      },
+      "unknown": {
+        "source_groups": 640,
+        "validation_source_groups": 64,
+        "rows": 640,
+        "validation_rows": 64
+      }
+    }
+  },
+  "train": {
+    "rows": 25985,
+    "source_groups": 20261,
+    "scenario_counts": {
+      "affirm_multiturn": 864,
+      "cancel_multiturn": 864,
+      "deny_multiturn": 690,
+      "guide": 173,
+      "modify_multiturn": 1815,
+      "modify_multiturn_request_only": 303,
+      "order_complete": 10980,
+      "order_contextual_slot_answer_multiturn": 4050,
+      "order_missing_quantity": 900,
+      "order_missing_temperature": 270,
+      "order_multi_complete": 2250,
+      "order_multi_missing_quantity": 1278,
+      "order_multi_missing_temperature": 972,
+      "unknown": 576
+    },
+    "source_scenario_counts": {
+      "context::affirm": 864,
+      "context::cancel": 864,
+      "context::deny": 690,
+      "context::modify": 2118,
+      "context::order_contextual_slot_answer": 4050,
+      "guide": 173,
+      "order_complete": 10980,
+      "order_missing_quantity": 900,
+      "order_missing_temperature": 270,
+      "order_multi_complete": 2250,
+      "order_multi_missing_quantity": 1278,
+      "order_multi_missing_temperature": 972,
+      "unknown": 576
+    },
+    "intent_counts": {
+      "AFFIRM": 864,
+      "CANCEL": 864,
+      "DENY": 690,
+      "GUIDE": 173,
+      "MODIFY": 2118,
+      "ORDER": 20700,
+      "UNKNOWN": 576
+    },
+    "decision_counts": {
+      "ASK_QUANTITY": 2178,
+      "ASK_TEMPERATURE": 1242,
+      "CANCEL_ORDER": 720,
+      "CONFIRM_ORDER": 19095,
+      "GUIDE_CUSTOMER": 173,
+      "MODIFY_ORDER": 993,
+      "ORDER_CONFIRMED": 864,
+      "OUT_OF_POLICY": 576,
+      "REORDER_REQUEST": 144
+    }
+  },
+  "validation": {
+    "rows": 2887,
+    "source_groups": 2251,
+    "scenario_counts": {
+      "affirm_multiturn": 96,
+      "cancel_multiturn": 96,
+      "deny_multiturn": 78,
+      "guide": 19,
+      "modify_multiturn": 201,
+      "modify_multiturn_request_only": 33,
+      "order_complete": 1220,
+      "order_contextual_slot_answer_multiturn": 450,
+      "order_missing_quantity": 100,
+      "order_missing_temperature": 30,
+      "order_multi_complete": 250,
+      "order_multi_missing_quantity": 142,
+      "order_multi_missing_temperature": 108,
+      "unknown": 64
+    },
+    "source_scenario_counts": {
+      "context::affirm": 96,
+      "context::cancel": 96,
+      "context::deny": 78,
+      "context::modify": 234,
+      "context::order_contextual_slot_answer": 450,
+      "guide": 19,
+      "order_complete": 1220,
+      "order_missing_quantity": 100,
+      "order_missing_temperature": 30,
+      "order_multi_complete": 250,
+      "order_multi_missing_quantity": 142,
+      "order_multi_missing_temperature": 108,
+      "unknown": 64
+    },
+    "intent_counts": {
+      "AFFIRM": 96,
+      "CANCEL": 96,
+      "DENY": 78,
+      "GUIDE": 19,
+      "MODIFY": 234,
+      "ORDER": 2300,
+      "UNKNOWN": 64
+    },
+    "decision_counts": {
+      "ASK_QUANTITY": 242,
+      "ASK_TEMPERATURE": 138,
+      "CANCEL_ORDER": 87,
+      "CONFIRM_ORDER": 2121,
+      "GUIDE_CUSTOMER": 19,
+      "MODIFY_ORDER": 111,
+      "ORDER_CONFIRMED": 96,
+      "OUT_OF_POLICY": 64,
+      "REORDER_REQUEST": 9
+    }
+  },
+  "test": {
+    "rows": 1507,
+    "source_groups": 1507,
+    "scenario_counts": {
+      "affirm_multiturn": 80,
+      "cancel_multiturn": 80,
+      "deny_multiturn": 64,
+      "guide": 48,
+      "modify_multiturn": 168,
+      "modify_multiturn_request_only": 28,
+      "order_complete": 48,
+      "order_contextual_slot_answer_multiturn": 160,
+      "order_missing_menu": 16,
+      "order_missing_quantity": 76,
+      "order_missing_temperature": 20,
+      "order_multi_complete": 240,
+      "order_multi_missing_menu": 40,
+      "order_multi_missing_quantity": 164,
+      "order_multi_missing_temperature": 116,
+      "unknown": 159
+    },
+    "source_scenario_counts": {
+      "context::affirm": 80,
+      "context::cancel": 80,
+      "context::deny": 64,
+      "context::modify": 196,
+      "context::order_contextual_slot_answer": 160,
+      "guide": 48,
+      "order_complete": 48,
+      "order_missing_menu": 16,
+      "order_missing_quantity": 76,
+      "order_missing_temperature": 20,
+      "order_multi_complete": 240,
+      "order_multi_missing_menu": 40,
+      "order_multi_missing_quantity": 164,
+      "order_multi_missing_temperature": 116,
+      "unknown": 159
+    },
+    "intent_counts": {
+      "AFFIRM": 80,
+      "CANCEL": 80,
+      "DENY": 64,
+      "GUIDE": 48,
+      "MODIFY": 196,
+      "ORDER": 880,
+      "UNKNOWN": 159
+    },
+    "decision_counts": {
+      "ASK_MENU": 56,
+      "ASK_QUANTITY": 240,
+      "ASK_TEMPERATURE": 136,
+      "CANCEL_ORDER": 62,
+      "CONFIRM_ORDER": 616,
+      "GUIDE_CUSTOMER": 48,
+      "MODIFY_ORDER": 92,
+      "ORDER_CONFIRMED": 80,
+      "OUT_OF_POLICY": 159,
+      "REORDER_REQUEST": 18
+    }
+  },
+  "leakage_checks": {
+    "train_validation_source_group": 0,
+    "train_test_source_group": 0,
+    "validation_test_source_group": 0
+  },
+  "diagnostic_exact_user_text_overlap_not_used_as_group_key": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "files": {
+    "raw_train": "data/tod/qwen/pumpkin_tod_v1_train.jsonl",
+    "raw_validation": "data/tod/qwen/pumpkin_tod_v1_validation.jsonl",
+    "raw_test": "data/tod/qwen/pumpkin_tod_v1_test.jsonl",
+    "qwen_train": "data/tod/qwen/pumpkin_tod_v1_qwen_train.jsonl",
+    "qwen_validation": "data/tod/qwen/pumpkin_tod_v1_qwen_validation.jsonl",
+    "qwen_test": "data/tod/qwen/pumpkin_tod_v1_qwen_test.jsonl",
+    "fixed_test_input_sha256": "e36f6fc3a91b3d2dfd1bfc2bf98e7d9184c71b034aea6ddafc62e4e8070d455e"
+  }
+}

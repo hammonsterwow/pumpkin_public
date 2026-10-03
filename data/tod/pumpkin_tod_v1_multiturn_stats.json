@@ -1,0 +1,89 @@
+{
+  "schema_version": "pumpkin_tod_multiturn_v1",
+  "llm_used_for_labels": false,
+  "policy": {
+    "train_context_variants": 3,
+    "test_context_variants": 1,
+    "test_source_count_preserved": true,
+    "previous_response_source": "robot_controller.response_manager.ResponseManager",
+    "order_truth_source": "canonical Structure B labels + deterministic synthetic context"
+  },
+  "train_valid": {
+    "split": "train_valid",
+    "base_total": 22512,
+    "base_fully_supervised": 19332,
+    "base_context_required": 3180,
+    "variants_per_context_row": 3,
+    "generated_multiturn": 9540,
+    "final_sft_total": 28872,
+    "context_scenario_counts": {
+      "affirm": 320,
+      "cancel": 320,
+      "deny": 256,
+      "modify": 784,
+      "order_contextual_slot_answer": 1500
+    },
+    "generated_scenario_counts": {
+      "affirm_multiturn": 960,
+      "cancel_multiturn": 960,
+      "deny_multiturn": 768,
+      "modify_multiturn": 2016,
+      "modify_multiturn_request_only": 336,
+      "order_contextual_slot_answer_multiturn": 4500
+    },
+    "decision_counts": {
+      "CANCEL_ORDER": 807,
+      "CONFIRM_ORDER": 6516,
+      "MODIFY_ORDER": 1104,
+      "ORDER_CONFIRMED": 960,
+      "REORDER_REQUEST": 153
+    },
+    "fsm_before_counts": {
+      "ASK_QUANTITY": 3320,
+      "ASK_TEMPERATURE": 1820,
+      "ORDER_CONFIRM": 4400
+    },
+    "validation_error_count": 0,
+    "final_context_required": 0
+  },
+  "test": {
+    "split": "test",
+    "base_total": 1507,
+    "base_fully_supervised": 927,
+    "base_context_required": 580,
+    "variants_per_context_row": 1,
+    "generated_multiturn": 580,
+    "final_sft_total": 1507,
+    "context_scenario_counts": {
+      "affirm": 80,
+      "cancel": 80,
+      "deny": 64,
+      "modify": 196,
+      "order_contextual_slot_answer": 160
+    },
+    "generated_scenario_counts": {
+      "affirm_multiturn": 80,
+      "cancel_multiturn": 80,
+      "deny_multiturn": 64,
+      "modify_multiturn": 168,
+      "modify_multiturn_request_only": 28,
+      "order_contextual_slot_answer_multiturn": 160
+    },
+    "decision_counts": {
+      "CANCEL_ORDER": 62,
+      "CONFIRM_ORDER": 328,
+      "MODIFY_ORDER": 92,
+      "ORDER_CONFIRMED": 80,
+      "REORDER_REQUEST": 18
+    },
+    "fsm_before_counts": {
+      "ASK_QUANTITY": 112,
+      "ASK_TEMPERATURE": 48,
+      "ORDER_CONFIRM": 420
+    },
+    "validation_error_count": 0,
+    "final_context_required": 0
+  },
+  "review_sample_count": 200,
+  "review_sample_policy": "first 40 deterministic examples per context source scenario"
+}

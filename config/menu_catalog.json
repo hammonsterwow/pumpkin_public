@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "menus": [
+    {
+      "menu_id": 1,
+      "name": "아메리카노",
+      "eng_name": "Americano",
+      "aliases": [
+        "아메리카노",
+        "아메리카노커피"
+      ],
+      "category": "ESPRESSO",
+      "price": 3000,
+      "available_temperatures": [
+        "ICE",
+        "HOT"
+      ],
+      "is_available": true,
+      "image": null,
+      "description": "에스프레소에 물을 더한 깔끔한 커피"
+    },
+    {
+      "menu_id": 2,
+      "name": "카페라떼",
+      "eng_name": "Caffe Latte",
+      "aliases": [
+        "카페라떼",
+        "카페라테"
+      ],
+      "category": "ESPRESSO",
+      "price": 4000,
+      "available_temperatures": [
+        "ICE",
+        "HOT"
+      ],
+      "is_available": true,
+      "image": null,
+      "description": "에스프레소와 우유가 어우러진 부드러운 커피"
+    },
+    {
+      "menu_id": 3,
+      "name": "바닐라라떼",
+      "eng_name": "Vanilla Latte",
+      "aliases": [
+        "바닐라라떼",
+        "바닐라라테"
+      ],
+      "category": "ESPRESSO",
+      "price": 4500,
+      "available_temperatures": [
+        "ICE",
+        "HOT"
+      ],
+      "is_available": true,
+      "image": null,
+      "description": "바닐라 향과 우유를 더한 달콤한 라떼"
+    },
+    {
+      "menu_id": 4,
+      "name": "레몬에이드",
+      "eng_name": "Lemonade",
+      "aliases": [
+        "레몬에이드"
+      ],
+      "category": "BEVERAGE",
+      "price": 4500,
+      "available_temperatures": [
+        "ICE"
+      ],
+      "is_available": true,
+      "image": null,
+      "description": "레몬의 상큼함을 살린 시원한 에이드"
+    },
+    {
+      "menu_id": 5,
+      "name": "딸기스무디",
+      "eng_name": "Strawberry Smoothie",
+      "aliases": [
+        "딸기스무디"
+      ],
+      "category": "BEVERAGE",
+      "price": 5000,
+      "available_temperatures": [
+        "ICE"
+      ],
+      "is_available": true,
+      "image": null,
+      "description": "딸기의 달콤함을 담은 시원한 스무디"
+    }
+  ]
+}

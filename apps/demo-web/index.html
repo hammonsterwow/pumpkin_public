@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Pumpkin Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="demo-shell">
+      <section class="main-stage">
+        <section class="vision-panel" aria-label="ROBOT VISION">
+          <img id="cameraStream" class="camera-stream" src="/camera.mjpg" alt="로봇 카메라 실시간 영상" />
+          <div class="vision-shade" aria-hidden="true"></div>
+
+          <div class="vision-heading">
+            <span class="eyebrow light">ROBOT VISION</span>
+            <span id="liveBadge" class="live-badge"><i></i>LIVE</span>
+          </div>
+
+          <div class="vision-status">
+            <div id="presenceStatus" class="vision-status-line">WAITING FOR CUSTOMER</div>
+            <div id="gestureStatus" class="gesture-status" aria-live="polite"></div>
+          </div>
+
+          <div id="cameraFallback" class="camera-fallback">
+            <span>카메라 영상을 기다리는 중입니다.</span>
+          </div>
+        </section>
+
+        <section class="brain-panel" aria-label="ROBOT BRAIN">
+          <header class="brain-header">
+            <span class="eyebrow">ROBOT BRAIN</span>
+            <button id="logButton" class="log-button" type="button" aria-controls="logPanel" aria-expanded="false">LOG</button>
+          </header>
+
+          <div id="brainStage" class="brain-stage">
+            <div id="interactionStatus" class="interaction-status" hidden aria-live="polite">
+              <span id="interactionStatusLabel" class="interaction-status-label"></span>
+              <strong id="interactionStatusText" class="interaction-status-text"></strong>
+            </div>
+            <div id="brainHistory" class="brain-history" aria-live="polite"></div>
+          </div>
+
+          <aside id="logPanel" class="log-panel" hidden>
+            <div class="log-header">
+              <span class="eyebrow">LOG</span>
+              <button id="closeLogButton" class="close-log-button" type="button" aria-label="로그 닫기">×</button>
+            </div>
+            <div id="logList" class="log-list"></div>
+          </aside>
+        </section>
+      </section>
+
+      <section class="subtitle-panel" aria-label="실시간 대화 자막">
+        <div class="subtitle-row">
+          <span class="subtitle-speaker">USER</span>
+          <p id="userSubtitle" class="subtitle-text muted">고객의 음성 인식을 기다리고 있습니다.</p>
+        </div>
+        <div class="subtitle-divider"></div>
+        <div class="subtitle-row">
+          <span class="subtitle-speaker">ROBOT</span>
+          <p id="robotSubtitle" class="subtitle-text muted">로봇의 응답을 기다리고 있습니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "loss": 6.699712496100575,
+  "intent_accuracy": 0.847378898473789,
+  "intent_macro_f1": 0.8143135185642392,
+  "status_accuracy": 0.5992037159920371,
+  "status_macro_f1": 0.42506313402842394,
+  "item_active_accuracy": 0.9312099093120991,
+  "menu_accuracy": 0.7658371040723982,
+  "temperature_accuracy": 0.8240950226244343,
+  "quantity_accuracy": 0.8450226244343891,
+  "frame_accuracy": 0.4054412740544127
+}

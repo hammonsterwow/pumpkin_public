@@ -1,0 +1,13 @@
+faster-whisper
+sounddevice
+scipy<1.14
+pandas<2.3
+scikit-learn<1.6
+torch==2.2.2
+transformers==4.40.2
+huggingface-hub>=0.21.2,<1.0
+datasets<3
+accelerate<1
+numpy<2
+Jetson.GPIO
+adafruit-circuitpython-servokit

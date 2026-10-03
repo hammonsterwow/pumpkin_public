@@ -1,0 +1,23 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "index.ts",
+    "App.tsx",
+    "src/CustomerMobileApp.tsx",
+    "src/api/**/*.ts",
+    "src/components/**/*.tsx",
+    "src/native/**/*.ts",
+    "src/screens/**/*.tsx",
+    "src/types/**/*.ts",
+    "src/utils/**/*.ts"
+  ],
+  "exclude": [
+    "src/app/**",
+    "src/main.tsx",
+    "vite.config.ts"
+  ]
+}

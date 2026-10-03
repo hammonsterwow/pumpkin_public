@@ -1,0 +1,85 @@
+{
+  "model": "monologg/koelectra-small-v3-discriminator",
+  "train_valid_file": "structure_b_train_valid.jsonl",
+  "test_file": "structure_b_test.jsonl",
+  "train_pool_size": 22512,
+  "train_size": 20285,
+  "valid_size": 2227,
+  "test_size": 1507,
+  "main_seeds": [
+    42,
+    43,
+    44
+  ],
+  "ablation_seeds_default": [
+    42
+  ],
+  "main_configs": [
+    {
+      "name": "M0_independent_heads",
+      "architecture": "independent",
+      "differential_lr": false,
+      "oversample": false,
+      "weighted_loss": false,
+      "rdrop": false
+    },
+    {
+      "name": "M1_item_query",
+      "architecture": "item_query",
+      "differential_lr": false,
+      "oversample": false,
+      "weighted_loss": false,
+      "rdrop": false
+    },
+    {
+      "name": "M2_improved_item_query",
+      "architecture": "item_query",
+      "differential_lr": true,
+      "oversample": true,
+      "weighted_loss": true,
+      "rdrop": false
+    }
+  ],
+  "ablation_configs": [
+    {
+      "name": "M1_item_query",
+      "architecture": "item_query",
+      "differential_lr": false,
+      "oversample": false,
+      "weighted_loss": false,
+      "rdrop": false
+    },
+    {
+      "name": "A1_plus_diff_lr",
+      "architecture": "item_query",
+      "differential_lr": true,
+      "oversample": false,
+      "weighted_loss": false,
+      "rdrop": false
+    },
+    {
+      "name": "A2_plus_oversampling",
+      "architecture": "item_query",
+      "differential_lr": true,
+      "oversample": true,
+      "weighted_loss": false,
+      "rdrop": false
+    },
+    {
+      "name": "M2_improved_item_query",
+      "architecture": "item_query",
+      "differential_lr": true,
+      "oversample": true,
+      "weighted_loss": true,
+      "rdrop": false
+    }
+  ],
+  "rdrop_config": {
+    "name": "A4_plus_rdrop",
+    "architecture": "item_query",
+    "differential_lr": true,
+    "oversample": true,
+    "weighted_loss": true,
+    "rdrop": true
+  }
+}

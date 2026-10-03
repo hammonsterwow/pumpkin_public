@@ -1,0 +1,400 @@
+{"id":"structure_b_train_valid_020000_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:01.378087+00:00"}
+{"id":"structure_b_train_valid_020000_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:02.475334+00:00"}
+{"id":"structure_b_train_valid_020000_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:02.677744+00:00"}
+{"id":"structure_b_train_valid_020001_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:02.976969+00:00"}
+{"id":"structure_b_train_valid_020001_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:03.192382+00:00"}
+{"id":"structure_b_train_valid_020001_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:03.510593+00:00"}
+{"id":"structure_b_train_valid_020002_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:03.742937+00:00"}
+{"id":"structure_b_train_valid_020002_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:03.992898+00:00"}
+{"id":"structure_b_train_valid_020002_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:04.275931+00:00"}
+{"id":"structure_b_train_valid_020003_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:04.560120+00:00"}
+{"id":"structure_b_train_valid_020003_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:04.810107+00:00"}
+{"id":"structure_b_train_valid_020003_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:05.093664+00:00"}
+{"id":"structure_b_train_valid_020004_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:05.310864+00:00"}
+{"id":"structure_b_train_valid_020004_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:05.525374+00:00"}
+{"id":"structure_b_train_valid_020004_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:05.793344+00:00"}
+{"id":"structure_b_train_valid_020005_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:06.027605+00:00"}
+{"id":"structure_b_train_valid_020005_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:06.226143+00:00"}
+{"id":"structure_b_train_valid_020005_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:06.442257+00:00"}
+{"id":"structure_b_train_valid_020006_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:06.642938+00:00"}
+{"id":"structure_b_train_valid_020006_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.042767+00:00"}
+{"id":"structure_b_train_valid_020006_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.228182+00:00"}
+{"id":"structure_b_train_valid_020007_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.359797+00:00"}
+{"id":"structure_b_train_valid_020007_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.493944+00:00"}
+{"id":"structure_b_train_valid_020007_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.625468+00:00"}
+{"id":"structure_b_train_valid_020008_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.760431+00:00"}
+{"id":"structure_b_train_valid_020008_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:10.892939+00:00"}
+{"id":"structure_b_train_valid_020008_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.028385+00:00"}
+{"id":"structure_b_train_valid_020009_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.278532+00:00"}
+{"id":"structure_b_train_valid_020009_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.411066+00:00"}
+{"id":"structure_b_train_valid_020009_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.558302+00:00"}
+{"id":"structure_b_train_valid_020010_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.693477+00:00"}
+{"id":"structure_b_train_valid_020010_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.826428+00:00"}
+{"id":"structure_b_train_valid_020010_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:11.960700+00:00"}
+{"id":"structure_b_train_valid_020011_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.093297+00:00"}
+{"id":"structure_b_train_valid_020011_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.227935+00:00"}
+{"id":"structure_b_train_valid_020011_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.359020+00:00"}
+{"id":"structure_b_train_valid_020012_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.492419+00:00"}
+{"id":"structure_b_train_valid_020012_ctx2","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.642173+00:00"}
+{"id":"structure_b_train_valid_020012_ctx3","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.759768+00:00"}
+{"id":"structure_b_train_valid_020013_ctx1","source_scenario":"affirm","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:12.910637+00:00"}
+{"id":"structure_b_train_valid_021360_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:20.010785+00:00"}
+{"id":"structure_b_train_valid_021360_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:20.360500+00:00"}
+{"id":"structure_b_train_valid_021360_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:20.660961+00:00"}
+{"id":"structure_b_train_valid_021361_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:20.960699+00:00"}
+{"id":"structure_b_train_valid_021361_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:21.808436+00:00"}
+{"id":"structure_b_train_valid_021361_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:22.242865+00:00"}
+{"id":"structure_b_train_valid_021362_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:32.808936+00:00"}
+{"id":"structure_b_train_valid_021362_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:32.941258+00:00"}
+{"id":"structure_b_train_valid_021362_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:33.058180+00:00"}
+{"id":"structure_b_train_valid_021363_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:33.192514+00:00"}
+{"id":"structure_b_train_valid_021363_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:33.326460+00:00"}
+{"id":"structure_b_train_valid_021363_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:33.459393+00:00"}
+{"id":"structure_b_train_valid_021364_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:35.344786+00:00"}
+{"id":"structure_b_train_valid_021364_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:35.510446+00:00"}
+{"id":"structure_b_train_valid_021364_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:35.661429+00:00"}
+{"id":"structure_b_train_valid_021365_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:35.794336+00:00"}
+{"id":"structure_b_train_valid_021365_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:35.894618+00:00"}
+{"id":"structure_b_train_valid_021365_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:36.046113+00:00"}
+{"id":"structure_b_train_valid_021366_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:36.544962+00:00"}
+{"id":"structure_b_train_valid_021366_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:36.697346+00:00"}
+{"id":"structure_b_train_valid_021366_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:36.996636+00:00"}
+{"id":"structure_b_train_valid_021367_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:37.112340+00:00"}
+{"id":"structure_b_train_valid_021367_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:37.263202+00:00"}
+{"id":"structure_b_train_valid_021367_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:45.618212+00:00"}
+{"id":"structure_b_train_valid_021368_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:45.784805+00:00"}
+{"id":"structure_b_train_valid_021368_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:45.935228+00:00"}
+{"id":"structure_b_train_valid_021368_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:47.268391+00:00"}
+{"id":"structure_b_train_valid_021369_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:47.435537+00:00"}
+{"id":"structure_b_train_valid_021369_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:47.568858+00:00"}
+{"id":"structure_b_train_valid_021369_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:48.117841+00:00"}
+{"id":"structure_b_train_valid_021370_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:48.269363+00:00"}
+{"id":"structure_b_train_valid_021370_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:50.887718+00:00"}
+{"id":"structure_b_train_valid_021370_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:51.054391+00:00"}
+{"id":"structure_b_train_valid_021371_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:51.203499+00:00"}
+{"id":"structure_b_train_valid_021371_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:51.337415+00:00"}
+{"id":"structure_b_train_valid_021371_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:52.388168+00:00"}
+{"id":"structure_b_train_valid_021372_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:53.455394+00:00"}
+{"id":"structure_b_train_valid_021372_ctx2","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:53.636922+00:00"}
+{"id":"structure_b_train_valid_021372_ctx3","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:53.788536+00:00"}
+{"id":"structure_b_train_valid_021373_ctx1","source_scenario":"cancel","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:37:53.919718+00:00"}
+{"id":"structure_b_train_valid_020320_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:03.540507+00:00"}
+{"id":"structure_b_train_valid_020320_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:04.058987+00:00"}
+{"id":"structure_b_train_valid_020320_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:04.209167+00:00"}
+{"id":"structure_b_train_valid_020321_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:04.358649+00:00"}
+{"id":"structure_b_train_valid_020321_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:04.509305+00:00"}
+{"id":"structure_b_train_valid_020321_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:04.622253+00:00"}
+{"id":"structure_b_train_valid_020322_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:04.773456+00:00"}
+{"id":"structure_b_train_valid_020322_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:05.358053+00:00"}
+{"id":"structure_b_train_valid_020322_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:05.510280+00:00"}
+{"id":"structure_b_train_valid_020323_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:05.657931+00:00"}
+{"id":"structure_b_train_valid_020323_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:05.773707+00:00"}
+{"id":"structure_b_train_valid_020323_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:05.907663+00:00"}
+{"id":"structure_b_train_valid_020324_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:06.059620+00:00"}
+{"id":"structure_b_train_valid_020324_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:06.172510+00:00"}
+{"id":"structure_b_train_valid_020324_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:06.641252+00:00"}
+{"id":"structure_b_train_valid_020325_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:06.960253+00:00"}
+{"id":"structure_b_train_valid_020325_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.091300+00:00"}
+{"id":"structure_b_train_valid_020325_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.241202+00:00"}
+{"id":"structure_b_train_valid_020326_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.472836+00:00"}
+{"id":"structure_b_train_valid_020326_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.591789+00:00"}
+{"id":"structure_b_train_valid_020326_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.723954+00:00"}
+{"id":"structure_b_train_valid_020327_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.858376+00:00"}
+{"id":"structure_b_train_valid_020327_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:07.974167+00:00"}
+{"id":"structure_b_train_valid_020327_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:08.123112+00:00"}
+{"id":"structure_b_train_valid_020328_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:08.259828+00:00"}
+{"id":"structure_b_train_valid_020328_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:08.390192+00:00"}
+{"id":"structure_b_train_valid_020328_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:08.659534+00:00"}
+{"id":"structure_b_train_valid_020329_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:08.773476+00:00"}
+{"id":"structure_b_train_valid_020329_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:08.924379+00:00"}
+{"id":"structure_b_train_valid_020329_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.040950+00:00"}
+{"id":"structure_b_train_valid_020330_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.158425+00:00"}
+{"id":"structure_b_train_valid_020330_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.290448+00:00"}
+{"id":"structure_b_train_valid_020330_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.424077+00:00"}
+{"id":"structure_b_train_valid_020331_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.560936+00:00"}
+{"id":"structure_b_train_valid_020331_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.674165+00:00"}
+{"id":"structure_b_train_valid_020331_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.810354+00:00"}
+{"id":"structure_b_train_valid_020332_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:09.941372+00:00"}
+{"id":"structure_b_train_valid_020332_ctx2","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:10.091227+00:00"}
+{"id":"structure_b_train_valid_020332_ctx3","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:10.225375+00:00"}
+{"id":"structure_b_train_valid_020333_ctx1","source_scenario":"deny","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:10.360181+00:00"}
+{"id":"structure_b_train_valid_020576_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:15.592385+00:00"}
+{"id":"structure_b_train_valid_020576_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:16.375333+00:00"}
+{"id":"structure_b_train_valid_020576_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:16.492895+00:00"}
+{"id":"structure_b_train_valid_020577_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:16.609452+00:00"}
+{"id":"structure_b_train_valid_020577_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:16.724432+00:00"}
+{"id":"structure_b_train_valid_020577_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:16.841506+00:00"}
+{"id":"structure_b_train_valid_020578_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:16.960249+00:00"}
+{"id":"structure_b_train_valid_020578_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.092058+00:00"}
+{"id":"structure_b_train_valid_020578_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.225642+00:00"}
+{"id":"structure_b_train_valid_020579_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.361417+00:00"}
+{"id":"structure_b_train_valid_020579_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.474667+00:00"}
+{"id":"structure_b_train_valid_020579_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.673905+00:00"}
+{"id":"structure_b_train_valid_020580_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.825942+00:00"}
+{"id":"structure_b_train_valid_020580_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:17.940271+00:00"}
+{"id":"structure_b_train_valid_020580_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.192807+00:00"}
+{"id":"structure_b_train_valid_020581_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.291640+00:00"}
+{"id":"structure_b_train_valid_020581_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.424528+00:00"}
+{"id":"structure_b_train_valid_020581_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.562423+00:00"}
+{"id":"structure_b_train_valid_020582_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.674843+00:00"}
+{"id":"structure_b_train_valid_020582_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.824403+00:00"}
+{"id":"structure_b_train_valid_020582_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:18.942570+00:00"}
+{"id":"structure_b_train_valid_020583_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:19.409137+00:00"}
+{"id":"structure_b_train_valid_020583_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:19.511198+00:00"}
+{"id":"structure_b_train_valid_020583_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:19.640648+00:00"}
+{"id":"structure_b_train_valid_020584_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:19.773884+00:00"}
+{"id":"structure_b_train_valid_020584_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:19.892490+00:00"}
+{"id":"structure_b_train_valid_020584_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.024670+00:00"}
+{"id":"structure_b_train_valid_020585_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.142476+00:00"}
+{"id":"structure_b_train_valid_020585_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.290378+00:00"}
+{"id":"structure_b_train_valid_020585_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.407452+00:00"}
+{"id":"structure_b_train_valid_020586_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.541050+00:00"}
+{"id":"structure_b_train_valid_020586_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.674545+00:00"}
+{"id":"structure_b_train_valid_020586_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.810641+00:00"}
+{"id":"structure_b_train_valid_020587_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:20.924743+00:00"}
+{"id":"structure_b_train_valid_020587_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:21.060414+00:00"}
+{"id":"structure_b_train_valid_020587_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:21.160583+00:00"}
+{"id":"structure_b_train_valid_020588_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:21.292763+00:00"}
+{"id":"structure_b_train_valid_020588_ctx2","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:21.410884+00:00"}
+{"id":"structure_b_train_valid_020588_ctx3","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:21.540631+00:00"}
+{"id":"structure_b_train_valid_020589_ctx1","source_scenario":"modify","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:21.642594+00:00"}
+{"id":"structure_b_train_valid_017000_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:25.942868+00:00"}
+{"id":"structure_b_train_valid_017000_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:26.325002+00:00"}
+{"id":"structure_b_train_valid_017000_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:26.474898+00:00"}
+{"id":"structure_b_train_valid_017001_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:26.591655+00:00"}
+{"id":"structure_b_train_valid_017001_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:26.725915+00:00"}
+{"id":"structure_b_train_valid_017001_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:26.843271+00:00"}
+{"id":"structure_b_train_valid_017005_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:26.961911+00:00"}
+{"id":"structure_b_train_valid_017005_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.075435+00:00"}
+{"id":"structure_b_train_valid_017005_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.210115+00:00"}
+{"id":"structure_b_train_valid_017006_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.311096+00:00"}
+{"id":"structure_b_train_valid_017006_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.425690+00:00"}
+{"id":"structure_b_train_valid_017006_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.560244+00:00"}
+{"id":"structure_b_train_valid_017007_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.692944+00:00"}
+{"id":"structure_b_train_valid_017007_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.825154+00:00"}
+{"id":"structure_b_train_valid_017007_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:27.942435+00:00"}
+{"id":"structure_b_train_valid_017009_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.074958+00:00"}
+{"id":"structure_b_train_valid_017009_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.193782+00:00"}
+{"id":"structure_b_train_valid_017009_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.324867+00:00"}
+{"id":"structure_b_train_valid_017012_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.410664+00:00"}
+{"id":"structure_b_train_valid_017012_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.525212+00:00"}
+{"id":"structure_b_train_valid_017012_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.643429+00:00"}
+{"id":"structure_b_train_valid_017013_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.859984+00:00"}
+{"id":"structure_b_train_valid_017013_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:28.992458+00:00"}
+{"id":"structure_b_train_valid_017013_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.110323+00:00"}
+{"id":"structure_b_train_valid_017014_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.243742+00:00"}
+{"id":"structure_b_train_valid_017014_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.374368+00:00"}
+{"id":"structure_b_train_valid_017014_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.510025+00:00"}
+{"id":"structure_b_train_valid_017015_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.642085+00:00"}
+{"id":"structure_b_train_valid_017015_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.775741+00:00"}
+{"id":"structure_b_train_valid_017015_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:29.909423+00:00"}
+{"id":"structure_b_train_valid_017018_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.059782+00:00"}
+{"id":"structure_b_train_valid_017018_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.192184+00:00"}
+{"id":"structure_b_train_valid_017018_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.326055+00:00"}
+{"id":"structure_b_train_valid_017020_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.442588+00:00"}
+{"id":"structure_b_train_valid_017020_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.593562+00:00"}
+{"id":"structure_b_train_valid_017020_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.725395+00:00"}
+{"id":"structure_b_train_valid_017021_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.860687+00:00"}
+{"id":"structure_b_train_valid_017021_ctx2","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:30.974708+00:00"}
+{"id":"structure_b_train_valid_017021_ctx3","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:31.125983+00:00"}
+{"id":"structure_b_train_valid_017022_ctx1","source_scenario":"order_contextual_slot_answer","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:38:31.258955+00:00"}
+{"id":"base_review__structure_b_train_valid_000209","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:42.509204+00:00"}
+{"id":"base_review__structure_b_train_valid_000653","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:45.374295+00:00"}
+{"id":"base_review__structure_b_train_valid_001106","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:46.441315+00:00"}
+{"id":"base_review__structure_b_train_valid_001534","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:49.691718+00:00"}
+{"id":"base_review__structure_b_train_valid_001947","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:51.425457+00:00"}
+{"id":"base_review__structure_b_train_valid_002367","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:54.758955+00:00"}
+{"id":"base_review__structure_b_train_valid_002796","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:56.807922+00:00"}
+{"id":"base_review__structure_b_train_valid_003240","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:58.358447+00:00"}
+{"id":"base_review__structure_b_train_valid_003706","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:58.908857+00:00"}
+{"id":"base_review__structure_b_train_valid_004123","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.075561+00:00"}
+{"id":"base_review__structure_b_train_valid_004571","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.225116+00:00"}
+{"id":"base_review__structure_b_train_valid_004998","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.359128+00:00"}
+{"id":"base_review__structure_b_train_valid_005420","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.508180+00:00"}
+{"id":"base_review__structure_b_train_valid_005828","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.643188+00:00"}
+{"id":"base_review__structure_b_train_valid_006262","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.790783+00:00"}
+{"id":"base_review__structure_b_train_valid_006678","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:50:59.941083+00:00"}
+{"id":"base_review__structure_b_train_valid_007104","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:00.108901+00:00"}
+{"id":"base_review__structure_b_train_valid_007552","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:00.274981+00:00"}
+{"id":"base_review__structure_b_train_valid_007981","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:00.408732+00:00"}
+{"id":"base_review__structure_b_train_valid_008405","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:00.558791+00:00"}
+{"id":"base_review__structure_b_train_valid_008836","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:00.726015+00:00"}
+{"id":"base_review__structure_b_train_valid_009280","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:00.859312+00:00"}
+{"id":"base_review__structure_b_train_valid_009703","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:01.023829+00:00"}
+{"id":"base_review__structure_b_train_valid_010165","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:01.173053+00:00"}
+{"id":"base_review__structure_b_train_valid_010584","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:01.309319+00:00"}
+{"id":"base_review__structure_b_train_valid_011003","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:01.458328+00:00"}
+{"id":"base_review__structure_b_train_valid_011442","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:01.759079+00:00"}
+{"id":"base_review__structure_b_train_valid_011877","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:05.942589+00:00"}
+{"id":"base_review__structure_b_train_valid_012295","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:08.125846+00:00"}
+{"id":"base_review__structure_b_train_valid_012724","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:08.274946+00:00"}
+{"id":"base_review__structure_b_train_valid_013180","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:08.425962+00:00"}
+{"id":"base_review__structure_b_train_valid_013627","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:08.573534+00:00"}
+{"id":"base_review__structure_b_train_valid_014043","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:09.008503+00:00"}
+{"id":"base_review__structure_b_train_valid_014459","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:10.059442+00:00"}
+{"id":"base_review__structure_b_train_valid_014883","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:11.459375+00:00"}
+{"id":"base_review__structure_b_train_valid_015334","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:11.594331+00:00"}
+{"id":"base_review__structure_b_train_valid_015777","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:11.726139+00:00"}
+{"id":"base_review__structure_b_train_valid_016219","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:11.876099+00:00"}
+{"id":"base_review__structure_b_train_valid_016652","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:12.008716+00:00"}
+{"id":"base_review__structure_b_train_valid_017719","source_scenario":"BASE DATA · 단일 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:12.159662+00:00"}
+{"id":"base_review__structure_b_train_valid_017055","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:12.276582+00:00"}
+{"id":"base_review__structure_b_train_valid_017226","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:12.426237+00:00"}
+{"id":"base_review__structure_b_train_valid_017348","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:19.876307+00:00"}
+{"id":"base_review__structure_b_train_valid_017435","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:24.508818+00:00"}
+{"id":"base_review__structure_b_train_valid_017600","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:27.159877+00:00"}
+{"id":"base_review__structure_b_train_valid_017733","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:33.427334+00:00"}
+{"id":"base_review__structure_b_train_valid_017863","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:36.909693+00:00"}
+{"id":"base_review__structure_b_train_valid_017960","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:38.559434+00:00"}
+{"id":"base_review__structure_b_train_valid_018060","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:42.376898+00:00"}
+{"id":"base_review__structure_b_train_valid_018170","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:43.760676+00:00"}
+{"id":"base_review__structure_b_train_valid_018331","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:45.010866+00:00"}
+{"id":"base_review__structure_b_train_valid_018452","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:49.344199+00:00"}
+{"id":"base_review__structure_b_train_valid_018556","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:50.878480+00:00"}
+{"id":"base_review__structure_b_train_valid_018668","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:51.693507+00:00"}
+{"id":"base_review__structure_b_train_valid_018786","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:53.210232+00:00"}
+{"id":"base_review__structure_b_train_valid_018918","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:54.044476+00:00"}
+{"id":"base_review__structure_b_train_valid_019026","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:55.160537+00:00"}
+{"id":"base_review__structure_b_train_valid_019119","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:56.727942+00:00"}
+{"id":"base_review__structure_b_train_valid_019236","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:51:59.928030+00:00"}
+{"id":"base_review__structure_b_train_valid_019365","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:00.494809+00:00"}
+{"id":"base_review__structure_b_train_valid_019484","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:01.244033+00:00"}
+{"id":"base_review__structure_b_train_valid_019602","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:01.809333+00:00"}
+{"id":"base_review__structure_b_train_valid_019721","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:02.909400+00:00"}
+{"id":"base_review__structure_b_train_valid_019841","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:03.793936+00:00"}
+{"id":"base_review__structure_b_train_valid_019939","source_scenario":"BASE DATA · 단일 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:04.328767+00:00"}
+{"id":"base_review__structure_b_train_valid_017096","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:05.092930+00:00"}
+{"id":"base_review__structure_b_train_valid_017195","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:28.878524+00:00"}
+{"id":"base_review__structure_b_train_valid_017376","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:32.845858+00:00"}
+{"id":"base_review__structure_b_train_valid_017500","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:34.629994+00:00"}
+{"id":"base_review__structure_b_train_valid_017641","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:39.312607+00:00"}
+{"id":"base_review__structure_b_train_valid_017806","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:40.395043+00:00"}
+{"id":"base_review__structure_b_train_valid_018001","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:42.129755+00:00"}
+{"id":"base_review__structure_b_train_valid_018207","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:44.628883+00:00"}
+{"id":"base_review__structure_b_train_valid_018323","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:45.179132+00:00"}
+{"id":"base_review__structure_b_train_valid_018464","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:46.113453+00:00"}
+{"id":"base_review__structure_b_train_valid_018625","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:52.080318+00:00"}
+{"id":"base_review__structure_b_train_valid_018806","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:53.361538+00:00"}
+{"id":"base_review__structure_b_train_valid_018923","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:54.297175+00:00"}
+{"id":"base_review__structure_b_train_valid_019072","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:55.397054+00:00"}
+{"id":"base_review__structure_b_train_valid_019193","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:55.863455+00:00"}
+{"id":"base_review__structure_b_train_valid_019341","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:52:56.663699+00:00"}
+{"id":"base_review__structure_b_train_valid_019514","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:01.319085+00:00"}
+{"id":"base_review__structure_b_train_valid_019637","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:02.152533+00:00"}
+{"id":"base_review__structure_b_train_valid_019749","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:03.452056+00:00"}
+{"id":"base_review__structure_b_train_valid_019878","source_scenario":"BASE DATA · 단일 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:04.302026+00:00"}
+{"id":"base_review__structure_b_train_valid_000257","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:15.302915+00:00"}
+{"id":"base_review__structure_b_train_valid_000726","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:18.303050+00:00"}
+{"id":"base_review__structure_b_train_valid_001111","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:22.520162+00:00"}
+{"id":"base_review__structure_b_train_valid_001641","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:27.503061+00:00"}
+{"id":"base_review__structure_b_train_valid_002184","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:31.086787+00:00"}
+{"id":"base_review__structure_b_train_valid_002724","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:32.887106+00:00"}
+{"id":"base_review__structure_b_train_valid_003199","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:37.420292+00:00"}
+{"id":"base_review__structure_b_train_valid_003696","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:39.753795+00:00"}
+{"id":"base_review__structure_b_train_valid_004202","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:42.304003+00:00"}
+{"id":"base_review__structure_b_train_valid_004581","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:43.937485+00:00"}
+{"id":"base_review__structure_b_train_valid_005074","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:45.820002+00:00"}
+{"id":"base_review__structure_b_train_valid_005614","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:49.370302+00:00"}
+{"id":"base_review__structure_b_train_valid_006110","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:51.637556+00:00"}
+{"id":"base_review__structure_b_train_valid_006663","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:53.086881+00:00"}
+{"id":"base_review__structure_b_train_valid_007140","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:54.720472+00:00"}
+{"id":"base_review__structure_b_train_valid_007568","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:55.671411+00:00"}
+{"id":"base_review__structure_b_train_valid_008028","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:56.722197+00:00"}
+{"id":"base_review__structure_b_train_valid_008517","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:57.587999+00:00"}
+{"id":"base_review__structure_b_train_valid_008957","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:55:59.471660+00:00"}
+{"id":"base_review__structure_b_train_valid_009509","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:00.988915+00:00"}
+{"id":"base_review__structure_b_train_valid_009983","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:02.620014+00:00"}
+{"id":"base_review__structure_b_train_valid_010411","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:03.852518+00:00"}
+{"id":"base_review__structure_b_train_valid_010976","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:05.238280+00:00"}
+{"id":"base_review__structure_b_train_valid_011399","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:09.570088+00:00"}
+{"id":"base_review__structure_b_train_valid_011851","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:10.488843+00:00"}
+{"id":"base_review__structure_b_train_valid_012386","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:12.055513+00:00"}
+{"id":"base_review__structure_b_train_valid_012892","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:13.706124+00:00"}
+{"id":"base_review__structure_b_train_valid_013261","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:14.289035+00:00"}
+{"id":"base_review__structure_b_train_valid_013753","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:15.521977+00:00"}
+{"id":"base_review__structure_b_train_valid_014263","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:16.605031+00:00"}
+{"id":"base_review__structure_b_train_valid_014789","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:20.039223+00:00"}
+{"id":"base_review__structure_b_train_valid_015221","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:21.922481+00:00"}
+{"id":"base_review__structure_b_train_valid_015697","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:23.472679+00:00"}
+{"id":"base_review__structure_b_train_valid_016154","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:24.838028+00:00"}
+{"id":"base_review__structure_b_train_valid_016673","source_scenario":"BASE DATA · 다중 주문 완료","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:25.987431+00:00"}
+{"id":"base_review__structure_b_train_valid_000282","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:31.555808+00:00"}
+{"id":"base_review__structure_b_train_valid_000956","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:35.356027+00:00"}
+{"id":"base_review__structure_b_train_valid_001862","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:38.756139+00:00"}
+{"id":"base_review__structure_b_train_valid_002540","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:43.320121+00:00"}
+{"id":"base_review__structure_b_train_valid_003183","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:44.886262+00:00"}
+{"id":"base_review__structure_b_train_valid_003619","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:45.786240+00:00"}
+{"id":"base_review__structure_b_train_valid_004277","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:45.934994+00:00"}
+{"id":"base_review__structure_b_train_valid_005130","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:46.069336+00:00"}
+{"id":"base_review__structure_b_train_valid_005981","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:46.652663+00:00"}
+{"id":"base_review__structure_b_train_valid_006713","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:46.802714+00:00"}
+{"id":"base_review__structure_b_train_valid_007414","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:47.369198+00:00"}
+{"id":"base_review__structure_b_train_valid_008153","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:47.717224+00:00"}
+{"id":"base_review__structure_b_train_valid_008785","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:48.118660+00:00"}
+{"id":"base_review__structure_b_train_valid_009584","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:48.334764+00:00"}
+{"id":"base_review__structure_b_train_valid_010164","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:48.634729+00:00"}
+{"id":"base_review__structure_b_train_valid_010840","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:48.734758+00:00"}
+{"id":"base_review__structure_b_train_valid_011524","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:48.951697+00:00"}
+{"id":"base_review__structure_b_train_valid_012093","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:49.435032+00:00"}
+{"id":"base_review__structure_b_train_valid_012820","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:49.567588+00:00"}
+{"id":"base_review__structure_b_train_valid_013517","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:50.651447+00:00"}
+{"id":"base_review__structure_b_train_valid_014143","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:51.533108+00:00"}
+{"id":"base_review__structure_b_train_valid_014807","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:53.366553+00:00"}
+{"id":"base_review__structure_b_train_valid_015543","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:54.050281+00:00"}
+{"id":"base_review__structure_b_train_valid_016124","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:54.633676+00:00"}
+{"id":"base_review__structure_b_train_valid_016735","source_scenario":"BASE DATA · 다중 수량 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:55.181613+00:00"}
+{"id":"base_review__structure_b_train_valid_000356","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:56:56.816506+00:00"}
+{"id":"base_review__structure_b_train_valid_001037","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:01.949239+00:00"}
+{"id":"base_review__structure_b_train_valid_001625","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:03.282296+00:00"}
+{"id":"base_review__structure_b_train_valid_002182","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:04.263779+00:00"}
+{"id":"base_review__structure_b_train_valid_002881","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:05.178514+00:00"}
+{"id":"base_review__structure_b_train_valid_003446","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:05.786664+00:00"}
+{"id":"base_review__structure_b_train_valid_004165","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:06.926612+00:00"}
+{"id":"base_review__structure_b_train_valid_004834","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:07.086285+00:00"}
+{"id":"base_review__structure_b_train_valid_005404","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:07.242670+00:00"}
+{"id":"base_review__structure_b_train_valid_006124","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:07.408244+00:00"}
+{"id":"base_review__structure_b_train_valid_006719","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:07.917834+00:00"}
+{"id":"base_review__structure_b_train_valid_007476","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:08.380499+00:00"}
+{"id":"base_review__structure_b_train_valid_008244","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:08.607802+00:00"}
+{"id":"base_review__structure_b_train_valid_009017","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:08.776609+00:00"}
+{"id":"base_review__structure_b_train_valid_009541","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:08.943856+00:00"}
+{"id":"base_review__structure_b_train_valid_010031","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:09.106644+00:00"}
+{"id":"base_review__structure_b_train_valid_010905","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:09.266478+00:00"}
+{"id":"base_review__structure_b_train_valid_011615","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:09.454342+00:00"}
+{"id":"base_review__structure_b_train_valid_012425","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:09.893883+00:00"}
+{"id":"base_review__structure_b_train_valid_013120","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:11.107740+00:00"}
+{"id":"base_review__structure_b_train_valid_013755","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:12.583390+00:00"}
+{"id":"base_review__structure_b_train_valid_014612","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:12.737898+00:00"}
+{"id":"base_review__structure_b_train_valid_015262","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:12.901428+00:00"}
+{"id":"base_review__structure_b_train_valid_015849","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:13.316456+00:00"}
+{"id":"base_review__structure_b_train_valid_016624","source_scenario":"BASE DATA · 다중 온도 질문","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:13.639525+00:00"}
+{"id":"base_review__structure_b_train_valid_021686","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:13.816230+00:00"}
+{"id":"base_review__structure_b_train_valid_021699","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:13.962989+00:00"}
+{"id":"base_review__structure_b_train_valid_021712","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:17.163194+00:00"}
+{"id":"base_review__structure_b_train_valid_021724","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:18.076267+00:00"}
+{"id":"base_review__structure_b_train_valid_021737","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:18.500000+00:00"}
+{"id":"base_review__structure_b_train_valid_021750","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:19.329396+00:00"}
+{"id":"base_review__structure_b_train_valid_021763","source_scenario":"BASE DATA · 안내","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:57:20.037102+00:00"}
+{"id":"base_review__structure_b_train_valid_021776","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있습니다 로 대답해야함","reviewed_at":"2026-09-03T02:57:53.514884+00:00"}
+{"id":"base_review__structure_b_train_valid_021788","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:05.483703+00:00"}
+{"id":"base_review__structure_b_train_valid_021801","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:07.832694+00:00"}
+{"id":"base_review__structure_b_train_valid_021814","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:09.999565+00:00"}
+{"id":"base_review__structure_b_train_valid_021827","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:12.166708+00:00"}
+{"id":"base_review__structure_b_train_valid_021840","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:14.399023+00:00"}
+{"id":"base_review__structure_b_train_valid_021852","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:16.099030+00:00"}
+{"id":"base_review__structure_b_train_valid_021865","source_scenario":"BASE DATA · 안내","verdict":"FAIL","error_type":"RESPONSE","note":"음료수령대는 왼쪽에 있음","reviewed_at":"2026-09-03T02:58:18.264964+00:00"}
+{"id":"base_review__structure_b_train_valid_021893","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:23.650006+00:00"}
+{"id":"base_review__structure_b_train_valid_021936","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:25.433632+00:00"}
+{"id":"base_review__structure_b_train_valid_021978","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:27.285339+00:00"}
+{"id":"base_review__structure_b_train_valid_022021","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:28.536078+00:00"}
+{"id":"base_review__structure_b_train_valid_022064","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:29.184098+00:00"}
+{"id":"base_review__structure_b_train_valid_022106","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:31.451615+00:00"}
+{"id":"base_review__structure_b_train_valid_022149","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:32.784818+00:00"}
+{"id":"base_review__structure_b_train_valid_022192","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:35.684974+00:00"}
+{"id":"base_review__structure_b_train_valid_022234","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:36.134902+00:00"}
+{"id":"base_review__structure_b_train_valid_022277","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:36.886406+00:00"}
+{"id":"base_review__structure_b_train_valid_022320","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:37.334942+00:00"}
+{"id":"base_review__structure_b_train_valid_022362","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:37.819319+00:00"}
+{"id":"base_review__structure_b_train_valid_022405","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:38.301692+00:00"}
+{"id":"base_review__structure_b_train_valid_022448","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:58:54.685578+00:00"}
+{"id":"base_review__structure_b_train_valid_022490","source_scenario":"BASE DATA · UNKNOWN","verdict":"PASS","error_type":null,"note":"","reviewed_at":"2026-09-03T02:59:47.236594+00:00"}
