@@ -272,7 +272,7 @@ bash scripts/run_robot_with_monitor.sh
 
 ## **📚 전체 파일 가이드**
 
-현재 `main` 브랜치에서 Git이 추적하는 **507개 파일 전체**를 폴더별로 정리했습니다. 파일명을 누르면 실제 소스로 이동합니다.
+현재 `cleanup-hanium-submission` 브랜치에서 Git이 추적하는 **479개 파일 전체**를 폴더별로 정리했습니다. 파일명을 누르면 실제 소스로 이동합니다.
 
 <details>
 <summary><strong>최상위(root)/</strong> — 저장소 전체 설정·실행 환경·최상위 문서 (13개)</summary>
@@ -852,7 +852,6 @@ bash scripts/run_robot_with_monitor.sh
 | [`scripts/run_jetson_missing_slot_test.sh`](scripts/run_jetson_missing_slot_test.sh) | run jetson missing slot test 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 2.7 KB |
 | [`scripts/run_jetson_nlu_missing_slot_test.sh`](scripts/run_jetson_nlu_missing_slot_test.sh) | run jetson nlu missing slot test 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 3.8 KB |
 | [`scripts/run_nlu_node_cuda.sh`](scripts/run_nlu_node_cuda.sh) | run nlu node cuda 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.1 KB |
-| [`scripts/run_pos_with_nlu.sh`](scripts/run_pos_with_nlu.sh) | run pos with nlu 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 3.8 KB |
 | [`scripts/run_robot_debug.sh`](scripts/run_robot_debug.sh) | run robot debug 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 2.0 KB |
 | [`scripts/run_robot_interaction_demo.sh`](scripts/run_robot_interaction_demo.sh) | run robot interaction demo 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 11.1 KB |
 | [`scripts/run_robot_interaction_logs.sh`](scripts/run_robot_interaction_logs.sh) | run robot interaction logs 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.5 KB |
@@ -884,36 +883,4 @@ bash scripts/run_robot_with_monitor.sh
 
 </details>
 
-<details>
-<summary><strong>web/</strong> — 관리자 웹 (25개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`web/.env.example`](web/.env.example) | .env 관리자 웹 화면·상태·API·설정 파일입니다. | 435 B |
-| [`web/index.html`](web/index.html) | index 관리자 웹 화면·상태·API·설정 파일입니다. | 361 B |
-| [`web/package-lock.json`](web/package-lock.json) | npm 의존성 버전과 무결성 정보를 고정합니다. | 56.9 KB |
-| [`web/package.json`](web/package.json) | 해당 앱의 npm 의존성과 실행 명령을 정의합니다. | 536 B |
-| [`web/README.md`](web/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 6.0 KB |
-| [`web/src/admin.css`](web/src/admin.css) | admin 관리자 웹 화면·상태·API·설정 파일입니다. | 6.6 KB |
-| [`web/src/AdminDashboard.tsx`](web/src/AdminDashboard.tsx) | AdminDashboard 관리자 웹 화면·상태·API·설정 파일입니다. | 12.8 KB |
-| [`web/src/api/adminApi.ts`](web/src/api/adminApi.ts) | adminApi 관리자 웹 화면·상태·API·설정 파일입니다. | 1.2 KB |
-| [`web/src/api/customersApi.ts`](web/src/api/customersApi.ts) | customersApi 관리자 웹 화면·상태·API·설정 파일입니다. | 3.6 KB |
-| [`web/src/api/orderAnalysisApi.ts`](web/src/api/orderAnalysisApi.ts) | orderAnalysisApi 관리자 웹 화면·상태·API·설정 파일입니다. | 2.5 KB |
-| [`web/src/api/robotSttApi.ts`](web/src/api/robotSttApi.ts) | robotSttApi 관리자 웹 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`web/src/App.tsx`](web/src/App.tsx) | App 관리자 웹 화면·상태·API·설정 파일입니다. | 17.2 KB |
-| [`web/src/components/Step3Confirmation.tsx`](web/src/components/Step3Confirmation.tsx) | Step3Confirmation 관리자 웹 화면·상태·API·설정 파일입니다. | 752 B |
-| [`web/src/customerManagement.css`](web/src/customerManagement.css) | customerManagement 관리자 웹 화면·상태·API·설정 파일입니다. | 2.5 KB |
-| [`web/src/CustomerManagement.tsx`](web/src/CustomerManagement.tsx) | CustomerManagement 관리자 웹 화면·상태·API·설정 파일입니다. | 10.0 KB |
-| [`web/src/faceEnrollment.css`](web/src/faceEnrollment.css) | faceEnrollment 관리자 웹 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`web/src/FaceEnrollment.tsx`](web/src/FaceEnrollment.tsx) | FaceEnrollment 관리자 웹 화면·상태·API·설정 파일입니다. | 4.9 KB |
-| [`web/src/index.css`](web/src/index.css) | index 관리자 웹 화면·상태·API·설정 파일입니다. | 4.0 KB |
-| [`web/src/main.tsx`](web/src/main.tsx) | main 관리자 웹 화면·상태·API·설정 파일입니다. | 405 B |
-| [`web/src/robotResponse.ts`](web/src/robotResponse.ts) | robotResponse 관리자 웹 화면·상태·API·설정 파일입니다. | 190 B |
-| [`web/src/step3Bridge.ts`](web/src/step3Bridge.ts) | step3Bridge 관리자 웹 화면·상태·API·설정 파일입니다. | 1.7 KB |
-| [`web/src/types.ts`](web/src/types.ts) | types 관리자 웹 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`web/src/vite-env.d.ts`](web/src/vite-env.d.ts) | vite env.d 관리자 웹 화면·상태·API·설정 파일입니다. | 243 B |
-| [`web/tsconfig.json`](web/tsconfig.json) | TypeScript 컴파일과 타입 검사 설정입니다. | 527 B |
-| [`web/vite.config.ts`](web/vite.config.ts) | vite.config 관리자 웹 화면·상태·API·설정 파일입니다. | 720 B |
-
-</details>
 
