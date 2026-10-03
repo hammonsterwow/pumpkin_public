@@ -1,0 +1,38 @@
+name: Demo Web Check
+
+on:
+  pull_request:
+    paths:
+      - "apps/demo-web/**"
+      - "scripts/run_demo_web.sh"
+      - "ros2_ws/src/robot_controller/robot_controller/vision_node.py"
+      - "ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py"
+      - "ros2_ws/src/robot_controller/package.xml"
+      - ".github/workflows/demo-web-check.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/demo-web/**"
+      - "scripts/run_demo_web.sh"
+      - "ros2_ws/src/robot_controller/robot_controller/vision_node.py"
+      - "ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py"
+      - "ros2_ws/src/robot_controller/package.xml"
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python syntax
+        run: |
+          python -m py_compile apps/demo-web/server.py
+          python -m py_compile ros2_ws/src/robot_controller/robot_controller/vision_node.py
+          python -m py_compile ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py
+
+      - name: JavaScript syntax
+        run: node --check apps/demo-web/app.js
+
+      - name: Shell syntax
+        run: bash -n scripts/run_demo_web.sh
