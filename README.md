@@ -90,10 +90,48 @@
 
 ## **💡2. 팀원 소개**
 
-|<img width="583" height="777" alt="KakaoTalk_20261003_211921456_01" src="https://github.com/user-attachments/assets/62b8e235-eed9-4b0a-9f4a-22879807ff37" />|<img width="502" height="668" alt="KakaoTalk_20261003_211921456_02" src="https://github.com/user-attachments/assets/c802b06d-8509-4812-ac37-936b507c0926" />|<img width="406" height="542" alt="KakaoTalk_20261003_211921456" src="https://github.com/user-attachments/assets/a1349d4f-3965-4383-9a27-14d5d7ba1403" />|<img width="489" height="700" alt="멘토님 증명사진" src="https://github.com/user-attachments/assets/95e20923-afa9-4a3e-8815-41a4f9986d57" />|   
-|:---:|:---:|:---:|:---:|:---:|
-| **멘티1** | **멘티2** | **멘티3** | **멘토** |
-| • AI·NLU 개발 <br> • 주문 데이터·대화 로직 | • Vision·비언어 인식 <br> • ROS2 로봇 통합 | • 하드웨어·모터 제어 <br> • App·Cloud·POS 연동 | • 프로젝트 멘토 <br> • 기술 자문 |
+<table>
+  <tr>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/62b8e235-eed9-4b0a-9f4a-22879807ff37" width="150">
+    </td>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/c802b06d-8509-4812-ac37-936b507c0926" width="150">
+    </td>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/a1349d4f-3965-4383-9a27-14d5d7ba1403" width="150">
+    </td>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/95e20923-afa9-4a3e-8815-41a4f9986d57" width="150">
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center"><b>멘티1</b></td>
+    <td align="center"><b>멘티2</b></td>
+    <td align="center"><b>멘티3</b></td>
+    <td align="center"><b>멘토</b></td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      AI·NLU 개발<br>
+      주문 데이터·대화 로직
+    </td>
+    <td align="center">
+      Vision·비언어 인식<br>
+      ROS2 로봇 통합
+    </td>
+    <td align="center">
+      하드웨어·모터 제어<br>
+      App·Cloud·POS 연동
+    </td>
+    <td align="center">
+      프로젝트 멘토<br>
+      기술 자문
+    </td>
+  </tr>
+</table>
 
 ---
 
