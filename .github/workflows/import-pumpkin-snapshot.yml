@@ -1,0 +1,32 @@
+name: Import Pumpkin snapshot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'staging/chunk_000'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct snapshot
+        run: |
+          cat staging/chunk_000 | tr -d '\n' | base64 -d > /tmp/pumpkin-main.tar.gz
+          echo "481ae3fd62db559bd52b230854ba0fc3d1f0f82cb65045cd96d4138b82a65831  /tmp/pumpkin-main.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/pumpkin-main.tar.gz -C .
+
+      - name: Commit imported files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import yulllee0829/pumpkin main snapshot"
+          git push origin HEAD:main
