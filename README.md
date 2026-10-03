@@ -5,19 +5,6 @@
 
 ---
 
-## **🔎 평가용 저장소 빠른 안내**
-
-- **통합 시연 실행**: [`scripts/run_robot_with_monitor.sh`](scripts/run_robot_with_monitor.sh)
-- **ROS2 인식–판단–행동 파이프라인**: [`ros2_ws/src/robot_controller/`](ros2_ws/src/robot_controller/)
-- **현재 NLU 추론 코드**: [`nlu/`](nlu/)
-- **KIPS Item Query 비교 실험**: [`experiments/nlu/kips_2026_item_query/`](experiments/nlu/kips_2026_item_query/)
-- **TOD SLM 학습·평가 코드**: [`experiments/tod_slm/`](experiments/tod_slm/)
-- **고객 앱**: [`apps/customer-mobile/`](apps/customer-mobile/)
-- **주문·고객·얼굴 API**: [`api/`](api/)
-- **서비스 메뉴 기준**: [`config/menu_catalog.json`](config/menu_catalog.json)
-
----
-
 ## **💡1. 프로젝트 개요**
 
 ### **1-1. 프로젝트 소개**
@@ -52,15 +39,12 @@
 
 ### **1-4. 주요 기능**
 
-- **일반 음성 주문** : Faster-Whisper STT와 NLU를 이용해 자연어 주문 인식
-- **복수 주문 구조화** : 한 문장 안의 여러 메뉴를 각각의 메뉴·온도·수량으로 분리
-- **누락 정보 재질문** : 메뉴, 온도, 수량 중 필요한 정보가 빠진 경우 해당 항목만 다시 질문
-- **주문 확인·수정·취소** : FSM을 이용해 주문 확인, 수정, 추가 주문, 취소 흐름 관리
-- **비언어 입력** : 주문 확인 단계의 NOD/SHAKE, 수량 질문 단계의 손가락 제스처를 실제 입력으로 사용
-- **공간 안내** : 화장실·픽업대 등 위치를 음성과 고개·팔 동작으로 함께 안내
-- **단골 고객 개인화** : 얼굴 임베딩 기반 고객 식별 후 선호 주문 제안
-- **사전주문 픽업** : 앱 사전주문 상태를 조회하고 준비 완료 주문의 픽업 위치 안내
-- **관리자 POS 연동** : `RECEIVED → PREPARING → READY → PICKED_UP` 주문 상태 관리
+- **음성 주문·안내 시스템** : 사용자의 음성을 인식하여 주문 정보를 추출하고, 주문 확인·수정·추가 및 필요한 안내를 음성으로 제공
+- **사용자 감지 및 비언어적 표현 인식** : 카메라로 사용자의 존재를 감지하고, NOD/SHAKE 및 손 제스처를 인식하여 주문 대화의 입력으로 활용
+- **얼굴 인식 기반 단골 고객 응대** : 등록 고객의 얼굴을 식별하여 선호 메뉴와 사전주문 정보를 연동하고 개인화된 응대 및 픽업 안내 제공
+- **고객 앱 사전주문 서비스** : 고객이 앱에서 메뉴를 사전주문하고 얼굴 및 선호 정보를 등록·관리할 수 있는 기능 제공
+- **고객 화면 및 관리자 POS 연동** : 고객 화면에서 주문 내용과 진행 상태를 실시간으로 제공하고, POS에서 주문 접수부터 픽업까지 상태를 통합 관리
+- **로봇 물리적 상호작용** : LCD 표정, 2축 목 움직임, 다관절 팔 제스처를 연동하여 주문·안내 상황에 맞는 시각적·물리적 반응 제공
 
 ### **1-5. 기대 효과 및 활용 분야**
 
@@ -91,17 +75,50 @@
 
 ---
 
-## **💡2. 팀원 소개(이름 기재 X)**
+## **💡2. 팀원 소개**
 
-> 개인정보를 기재하지 않고 프로젝트의 주요 역할 영역을 중심으로 정리했습니다.
+<table>
+  <tr>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/62b8e235-eed9-4b0a-9f4a-22879807ff37" width="150">
+    </td>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/c802b06d-8509-4812-ac37-936b507c0926" width="150">
+    </td>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/a1349d4f-3965-4383-9a27-14d5d7ba1403" width="150">
+    </td>
+    <td align="center" width="25%">
+      <img src="https://github.com/user-attachments/assets/95e20923-afa9-4a3e-8815-41a4f9986d57" width="150">
+    </td>
+  </tr>
 
-| 역할 영역 | 주요 담당 |
-|---|---|
-| **AI / NLU** | 주문 데이터 구축·전처리, koELECTRA 학습, Item Query Decoder, 주문 슬롯 검증 |
-| **Robot / ROS2** | Decision FSM, Action Node, TTS/LCD/고개·팔 동작 통합, 실물 로봇 시연 |
-| **Vision / Personalization** | 사람·고개·손 제스처 인식, 얼굴 임베딩 등록·식별, 개인화 응대 |
-| **App / Cloud / POS** | 고객용 사전주문 앱, Firebase·Cloud Run 연동, 관리자 POS 및 주문 상태 관리 |
-| **Mentoring** | 시스템 설계 및 기술 자문 |
+  <tr>
+    <td align="center"><b>멘티1</b></td>
+    <td align="center"><b>멘티2</b></td>
+    <td align="center"><b>멘티3</b></td>
+    <td align="center"><b>멘토</b></td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      AI·NLU 개발<br>
+      주문 데이터·대화 로직
+    </td>
+    <td align="center">
+      Vision·비언어 인식<br>
+      ROS2 로봇 통합
+    </td>
+    <td align="center">
+      하드웨어·모터 제어<br>
+      App·Cloud·POS 연동
+    </td>
+    <td align="center">
+      프로젝트 멘토<br>
+      기술 자문
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -175,100 +192,156 @@ flowchart LR
 
 ## **💡5. 핵심 소스코드**
 
-### **5-1. FSM 기반 비언어 응답 처리**
+### **5-1. 한국어 NLU — Item Query Decoder 기반 주문 정보 추출**
 
-- **소스 위치** : [`ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py)
-- **설명** : 사용자의 NOD/SHAKE를 항상 주문 입력으로 사용하는 것이 아니라, 주문 확인과 같은 **확인 상태에서만** 각각 `AFFIRM` / `DENY` 입력으로 변환합니다. 이를 통해 자연스러운 몸동작이 주문 흐름을 잘못 변경하는 것을 방지합니다.
+- **소스 위치** : [`nlu/model.py`](nlu/model.py)
+- **설명** : koELECTRA Encoder로 주문 문장의 문맥 특징을 추출하고, 학습 가능한 Item Query를 Transformer Decoder에 입력하여 복수 주문의 **메뉴·온도·수량을 항목별로 구조화**합니다.
+- **핵심 처리** : 한 문장에 여러 메뉴가 포함되어 있어도 각 주문 항목을 개별적으로 분리하여 추출합니다.
 
 ```python
-def make_user_gesture_decision(self, gesture: str):
-    normalized = str(gesture or "").strip().upper()
+self.item_queries = nn.Parameter(
+    torch.randn(max_items, hidden_size) * 0.02
+)
 
-    if normalized not in self.USER_GESTURES:
-        return None
-    if self.state not in self.CONFIRMATION_STATES:
-        return None
+self.item_decoder = nn.TransformerDecoder(
+    decoder_layer,
+    num_layers=2,
+)
 
-    synthetic_input = {
-        "intent": "AFFIRM" if normalized == "NOD" else "DENY",
-        "input_modality": "VISION_GESTURE",
-        "user_gesture": normalized,
-        "confidence": 1.0,
-    }
-
-    if normalized == "NOD":
-        return self.handle_affirm_intent(synthetic_input)
-    return self.handle_deny_intent(synthetic_input)
+self.menu_head = nn.Linear(
+    hidden_size,
+    label_count(label_maps, "menu"),
+)
+self.temperature_head = nn.Linear(
+    hidden_size,
+    label_count(label_maps, "temperature"),
+)
+self.quantity_head = nn.Linear(
+    hidden_size,
+    label_count(label_maps, "quantity"),
+)
 ```
 
-### **5-2. 주문 NLU 모델**
+### **5-2. 주문 대화 판단 — FSM 및 누락 Slot 처리**
 
-- **비교 실험 및 재현 코드** : [`experiments/nlu/kips_2026_item_query/`](experiments/nlu/kips_2026_item_query/)
-- **현재 추론 코드** : [`nlu/`](nlu/)
-- **설명** : koELECTRA Encoder가 문장의 문맥 특징을 추출하고, 학습 가능한 Item Query를 Transformer Decoder에 입력하여 복수 주문의 **메뉴·온도·수량을 항목별로 예측**합니다.
+- **소스 위치** : [`ros2_ws/src/robot_controller/robot_controller/decision_node.py`](ros2_ws/src/robot_controller/robot_controller/decision_node.py)
+- **설명** : NLU가 추출한 주문 정보와 이전 대화에서 저장된 주문 정보를 병합한 뒤, 주문 유효성과 누락된 메뉴·온도·수량을 검사하여 다음 대화 상태를 결정합니다.
+- **핵심 처리** : 누락 정보가 있으면 해당 정보만 다시 질문하고, 모든 필수 정보가 채워지면 주문 확인 단계로 전환합니다.
 
-### **5-3. 얼굴 등록 및 실시간 식별**
+```python
+order = self.order_manager.build_order(
+    nlu_result=nlu_result,
+    items=merged_items,
+    session_id=self.session_id,
+)
 
-- **고객 앱** : [`apps/customer-mobile/`](apps/customer-mobile/)
-- **Face Backend** : [`face_backend/`](face_backend/)
-- **Jetson 실시간 인식** : [`ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py`](ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py)
-- **설명** : 앱에서 촬영한 5방향 얼굴을 Cloud Run에서 512차원 임베딩으로 변환하고 평균 centroid를 Firestore에 저장합니다. Jetson은 실시간 얼굴 임베딩과 등록 정보를 비교하여 고객을 식별합니다.
+self.current_order = order
+self.state = "SLOT_CHECK"
 
----
+if order["order_status"] == "INVALID":
+    self.state = "OUT_OF_POLICY"
+    self.current_order = None
+    return self.order_decision(
+        "OUT_OF_POLICY",
+        "invalid_order",
+        "invalid_order",
+        order,
+        nlu_result,
+    )
 
-## **📁 주요 디렉터리**
+waiting_for = self.next_missing_target(order["items"])
 
-```text
-pumpkin_public/
-├── api/             # FastAPI 주문·고객·얼굴 API
-├── apps/
-│   ├── customer-mobile/  # 고객 앱
-│   ├── pos-web/          # 관리자 POS
-│   └── monitor-web/      # 로봇 5인치 고객 화면
-├── cloud_relay/     # Cloud Run 주문 Relay
-├── config/          # 메뉴 카탈로그 및 공통 설정
-├── data/            # 제출본에 필요한 학습·테스트 데이터
-├── experiments/     # KIPS NLU 비교 실험 및 TOD SLM 학습·평가
-├── face_backend/    # 얼굴 임베딩 Cloud Run Backend
-├── nlu/             # 현재 NLU 추론 코드
-├── robot_face/      # ESP32 LCD 및 얼굴 표시 제어
-├── ros2_ws/         # ROS2 기반 로봇 통합 Runtime
-└── scripts/         # 실행·테스트·시연 스크립트
+if waiting_for is not None:
+    self.waiting_for = waiting_for
+    slot = str(waiting_for["slot"])
+    self.state = self.SLOT_STATES[slot]
+    return self.order_decision(
+        self.state,
+        f"ask_{slot}",
+        f"missing_{slot}",
+        order,
+        nlu_result,
+    )
+
+self.state = "ORDER_CONFIRM"
+return self.order_decision(
+    "CONFIRM_ORDER",
+    "confirm_order",
+    "all_slots_filled",
+    order,
+    nlu_result,
+)
 ```
 
----
+### **5-3. 단골 얼굴 인식 — Embedding 유사도 비교**
 
-## **🔎 프로젝트 핵심 흐름 요약**
+- **소스 위치** : [`ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py`](ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py)
+- **설명** : Jetson 카메라에서 추출한 512차원 얼굴 임베딩과 Firestore에 등록된 고객 임베딩을 **Cosine Similarity**로 비교하여 고객을 식별합니다.
+- **핵심 처리** : 단일 프레임 결과만 사용하지 않고 반복 인식 결과를 안정화하여 등록 고객을 판별합니다.
 
-```text
-고객 음성 / 비언어 입력
-→ STT / Vision
-→ NLU
-→ FSM 기반 대화 상태 판단
-→ TTS + LCD + 고개·팔 동작
-→ 주문 서버 / POS
+```python
+faces = self.analyzer.get(frame)
 
-고객 앱 얼굴 등록 / 사전주문
-→ Firebase / Cloud Run
-→ Jetson 얼굴 인식 및 고객 식별
-→ 개인화 주문 제안 / 사전주문 픽업 안내
+if len(faces) != 1:
+    self.stabilizer.add(None)
+    return None
+
+embedding = getattr(faces[0], "normed_embedding", None)
+
+best_customer = None
+best_similarity = -1.0
+
+for customer in self.cache.customers:
+    similarity = cosine_similarity(
+        embedding,
+        customer.vector,
+    )
+    if similarity > best_similarity:
+        best_customer = customer
+        best_similarity = similarity
+
+candidate_id = (
+    best_customer.customer_id
+    if best_customer is not None
+    and best_similarity >= self.threshold
+    else None
+)
+
+confirmed_id = self.stabilizer.add(candidate_id)
 ```
 
+### **5-4. 확정 주문 Cloud 전송**
 
----
+- **소스 위치** : [`ros2_ws/src/robot_controller/robot_controller/order_submission_node.py`](ros2_ws/src/robot_controller/robot_controller/order_submission_node.py)
+- **설명** : Decision Node에서 확정된 주문을 세션 단위로 저장하고, 주문 종료 이벤트가 발생하면 최종 주문만 Cloud Relay API로 전송합니다.
+- **핵심 처리** : 세션 ID를 기준으로 중복 전송을 방지하고, 수정·추가 주문이 반영된 최종 주문만 서버에 저장합니다.
 
-## **🚀 실물 로봇 시연 실행**
+```python
+if decision_name == "ORDER_CONFIRMED":
+    order = decision.get("order")
+    if session_id and isinstance(order, dict):
+        with self._lock:
+            self._candidate_orders[session_id] = order
+    return
 
-Jetson Orin Nano에서 5인치 고객 화면과 ROS2 로봇 파이프라인을 함께 실행하는 최종 시연 진입점입니다.
+if (
+    decision_name != "NEXT_CUSTOMER_READY"
+    or str(decision.get("semantic_event") or "").upper()
+    != "ORDER_FINISHED"
+):
+    return
 
-```bash
-cd ~/pumpkin
-bash scripts/run_robot_with_monitor.sh
+with self._lock:
+    if (
+        finished_session_id in self._submitted_sessions
+        or finished_session_id in self._inflight_sessions
+    ):
+        return
+
+created = self.client.submit_confirmed_order(
+    self._confirmed_order(session_id, raw_order)
+)
 ```
-
-현재 production runtime은 STT, Vision, NLU, Decision FSM, TTS, LCD 표정, 고개·팔 제어를 ROS2로 통합합니다.
-
----
 
 ## **📚 전체 파일 가이드**
 
