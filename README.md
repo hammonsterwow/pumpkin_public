@@ -807,13 +807,9 @@ created = self.client.submit_confirmed_order(
 | [`ros2_ws/src/robot_controller/requirements-head-gesture.txt`](ros2_ws/src/robot_controller/requirements-head-gesture.txt) | requirements head gesture 프로젝트 소스·설정·데이터 파일입니다. | 62 B |
 | [`ros2_ws/src/robot_controller/resource/robot_controller`](ros2_ws/src/robot_controller/resource/robot_controller) | robot controller 프로젝트 소스·설정·데이터 파일입니다. | 0 B |
 | [`ros2_ws/src/robot_controller/robot_controller/__init__.py`](ros2_ws/src/robot_controller/robot_controller/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`ros2_ws/src/robot_controller/robot_controller/action_node_order_handoff.py`](ros2_ws/src/robot_controller/robot_controller/action_node_order_handoff.py) | action node order handoff 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 9.8 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/action_node.py`](ros2_ws/src/robot_controller/robot_controller/action_node.py) | Decision 결과를 TTS·LCD·고개·팔 행동으로 변환하는 ROS2 Action 노드입니다. | 15.2 KB |
+| [`ros2_ws/src/robot_controller/robot_controller/action_node.py`](ros2_ws/src/robot_controller/robot_controller/action_node.py) | TTS·LCD·고개·팔 행동과 STT 재시도·주문 인계를 처리하는 production Action 노드입니다. | 통합 |
 | [`ros2_ws/src/robot_controller/robot_controller/arm_motion.py`](ros2_ws/src/robot_controller/robot_controller/arm_motion.py) | arm motion 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 4.7 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/decision_node_additional_order.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_additional_order.py) | decision node additional order 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 17.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/decision_node_hand_quantity.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_hand_quantity.py) | 사람 존재·wake phrase·손가락 수량 입력을 처리하는 production Decision 노드입니다. | 11.6 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py) | decision node order handoff 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 21.6 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/decision_node.py`](ros2_ws/src/robot_controller/robot_controller/decision_node.py) | decision node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 35.1 KB |
+| [`ros2_ws/src/robot_controller/robot_controller/decision_node.py`](ros2_ws/src/robot_controller/robot_controller/decision_node.py) | 주문 FSM, 추가·수정 주문, 고객 인계, NOD/SHAKE·손가락 수량 입력을 통합한 production Decision 노드입니다. | 통합 |
 | [`ros2_ws/src/robot_controller/robot_controller/dialogue_act_resolver.py`](ros2_ws/src/robot_controller/robot_controller/dialogue_act_resolver.py) | dialogue act resolver 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 9.9 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/dialogue_slots.py`](ros2_ws/src/robot_controller/robot_controller/dialogue_slots.py) | dialogue slots 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 17.9 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/face_display_node.py`](ros2_ws/src/robot_controller/robot_controller/face_display_node.py) | face display node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 7.5 KB |
@@ -837,16 +833,11 @@ created = self.client.submit_confirmed_order(
 | [`ros2_ws/src/robot_controller/robot_controller/preorder.py`](ros2_ws/src/robot_controller/robot_controller/preorder.py) | preorder 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 3.9 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py`](ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py) | 등록 얼굴 임베딩과 실시간 얼굴을 비교해 고객을 식별합니다. | 8.2 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/response_manager_node.py`](ros2_ws/src/robot_controller/robot_controller/response_manager_node.py) | response manager node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 2.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/response_manager_order_exception.py`](ros2_ws/src/robot_controller/robot_controller/response_manager_order_exception.py) | response manager order exception 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 1.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/response_manager_pickup.py`](ros2_ws/src/robot_controller/robot_controller/response_manager_pickup.py) | response manager pickup 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 10.4 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/response_manager.py`](ros2_ws/src/robot_controller/robot_controller/response_manager.py) | response manager 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 20.6 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/response_payload_builder.py`](ros2_ws/src/robot_controller/robot_controller/response_payload_builder.py) | response payload builder 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 1.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/stt_node_safe.py`](ros2_ws/src/robot_controller/robot_controller/stt_node_safe.py) | stt node safe 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 20.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/stt_node_unbiased.py`](ros2_ws/src/robot_controller/robot_controller/stt_node_unbiased.py) | Faster-Whisper와 VAD 기반 production STT 노드입니다. | 4.3 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/stt_node.py`](ros2_ws/src/robot_controller/robot_controller/stt_node.py) | stt node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 26.9 KB |
+| [`ros2_ws/src/robot_controller/robot_controller/stt_node.py`](ros2_ws/src/robot_controller/robot_controller/stt_node.py) | Faster-Whisper, VAD, 안전한 turn 취소·복구, unbiased decoding을 통합한 production STT 노드입니다. | 통합 |
 | [`ros2_ws/src/robot_controller/robot_controller/tts_node.py`](ros2_ws/src/robot_controller/robot_controller/tts_node.py) | tts node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 15.1 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/vision_node_hand_quantity.py`](ros2_ws/src/robot_controller/robot_controller/vision_node_hand_quantity.py) | vision node hand quantity 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 22.8 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/vision_node.py`](ros2_ws/src/robot_controller/robot_controller/vision_node.py) | 카메라에서 사람·얼굴·고개·손 제스처 정보를 처리하는 ROS2 Vision 노드입니다. | 23.7 KB |
+| [`ros2_ws/src/robot_controller/robot_controller/vision_node.py`](ros2_ws/src/robot_controller/robot_controller/vision_node.py) | 사람·얼굴·NOD/SHAKE·손가락 수량 제스처를 통합 처리하는 production Vision 노드입니다. | 통합 |
 | [`ros2_ws/src/robot_controller/setup.cfg`](ros2_ws/src/robot_controller/setup.cfg) | setup 패키지 빌드·설치·메타데이터 설정 파일입니다. | 101 B |
 | [`ros2_ws/src/robot_controller/setup.py`](ros2_ws/src/robot_controller/setup.py) | setup 패키지 빌드·설치·메타데이터 설정 파일입니다. | 2.0 KB |
 
