@@ -1,0 +1,31 @@
+name: Face Backend Check
+
+on:
+  pull_request:
+    paths:
+      - 'face_backend/**'
+      - '.github/workflows/face-backend-check.yml'
+  push:
+    branches:
+      - agent/add-face-cloud-run-backend
+    paths:
+      - 'face_backend/**'
+      - '.github/workflows/face-backend-check.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile Python
+        run: python -m py_compile face_backend/main.py
+      - name: Validate deployment files
+        run: |
+          test -s face_backend/Dockerfile
+          test -s face_backend/cloudbuild.yaml
+          test -s face_backend/deploy.ps1
