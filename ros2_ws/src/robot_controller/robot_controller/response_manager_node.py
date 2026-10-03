@@ -7,7 +7,7 @@ from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from std_msgs.msg import String
 
-from .response_manager_order_exception import OrderExceptionAwareResponseManager
+from .response_manager import ResponseManager
 
 
 class ResponseManagerNode(Node):
@@ -20,7 +20,7 @@ class ResponseManagerNode(Node):
             self.get_parameter("compact_response").value
         )
 
-        self.manager = OrderExceptionAwareResponseManager()
+        self.manager = ResponseManager()
         self.decision_subscription = self.create_subscription(
             String,
             "/decision_result",
