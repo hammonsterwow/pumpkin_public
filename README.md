@@ -265,7 +265,7 @@ bash scripts/run_robot_with_monitor.sh
 
 ## **📚 전체 파일 가이드**
 
-현재 `cleanup-hanium-submission` 브랜치에서 Git이 추적하는 **577개 파일 전체**를 폴더별로 정리했습니다. 각 파일명을 누르면 실제 소스로 이동합니다. 파일 역할은 현재 제출본의 코드 구조와 실행 경로를 기준으로 설명합니다.
+현재 `cleanup-hanium-submission` 브랜치에서 Git이 추적하는 **574개 파일 전체**를 폴더별로 정리했습니다. 각 파일명을 누르면 실제 소스로 이동합니다. 파일 역할은 현재 제출본의 코드 구조와 실행 경로를 기준으로 설명합니다.
 
 <details>
 <summary><strong>최상위(root)/</strong> — 저장소 전체 설정, 실행 환경, 최상위 문서 (13개)</summary>
@@ -787,14 +787,12 @@ bash scripts/run_robot_with_monitor.sh
 | [`ros2_ws/src/robot_controller/robot_controller/action_node_order_handoff.py`](ros2_ws/src/robot_controller/robot_controller/action_node_order_handoff.py) | action node order handoff 주문 상태, 검증, 전송 또는 주문 데이터 처리를 담당하는 ROS2 모듈입니다. | 9.8 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/action_node.py`](ros2_ws/src/robot_controller/robot_controller/action_node.py) | Decision 결과를 TTS·LCD·고개·팔 등 실제 로봇 행동 명령으로 변환하는 ROS2 노드입니다. | 15.2 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/arm_motion.py`](ros2_ws/src/robot_controller/robot_controller/arm_motion.py) | arm motion 로봇 팔·고개·서보 하드웨어 동작을 제어하는 ROS2 모듈입니다. | 4.7 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/controller_node.py`](ros2_ws/src/robot_controller/robot_controller/controller_node.py) | controller node 실물 로봇 pipeline의 ROS2 기능 모듈입니다. | 641 B |
 | [`ros2_ws/src/robot_controller/robot_controller/decision_node_additional_order.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_additional_order.py) | decision node additional order 주문 FSM의 특정 의사결정/대화 상태 처리를 담당하는 ROS2 Python 모듈입니다. | 17.5 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/decision_node_hand_quantity.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_hand_quantity.py) | 사람 존재와 wake phrase를 확인하고 손가락 수량 입력까지 처리하는 production 대화 의사결정 노드입니다. | 11.6 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py) | decision node order handoff 주문 FSM의 특정 의사결정/대화 상태 처리를 담당하는 ROS2 Python 모듈입니다. | 21.6 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/decision_node.py`](ros2_ws/src/robot_controller/robot_controller/decision_node.py) | decision node 주문 FSM의 특정 의사결정/대화 상태 처리를 담당하는 ROS2 Python 모듈입니다. | 35.1 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/dialogue_act_resolver.py`](ros2_ws/src/robot_controller/robot_controller/dialogue_act_resolver.py) | dialogue act resolver 실물 로봇 pipeline의 ROS2 기능 모듈입니다. | 9.9 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/dialogue_slots.py`](ros2_ws/src/robot_controller/robot_controller/dialogue_slots.py) | dialogue slots 실물 로봇 pipeline의 ROS2 기능 모듈입니다. | 17.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/face_controller_node.py`](ros2_ws/src/robot_controller/robot_controller/face_controller_node.py) | face controller node 카메라·얼굴·고개·손 제스처 인식/표현을 담당하는 ROS2 모듈입니다. | 2.3 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/face_display_node.py`](ros2_ws/src/robot_controller/robot_controller/face_display_node.py) | ROS2 얼굴 표현 명령을 Jetson의 LCD face controller에 연결하는 어댑터 노드입니다. | 7.5 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/face_identity.py`](ros2_ws/src/robot_controller/robot_controller/face_identity.py) | face identity 카메라·얼굴·고개·손 제스처 인식/표현을 담당하는 ROS2 모듈입니다. | 3.1 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/face_personalization_node.py`](ros2_ws/src/robot_controller/robot_controller/face_personalization_node.py) | face personalization node 카메라·얼굴·고개·손 제스처 인식/표현을 담당하는 ROS2 모듈입니다. | 5.8 KB |
@@ -802,7 +800,6 @@ bash scripts/run_robot_with_monitor.sh
 | [`ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py`](ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py) | head gesture frame estimator 카메라·얼굴·고개·손 제스처 인식/표현을 담당하는 ROS2 모듈입니다. | 8.4 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/head_gesture_recognizer.py`](ros2_ws/src/robot_controller/robot_controller/head_gesture_recognizer.py) | head gesture recognizer 카메라·얼굴·고개·손 제스처 인식/표현을 담당하는 ROS2 모듈입니다. | 14.0 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/head_motion_node.py`](ros2_ws/src/robot_controller/robot_controller/head_motion_node.py) | head motion node 로봇 팔·고개·서보 하드웨어 동작을 제어하는 ROS2 모듈입니다. | 3.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/head_pose_test.py`](ros2_ws/src/robot_controller/robot_controller/head_pose_test.py) | head pose test 로봇 팔·고개·서보 하드웨어 동작을 제어하는 ROS2 모듈입니다. | 5.3 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/menu_policy.py`](ros2_ws/src/robot_controller/robot_controller/menu_policy.py) | menu policy 실물 로봇 pipeline의 ROS2 기능 모듈입니다. | 5.7 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/motor_controller_node.py`](ros2_ws/src/robot_controller/robot_controller/motor_controller_node.py) | motor controller node 로봇 팔·고개·서보 하드웨어 동작을 제어하는 ROS2 모듈입니다. | 12.8 KB |
 | [`ros2_ws/src/robot_controller/robot_controller/motor_driver.py`](ros2_ws/src/robot_controller/robot_controller/motor_driver.py) | motor driver 로봇 팔·고개·서보 하드웨어 동작을 제어하는 ROS2 모듈입니다. | 4.7 KB |
