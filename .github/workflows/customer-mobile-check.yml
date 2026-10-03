@@ -1,0 +1,38 @@
+name: Customer Mobile Check
+
+on:
+  pull_request:
+    paths:
+      - 'apps/customer-mobile/**'
+      - '.github/workflows/customer-mobile-check.yml'
+  push:
+    branches:
+      - feature/customer-mobile-face-refactor
+    paths:
+      - 'apps/customer-mobile/**'
+      - '.github/workflows/customer-mobile-check.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/customer-mobile
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: TypeScript check
+        run: npm run typecheck
+
+      - name: Expo doctor
+        run: npm run doctor
