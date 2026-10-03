@@ -57,3 +57,16 @@ ros2_ws/log/
 
 # Temporary cuSPARSELt files
 tmp_cusparselt/
+
+# Regenerable TOD intermediate datasets
+data/tod/pumpkin_tod_v1_train_valid.jsonl
+data/tod/pumpkin_tod_v1_test.jsonl
+data/tod/pumpkin_tod_v1_multiturn_train_valid.jsonl
+data/tod/pumpkin_tod_v1_multiturn_test.jsonl
+data/tod/pumpkin_tod_v1_sft_train_valid.jsonl
+data/tod/pumpkin_tod_v1_sft_test.jsonl
+data/tod/pumpkin_tod_v1_base_review_sample.jsonl
+data/tod/pumpkin_tod_v1_multiturn_review_sample.jsonl
+data/tod/qwen/pumpkin_tod_v1_train.jsonl
+data/tod/qwen/pumpkin_tod_v1_validation.jsonl
+data/tod/qwen/pumpkin_tod_v1_test.jsonl
