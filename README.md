@@ -5,19 +5,6 @@
 
 ---
 
-## **🔎 평가용 저장소 빠른 안내**
-
-- **통합 시연 실행**: [`scripts/run_robot_with_monitor.sh`](scripts/run_robot_with_monitor.sh)
-- **ROS2 인식–판단–행동 파이프라인**: [`ros2_ws/src/robot_controller/`](ros2_ws/src/robot_controller/)
-- **현재 NLU 추론 코드**: [`nlu/`](nlu/)
-- **KIPS Item Query 비교 실험**: [`experiments/nlu/kips_2026_item_query/`](experiments/nlu/kips_2026_item_query/)
-- **TOD SLM 학습·평가 코드**: [`experiments/tod_slm/`](experiments/tod_slm/)
-- **고객 앱**: [`apps/customer-mobile/`](apps/customer-mobile/)
-- **주문·고객·얼굴 API**: [`api/`](api/)
-- **서비스 메뉴 기준**: [`config/menu_catalog.json`](config/menu_catalog.json)
-
----
-
 ## **💡1. 프로젝트 개요**
 
 ### **1-1. 프로젝트 소개**
@@ -243,60 +230,6 @@ def make_user_gesture_decision(self, gesture: str):
 - **Face Backend** : [`face_backend/`](face_backend/)
 - **Jetson 실시간 인식** : [`ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py`](ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py)
 - **설명** : 앱에서 촬영한 5방향 얼굴을 Cloud Run에서 512차원 임베딩으로 변환하고 평균 centroid를 Firestore에 저장합니다. Jetson은 실시간 얼굴 임베딩과 등록 정보를 비교하여 고객을 식별합니다.
-
----
-
-## **📁 주요 디렉터리**
-
-```text
-pumpkin_public/
-├── api/             # FastAPI 주문·고객·얼굴 API
-├── apps/
-│   ├── customer-mobile/  # 고객 앱
-│   ├── pos-web/          # 관리자 POS
-│   └── monitor-web/      # 로봇 5인치 고객 화면
-├── cloud_relay/     # Cloud Run 주문 Relay
-├── config/          # 메뉴 카탈로그 및 공통 설정
-├── data/            # 제출본에 필요한 학습·테스트 데이터
-├── experiments/     # KIPS NLU 비교 실험 및 TOD SLM 학습·평가
-├── face_backend/    # 얼굴 임베딩 Cloud Run Backend
-├── nlu/             # 현재 NLU 추론 코드
-├── robot_face/      # ESP32 LCD 및 얼굴 표시 제어
-├── ros2_ws/         # ROS2 기반 로봇 통합 Runtime
-└── scripts/         # 실행·테스트·시연 스크립트
-```
-
----
-
-## **🔎 프로젝트 핵심 흐름 요약**
-
-```text
-고객 음성 / 비언어 입력
-→ STT / Vision
-→ NLU
-→ FSM 기반 대화 상태 판단
-→ TTS + LCD + 고개·팔 동작
-→ 주문 서버 / POS
-
-고객 앱 얼굴 등록 / 사전주문
-→ Firebase / Cloud Run
-→ Jetson 얼굴 인식 및 고객 식별
-→ 개인화 주문 제안 / 사전주문 픽업 안내
-```
-
-
----
-
-## **🚀 실물 로봇 시연 실행**
-
-Jetson Orin Nano에서 5인치 고객 화면과 ROS2 로봇 파이프라인을 함께 실행하는 최종 시연 진입점입니다.
-
-```bash
-cd ~/pumpkin
-bash scripts/run_robot_with_monitor.sh
-```
-
-현재 production runtime은 STT, Vision, NLU, Decision FSM, TTS, LCD 표정, 고개·팔 제어를 ROS2로 통합합니다.
 
 ---
 
