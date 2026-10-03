@@ -1,0 +1,55 @@
+name: Validate TOD training code
+
+on:
+  push:
+    branches:
+      - feat/tod-rule-label-generator
+    paths:
+      - .github/workflows/validate_tod_training.yml
+      - experiments/tod_slm/training/**
+      - scripts/train_tod_qwen_lora.sh
+      - scripts/eval_tod_qwen.sh
+      - scripts/merge_tod_qwen_lora.sh
+      - .gitignore
+  pull_request:
+    paths:
+      - experiments/tod_slm/training/**
+      - scripts/train_tod_qwen_lora.sh
+      - scripts/eval_tod_qwen.sh
+      - scripts/merge_tod_qwen_lora.sh
+      - .gitignore
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile Python entrypoints
+        run: |
+          python3 -m py_compile \
+            experiments/tod_slm/training/train_lora.py \
+            experiments/tod_slm/training/evaluate.py \
+            experiments/tod_slm/training/merge_lora.py \
+            experiments/tod_slm/training/inspect_token_lengths.py
+
+      - name: Validate shell launchers
+        run: |
+          bash -n scripts/train_tod_qwen_lora.sh
+          bash -n scripts/eval_tod_qwen.sh
+          bash -n scripts/merge_tod_qwen_lora.sh
+
+      - name: Validate training contract files
+        run: |
+          test -f experiments/tod_slm/training/configs/qwen3_0.6b_lora_v1.yaml
+          test -f experiments/tod_slm/training/requirements.txt
+          test -f data/tod/qwen/pumpkin_tod_v1_qwen_train.jsonl
+          test -f data/tod/qwen/pumpkin_tod_v1_qwen_validation.jsonl
+          test -f data/tod/qwen/pumpkin_tod_v1_qwen_test.jsonl
+          grep -q 'Qwen/Qwen3-0.6B' experiments/tod_slm/training/configs/qwen3_0.6b_lora_v1.yaml
+          grep -q '^outputs/$' .gitignore
+
+      - name: Explain GPU boundary
+        run: |
+          echo 'GPU training/model download is intentionally not run in GitHub Actions.'
+          echo 'This workflow checks repository wiring and syntax only.'
