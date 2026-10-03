@@ -362,16 +362,14 @@ if [[ "${ENABLE_TEGRASTATS}" == "1" ]] && command -v tegrastats >/dev/null 2>&1;
   start_process tegrastats tegrastats --interval "${TEGRASTATS_INTERVAL_MS}"
 fi
 
-# Launch the production dialogue modules explicitly. These module names mirror
-# setup.py console entrypoints but avoid silently falling back to older base
-# classes when this script is invoked with `python -m`.
-start_process decision_node "${CORE_PYTHON_BIN}" -m robot_controller.decision_node_hand_quantity
+# Launch the consolidated production ROS modules explicitly.
+start_process decision_node "${CORE_PYTHON_BIN}" -m robot_controller.decision_node
 start_process response_manager_node "${CORE_PYTHON_BIN}" -m robot_controller.response_manager_node
 if [[ "${ENABLE_FACE_RECOGNITION}" == "1" ]]; then
   start_process face_personalization_node \
     "${CORE_PYTHON_BIN}" -m robot_controller.face_personalization_node
 fi
-start_process action_node "${CORE_PYTHON_BIN}" -m robot_controller.action_node_order_handoff
+start_process action_node "${CORE_PYTHON_BIN}" -m robot_controller.action_node
 
 if [[ "${ENABLE_FACE_DISPLAY}" == "1" ]]; then
   start_process face_display_node \
@@ -406,7 +404,7 @@ wait_for_ready_file nlu_node "${NLU_READY_FILE}" "${STARTUP_TIMEOUT}"
 
 sleep 2
 start_process stt_node \
-  "${CORE_PYTHON_BIN}" -m robot_controller.stt_node_unbiased --ros-args \
+  "${CORE_PYTHON_BIN}" -m robot_controller.stt_node --ros-args \
   -p audio_device:="${AUDIO_DEVICE}" \
   -p channels:="${AUDIO_CHANNELS}" \
   -p sample_rate:="${AUDIO_SAMPLE_RATE}" \
@@ -426,7 +424,7 @@ wait_for_ready_file stt_node "${STT_READY_FILE}" "${STARTUP_TIMEOUT}"
 
 if [[ "${ENABLE_VISION}" == "1" ]]; then
   echo "[START] vision after NLU/STT readiness"
-  start_process vision_node "${CORE_PYTHON_BIN}" -m robot_controller.vision_node_hand_quantity
+  start_process vision_node "${CORE_PYTHON_BIN}" -m robot_controller.vision_node
   wait_for_vision_ready vision_node "${VISION_STARTUP_TIMEOUT}"
 else
   echo "vision_node disabled (set PUMPKIN_ENABLE_VISION=1 to enable)"
@@ -437,9 +435,9 @@ echo "Pumpkin ROS voice pipeline is READY."
 echo "Flow: STT(VAD) -> NLU -> Decision -> Response Manager -> Action -> TTS/Face LCD -> STT"
 echo "Multimodal: NOD/SHAKE confirmation + TWO_FINGERS quantity=2"
 echo "NLU: saved_models/structure_b_item_query_decoder (${PUMPKIN_NLU_DEVICE}, ${NLU_PYTHON_BIN})"
-echo "STT runtime: robot_controller.stt_node_unbiased"
-echo "Decision runtime: robot_controller.decision_node_hand_quantity"
-echo "Vision runtime: robot_controller.vision_node_hand_quantity"
+echo "STT runtime: robot_controller.stt_node"
+echo "Decision runtime: robot_controller.decision_node"
+echo "Vision runtime: robot_controller.vision_node"
 echo "STT: faster-whisper ${STT_MODEL} (${STT_DEVICE}/${STT_COMPUTE_TYPE}, ${CORE_PYTHON_BIN})"
 echo "TTS: ${TTS_PLAYER} -> ${TTS_ALSA_DEVICE}"
 if [[ "${ENABLE_FACE_DISPLAY}" == "1" ]]; then
