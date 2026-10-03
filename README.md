@@ -190,7 +190,7 @@ pumpkin/
 ├── config/       # 공통 서비스 설정과 메뉴 카탈로그
 ├── data/         # 현재 학습/테스트 데이터
 ├── docs/         # 정책, 설계, 실행법, 실험/디버깅 기록
-├── experiments/  # NLU 비교 실험, 이전 모델/실험 코드, legacy standalone 코드
+├── experiments/  # KIPS NLU 비교 실험과 TOD SLM 학습·평가 코드
 ├── hardware/     # 부품, 전원, 배선, 기구 제작 기록
 ├── nlu/          # 현재 독립 NLU 추론 코드
 ├── robot_face/   # ESP32 LCD 펌웨어와 Jetson Serial face controller
@@ -201,7 +201,6 @@ pumpkin/
 └── web/          # 관리자 웹
 ```
 
-과거 standalone STT/NLU 구현은 실험 재현용으로 `experiments/voice/legacy_stt/`에 보존되어 있으며, 현재 production STT는 ROS2 runtime을 기준으로 합니다.
 
 ### Current Runtime Boundaries
 
