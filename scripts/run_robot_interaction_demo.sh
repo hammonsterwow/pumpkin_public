@@ -224,13 +224,6 @@ bash "${ROOT_DIR}/scripts/run_ros_voice_nodes.sh" &
 ROS_PID=$!
 
 echo
-echo "터미널 2에서 다음 명령으로 전체 흐름을 관찰하세요:"
-echo "  cd ~/pumpkin"
-echo "  source .venv/bin/activate"
-echo "  source /opt/ros/humble/setup.bash"
-echo "  source ros2_ws/install/setup.bash"
-echo "  python3 scripts/robot_interaction_terminal.py"
-echo
 echo "실제 테스트 순서:"
 echo "  1) 카메라 앞에 서서 고객 감지를 기다립니다."
 echo "  2) 로봇 인사/TTS가 끝난 즉시 주문을 말합니다."
