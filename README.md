@@ -124,63 +124,17 @@
 
 ## **💡3. 시스템 구성도**
 
-### **3-1. 서비스 전체 구성**
+### **3-1. 전체 시스템 아키텍처**
 
-```mermaid
-flowchart LR
-    U[고객] -->|음성| STT[Faster-Whisper STT]
-    U -->|고개·손·얼굴| VISION[Vision]
+<img width="681" height="889" alt="KakaoTalk_20261003_215522158" src="https://github.com/user-attachments/assets/2c477bc8-6ae8-4c55-9289-ebf0d093092d" />
 
-    STT --> NLU[koELECTRA + Item Query Decoder]
-    NLU --> FSM[Decision FSM]
-    VISION --> FSM
+### **3-2. 서비스 구성도**
 
-    FSM --> RESPONSE[Response / Action]
-    RESPONSE --> TTS[TTS]
-    RESPONSE --> LCD[LCD 표정]
-    RESPONSE --> HEAD[고개 동작]
-    RESPONSE --> ARM[팔 제스처]
+<img width="1502" height="1082" alt="시스템 구조도" src="https://github.com/user-attachments/assets/fd948224-4823-4d25-9f02-b88f2c29f4b6" />
 
-    APP[고객 앱] --> CLOUD[Cloud Run / Firebase]
-    CLOUD --> FSM
-    FSM --> RELAY[Order API / Cloud Relay]
-    RELAY --> POS[관리자 POS]
-    POS --> RELAY
-```
+### **3-3. 엔티티 관계도**
 
-### **3-2. 주문 처리 흐름**
-
-```mermaid
-flowchart TD
-    A[고객 감지] --> W[주문할게요 wake phrase 감지]
-    W --> B[인사 및 주문 입력]
-    B --> C[STT 음성 인식]
-    C --> D[NLU 주문 구조화]
-    D --> E{필수 정보가 모두 있는가?}
-    E -- 아니오 --> F[누락된 메뉴·온도·수량 재질문]
-    F --> D
-    E -- 예 --> G[주문 확인]
-    G --> H[음성 또는 NOD/SHAKE 응답]
-    H --> I{주문 확정?}
-    I -- 수정/추가 --> B
-    I -- 확정 --> J[주문 서버 및 POS 반영]
-    J --> K{고객이 계속 앞에 있는가?}
-    K -- 예 --> L[다시 주문할게요 wake phrase 대기]
-    K -- 아니오 --> M[퇴장 감지 후 다음 고객 세션 대기]
-```
-
-### **3-3. 얼굴 등록 및 개인화 흐름**
-
-```mermaid
-flowchart LR
-    A[고객 앱 5방향 얼굴 촬영] --> B[Firebase Storage 임시 업로드]
-    B --> C[Cloud Run Face Backend]
-    C --> D[InsightFace 512차원 Embedding]
-    D --> E[5개 Embedding 평균 Centroid]
-    E --> F[Firestore users/uid]
-    F --> G[Jetson 실시간 얼굴 식별]
-    G --> H[선호 메뉴·사전주문 개인화 응대]
-```
+<img width="2032" height="774" alt="엔티티 관계도" src="https://github.com/user-attachments/assets/21c67942-429b-4b97-84c0-6ef95224c8d7" />
 
 ---
 
