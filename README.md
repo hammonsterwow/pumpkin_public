@@ -88,17 +88,12 @@
 
 ---
 
-## **💡2. 팀원 소개(이름 기재 X)**
+## **💡2. 팀원 소개**
 
-> 개인정보를 기재하지 않고 프로젝트의 주요 역할 영역을 중심으로 정리했습니다.
-
-| 역할 영역 | 주요 담당 |
-|---|---|
-| **AI / NLU** | 주문 데이터 구축·전처리, koELECTRA 학습, Item Query Decoder, 주문 슬롯 검증 |
-| **Robot / ROS2** | Decision FSM, Action Node, TTS/LCD/고개·팔 동작 통합, 실물 로봇 시연 |
-| **Vision / Personalization** | 사람·고개·손 제스처 인식, 얼굴 임베딩 등록·식별, 개인화 응대 |
-| **App / Cloud / POS** | 고객용 사전주문 앱, Firebase·Cloud Run 연동, 관리자 POS 및 주문 상태 관리 |
-| **Mentoring** | 시스템 설계 및 기술 자문 |
+|<img width="583" height="777" alt="KakaoTalk_20261003_211921456_01" src="https://github.com/user-attachments/assets/62b8e235-eed9-4b0a-9f4a-22879807ff37" />|<img width="502" height="668" alt="KakaoTalk_20261003_211921456_02" src="https://github.com/user-attachments/assets/c802b06d-8509-4812-ac37-936b507c0926" />|<img width="406" height="542" alt="KakaoTalk_20261003_211921456" src="https://github.com/user-attachments/assets/a1349d4f-3965-4383-9a27-14d5d7ba1403" />|<img width="489" height="700" alt="멘토님 증명사진" src="https://github.com/user-attachments/assets/95e20923-afa9-4a3e-8815-41a4f9986d57" />|   
+|:---:|:---:|:---:|:---:|:---:|
+| **멘티1** | **멘티2** | **멘티3** | **멘토** |
+| • AI·NLU 개발 <br> • 주문 데이터·대화 로직 | • Vision·비언어 인식 <br> • ROS2 로봇 통합 | • 하드웨어·모터 제어 <br> • App·Cloud·POS 연동 | • 프로젝트 멘토 <br> • 기술 자문 |
 
 ---
 
