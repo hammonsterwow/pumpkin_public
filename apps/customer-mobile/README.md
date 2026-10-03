@@ -36,8 +36,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_customer_mobil
 처음 내려받는 경우:
 
 ```powershell
-git clone https://github.com/yulllee0829/pumpkin.git
-cd pumpkin
+git clone https://github.com/hammonsterwow/pumpkin_public.git
+cd pumpkin_public
 .\run_customer_mobile_windows.cmd
 ```
 
@@ -113,7 +113,7 @@ npx expo start --tunnel --clear --port 8099
 
 환경:
 
-- Expo SDK 54
+- Expo SDK 57
 - React Native 0.81
 - Firebase JS SDK
 - Expo Camera
