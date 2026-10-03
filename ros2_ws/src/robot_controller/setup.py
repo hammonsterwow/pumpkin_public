@@ -31,7 +31,6 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'controller_node = robot_controller.controller_node:main',
             'stt_node = robot_controller.stt_node_unbiased:main',
             'nlu_node = robot_controller.nlu_node:main',
             'decision_node = robot_controller.decision_node_hand_quantity:main',
@@ -44,7 +43,6 @@ setup(
             'vision_node = robot_controller.vision_node_hand_quantity:main',
             'face_personalization_node = robot_controller.face_personalization_node:main',
             'motor_controller_node = robot_controller.motor_controller_node:main',
-            'face_controller_node = robot_controller.face_controller_node:main',
             'decision_node_no_hand = robot_controller.decision_node_additional_order:main',
             'vision_node_no_hand = robot_controller.vision_node:main',
         ],
