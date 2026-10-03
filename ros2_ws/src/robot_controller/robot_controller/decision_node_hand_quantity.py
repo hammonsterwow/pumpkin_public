@@ -152,7 +152,7 @@ class HandQuantityDecisionNode(AdditionalOrderDecisionNode):
             self.pending_customer_context = pending_context
 
     def human_presence_callback(self, msg) -> None:
-        """Require presence + wake phrase before starting each customer session."""
+        """Use presence only to arm/cancel wake listening, not to gate a new order."""
         human_present = bool(msg.data)
 
         if not self.human_presence_initialized:
@@ -162,44 +162,31 @@ class HandQuantityDecisionNode(AdditionalOrderDecisionNode):
                 self._enter_order_wake_gate(reason="initial_presence")
             return
 
+        self.last_human_presence = human_present
+
         if self.state == self.WAIT_ORDER_WAKE_STATE:
-            self.last_human_presence = human_present
             if not human_present:
                 self._leave_order_wake_gate()
             return
 
-        if self.state != self.WAIT_CUSTOMER_EXIT_STATE:
-            if self.state == "IDLE":
-                rising_edge = human_present and not self.last_human_presence
-                self.last_human_presence = human_present
-                if rising_edge:
-                    self._enter_order_wake_gate(reason="presence_rising_edge")
-                return
-
-            self.last_human_presence = human_present
+        if self.state == "IDLE" and human_present:
+            self._enter_order_wake_gate(reason="presence_available")
             return
 
-        self.last_human_presence = human_present
-        if not self._customer_exit_seen:
-            if not human_present:
-                self._customer_exit_seen = True
-                self.get_logger().info(
-                    "Completed customer left camera view; waiting for next customer."
-                )
+        # After a completed order, the same still-present customer may begin a
+        # fresh order by saying the wake phrase again. Do not require a
+        # human_presence False -> True transition between orders.
+        if self.state == self.WAIT_CUSTOMER_EXIT_STATE and human_present:
+            self.state = "IDLE"
+            self.current_order = None
+            self.waiting_for = None
+            self.reset_retry_counts()
+            self.get_logger().info(
+                "Order complete; customer is still present. "
+                "Re-arming wake gate without requiring an exit/re-entry."
+            )
+            self._enter_order_wake_gate(reason="order_complete_customer_present")
             return
-
-        if not human_present:
-            return
-
-        self.state = "IDLE"
-        self.current_order = None
-        self.waiting_for = None
-        self.reset_retry_counts()
-        self.get_logger().info(
-            "New customer detected after completed customer exit; "
-            "arming order wake gate."
-        )
-        self._enter_order_wake_gate(reason="next_customer_presence")
 
     def wake_stt_status_callback(self, msg: String) -> None:
         """Re-arm wake listening when a turn ended without any NLU text."""
@@ -241,6 +228,9 @@ class HandQuantityDecisionNode(AdditionalOrderDecisionNode):
             "Ignoring pre-order speech because wake phrase did not match: "
             f"text={text!r}"
         )
+        # Stay silent and passive until the exact wake phrase is heard.
+        # Background speech from presenters/judges must never reach the normal
+        # dialogue/action pipeline while we are only waiting for "주문할게요".
         self._arm_order_wake_listen(reason="non_wake_speech")
 
     def make_user_hand_gesture_decision(
