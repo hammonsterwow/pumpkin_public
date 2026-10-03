@@ -6,18 +6,22 @@
 
 > **서비스 메뉴의 기준 원본(Single Source of Truth)은 `config/menu_catalog.json`입니다.** NLU 데이터셋은 자연어 학습 라벨과 모델 출력 구조의 기준이며, NLU가 출력한 메뉴 문자열은 서비스 계층에서 카탈로그의 `name`/`aliases`와 매칭하여 공식 `menu_id`로 변환합니다. 자세한 규칙은 `docs/menu_catalog_policy.md`를 참고하세요.
 
-## Repository Maintenance Status — 2026-08-10
+## Submission Repository Guide
 
-현재 저장소는 기능 개발 과정에서 현재 구현, 시제품, 실험 코드, legacy 데이터와 문서가 함께 누적되어 있어 구조 정리를 진행 중입니다.
+이 저장소는 **2026 한이음 드림업 공모전 평가용 공개 저장소**입니다. 심사 시 아래 경로를 우선 확인하면 핵심 구현을 빠르게 볼 수 있습니다.
 
-- 기존 관리자 웹 `web/`은 **삭제하지 않고 Legacy / Reference 구현으로 보존**합니다.
-- 관리자 웹 UI와 프런트엔드 구조는 앞으로 새로 설계하여 재구축합니다.
-- 과거 데이터 보관용 `experience/`는 제거하고 `data/archive/2026-08-08/`로 정리했습니다.
-- 루트의 빈 `vision/` placeholder는 제거했습니다. 실제 비전 runtime은 ROS2의 `robot_controller.vision_node`입니다.
-- 과거 standalone `voice/STT/` 코드는 `experiments/voice/legacy_stt/`로 이동했습니다. 현재 production STT는 `robot_controller.stt_node_unbiased`입니다.
-- 대규모 파일 이동·삭제는 import, 스크립트, ROS2 경로 의존성을 확인한 뒤 진행합니다.
-- 새 기능의 메뉴는 `config/menu_catalog.json`과 공식 `menu_id`를 사용합니다.
-- 정리 현황과 후보 목록: `docs/REPOSITORY_CLEANUP_2026-08-10.md`
+- 통합 로봇 실행: `scripts/run_robot_with_monitor.sh`
+- ROS2 인식–판단–행동 파이프라인: `ros2_ws/src/robot_controller/`
+- 현재 NLU 추론 코드: `nlu/`
+- NLU 비교 실험 및 KIPS 재현 코드: `experiments/nlu/kips_2026_item_query/`
+- 고객 앱: `apps/customer-mobile/`
+- 주문·고객·얼굴 API: `api/`
+- 관리자 웹: `web/`
+- 로봇 얼굴 출력: `robot_face/`
+- 모터/하드웨어 제어: `hardware/`, `arduino/`
+- 서비스 메뉴 기준: `config/menu_catalog.json`
+
+임시 staging 파일, 중복 학습 노트북, 과거 데이터 archive는 제출본에서 제외했습니다.
 
 ## Project Goal
 
@@ -149,10 +153,10 @@ NLU 데이터셋은 서비스 가격표가 아니라 **자연어 주문을 학�
 
 이 구조는 한 문장에 여러 메뉴가 포함된 경우에도 각 메뉴에 대응하는 온도와 수량을 묶어 출력하기 위한 것입니다.
 
-대표 학습 노트북:
+대표 학습·비교 실험:
 
 ```text
-notebooks/koelectra_structure_b_item_query_decoder.ipynb
+experiments/nlu/kips_2026_item_query/
 ```
 
 NLU/데이터 관련 최신 문서 인덱스:
@@ -176,7 +180,7 @@ docs/README.md
 
 ## Repository Structure
 
-현재 저장소는 정리 중이므로 아래는 **현재 루트 디렉터리의 역할**을 설명합니다. 장기 구조 변경안은 `docs/REPOSITORY_CLEANUP_2026-08-10.md`에 기록합니다.
+아래는 평가 시 확인할 주요 루트 디렉터리의 역할입니다.
 
 ```text
 pumpkin/
@@ -184,28 +188,20 @@ pumpkin/
 ├── apps/         # 고객용 앱 등 사용자 애플리케이션
 ├── arduino/      # MCU/Arduino 펌웨어
 ├── config/       # 공통 서비스 설정과 메뉴 카탈로그
-├── data/         # 현재 학습/테스트 데이터 + archive/ 과거 데이터 보관
+├── data/         # 현재 학습/테스트 데이터
 ├── docs/         # 정책, 설계, 실행법, 실험/디버깅 기록
 ├── experiments/  # NLU 비교 실험, 이전 모델/실험 코드, legacy standalone 코드
 ├── hardware/     # 부품, 전원, 배선, 기구 제작 기록
 ├── nlu/          # 현재 독립 NLU 추론 코드
-├── notebooks/    # Google Colab 학습 노트북
 ├── robot_face/   # ESP32 LCD 펌웨어와 Jetson Serial face controller
 ├── ros2_ws/      # ROS2 노드와 통합 제어 runtime
 ├── scripts/      # 실행, 테스트, 데이터 생성, 디버깅 스크립트
 ├── tests/        # 저장소 루트 단위 테스트
 ├── tools/        # 개발 보조 도구
-└── web/          # 기존 관리자 웹 Legacy / Reference 구현
+└── web/          # 관리자 웹
 ```
 
-주요 archive 위치:
-
-```text
-data/archive/2026-08-08/          # 과거 데이터셋/산출물
-experiments/voice/legacy_stt/    # 과거 standalone STT/NLU 통합 코드
-```
-
-archive 디렉터리는 현재 runtime 기준이 아니라 과거 구현과 실험 재현을 위한 보관 영역입니다.
+과거 standalone STT/NLU 구현은 실험 재현용으로 `experiments/voice/legacy_stt/`에 보존되어 있으며, 현재 production STT는 ROS2 runtime을 기준으로 합니다.
 
 ### Current Runtime Boundaries
 
@@ -312,9 +308,6 @@ pip install -r requirements.txt
 
 **운영 메뉴의 최종 출처는 `config/menu_catalog.json`이고, NLU 데이터셋은 모델 학습 라벨의 기준입니다.**
 
-## Team
+## Program
 
-- Mentor: 서혁준, LG CNS RED
-- Mentee: 유지성, 김수향, 박율리
-- University: 이화여자대학교 전기전자공학전공
-- Program: 2026 한이음 드림업
+- 2026 한이음 드림업
