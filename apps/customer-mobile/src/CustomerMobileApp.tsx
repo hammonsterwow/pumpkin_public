@@ -501,7 +501,7 @@ function HomeScreen({ customerName, onNavigate, onSelectMenu }: { customerName: 
     <ScrollView style={styles.scroll} contentContainerStyle={styles.homeContent} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Text style={styles.hello}>안녕하세요, <Text style={styles.yellow}>{customerName}</Text> 님</Text>
-        <Text style={styles.location}>⌖ 이화여대 점</Text>
+        <Text style={styles.location}>⌖ 단호박 카페</Text>
       </View>
       <Pressable style={styles.orderHero} onPress={() => onNavigate('menu')}>
         <Text style={styles.heroTitle}>다이렉트 오더로{`\n`}빠르게 주문하세요</Text>
