@@ -1,312 +1,262 @@
-# Pumpkin
+# 🎃 Pumpkin | 디지털 소외계층을 위한 Physical AI 무인매장 응대 로봇
 
-디지털 소외계층의 무인매장 접근성을 높이기 위한 **ROS2 기반 Physical AI 카페 응대 로봇** 프로젝트입니다.
+> 2026년 한이음 드림업 공모전 프로젝트  
+> 복잡한 키오스크 조작 대신 **음성·비언어 표현·얼굴 인식**을 활용해 자연스럽게 주문하고 안내받을 수 있는 ROS2 기반 Physical AI 카페 응대 로봇입니다.
 
-사용자는 복잡한 키오스크 조작 없이 음성으로 주문할 수 있으며, 로봇은 STT, 한국어 NLU, 대화 상태 판단, TTS, LCD 표정, 고개·팔 동작을 연결해 주문을 확인하고 필요한 정보를 다시 질문합니다.
+---
 
-> **서비스 메뉴의 기준 원본(Single Source of Truth)은 `config/menu_catalog.json`입니다.** NLU 데이터셋은 자연어 학습 라벨과 모델 출력 구조의 기준이며, NLU가 출력한 메뉴 문자열은 서비스 계층에서 카탈로그의 `name`/`aliases`와 매칭하여 공식 `menu_id`로 변환합니다. 자세한 규칙은 `docs/menu_catalog_policy.md`를 참고하세요.
+## **🔎 평가용 저장소 빠른 안내**
 
-## Submission Repository Guide
+- **통합 시연 실행**: `scripts/run_robot_with_monitor.sh`
+- **ROS2 인식–판단–행동 파이프라인**: `ros2_ws/src/robot_controller/`
+- **현재 NLU 추론 코드**: `nlu/`
+- **KIPS Item Query 비교 실험**: `experiments/nlu/kips_2026_item_query/`
+- **TOD SLM 학습·평가 코드**: `experiments/tod_slm/`
+- **고객 앱**: `apps/customer-mobile/`
+- **주문·고객·얼굴 API**: `api/`
+- **서비스 메뉴 기준**: `config/menu_catalog.json`
 
-이 저장소는 **2026 한이음 드림업 공모전 평가용 공개 저장소**입니다. 심사 시 아래 경로를 우선 확인하면 핵심 구현을 빠르게 볼 수 있습니다.
+> 제출용 공개 저장소에서는 임시 staging 파일, 중복 노트북, 과거 archive/legacy 코드, 재생성 가능한 중간 산출물을 제외했습니다.
 
-- 통합 로봇 실행: `scripts/run_robot_with_monitor.sh`
-- ROS2 인식–판단–행동 파이프라인: `ros2_ws/src/robot_controller/`
-- 현재 NLU 추론 코드: `nlu/`
-- NLU 비교 실험 및 KIPS 재현 코드: `experiments/nlu/kips_2026_item_query/`
-- 고객 앱: `apps/customer-mobile/`
-- 주문·고객·얼굴 API: `api/`
-- 관리자 웹: `web/`
-- 로봇 얼굴 출력: `robot_face/`
-- 모터/하드웨어 제어: `hardware/`, `arduino/`
-- 서비스 메뉴 기준: `config/menu_catalog.json`
+---
 
-임시 staging 파일, 중복 학습 노트북, 과거 데이터 archive는 제출본에서 제외했습니다.
+## **💡1. 프로젝트 개요**
 
-## Project Goal
+### **1-1. 프로젝트 소개**
 
-- 음성 중심 주문으로 디지털 취약 사용자의 접근성 개선
-- 한국어 구어체 주문에서 의도와 주문 항목을 구조화
-- 누락 정보와 정책 위반을 감지해 잘못된 주문 확정 방지
-- ROS2를 이용해 인식–판단–행동 모듈 통합
-- Jetson Orin Nano에서 AI 추론과 로봇 제어 수행
+- **프로젝트 명** : Pumpkin — 디지털 소외계층을 위한 Physical AI 무인매장 응대 로봇
+- **프로젝트 정의** : 사용자의 음성, 고개 움직임, 손 제스처, 얼굴 정보를 인식하고 현재 대화 상태를 판단하여 주문·안내·개인화 서비스를 제공하는 Physical AI 기반 무인매장 응대 시스템
+- **핵심 목표** : 사람이 기계 사용법을 익히는 대신, 로봇이 사람이 평소 사용하는 말과 행동을 이해하는 주문 인터페이스 구현
 
-## Main Features
+### **1-2. 개발 배경 및 필요성**
 
-- Faster-Whisper 기반 한국어 STT
-- koELECTRA Encoder 기반 사용자 의도 분류
-- Item Query Decoder 기반 복수 주문 항목 추출
-- 메뉴·온도·수량 누락 감지 및 재질문
-- FSM 기반 주문 확인·수정·취소 흐름
-- eSpeak-NG 기반 TTS 안내
-- LCD 표정과 고개·팔 제스처 출력
-- 얼굴 인식 기반 단골 고객 개인화
-- 고객용 사전 주문 앱
-- 관리자 웹 및 주문 API 연동
-- ROS2 Topic 기반 모듈 통합
+무인매장의 키오스크는 빠르고 효율적이지만, 화면 구성과 단계별 조작에 익숙하지 않은 사용자에게는 주문 과정 자체가 진입 장벽이 될 수 있습니다. Pumpkin은 이러한 문제를 줄이기 위해 사용자가 복잡한 UI를 직접 조작하지 않아도 **말하고, 끄덕이고, 손으로 표현하는 자연스러운 방식**으로 주문할 수 있도록 설계했습니다.
 
-## Menu Catalog
+또한 단순 음성 주문에 그치지 않고, 주문 정보가 부족하면 다시 질문하고, 고객의 비언어적 반응을 현재 대화 맥락과 함께 해석하며, 로봇의 LCD 표정·고개·팔 동작과 고객 앱·POS까지 하나의 서비스 흐름으로 연결하는 것을 목표로 합니다.
 
-서비스에서 사용하는 공식 메뉴는 `config/menu_catalog.json`에서 관리합니다.
+### **1-3. 프로젝트 특장점**
 
-| menu_id | 메뉴 | 허용 온도 | 가격 |
-|---:|---|---|---:|
-| 1 | 아메리카노 | `ICE`, `HOT` | 3,000원 |
-| 2 | 카페라떼 | `ICE`, `HOT` | 4,000원 |
-| 3 | 바닐라라떼 | `ICE`, `HOT` | 4,500원 |
-| 4 | 레몬에이드 | `ICE` | 4,500원 |
-| 5 | 딸기스무디 | `ICE` | 5,000원 |
+- **멀티모달 상호작용** : 음성, NOD/SHAKE, 손 제스처를 하나의 주문 대화에서 함께 활용
+- **자체 주문 NLU** : 직접 구축한 한국어 주문 데이터와 `koELECTRA + Item Query Decoder`를 이용해 복수 메뉴의 메뉴·온도·수량을 항목별로 구조화
+- **FSM 기반 대화 제어** : 누락된 주문 정보를 임의로 채우지 않고 필요한 항목만 재질문하며, 현재 상태에 맞는 입력만 허용
+- **Physical Interaction** : TTS뿐 아니라 LCD 표정, 고개 방향 전환, NOD/SHAKE, 팔 제스처를 함께 출력
+- **얼굴 인식 기반 개인화** : 등록 고객을 실시간 식별하고 선호 메뉴 및 사전주문 정보를 연계
+- **서비스 통합** : 고객 앱, Cloud Run/Firebase, Jetson 로봇, 관리자 POS의 주문 상태를 하나의 흐름으로 연결
 
-새 기능은 메뉴명, 가격, 온도, 판매 여부를 각 코드에 따로 하드코딩하지 않고 카탈로그 또는 이를 제공하는 공용 API/서비스를 사용합니다.
+### **1-4. 주요 기능**
 
-## NLU Dataset
+- **일반 음성 주문** : Faster-Whisper STT와 NLU를 이용해 자연어 주문 인식
+- **복수 주문 구조화** : 한 문장 안의 여러 메뉴를 각각의 메뉴·온도·수량으로 분리
+- **누락 정보 재질문** : 메뉴, 온도, 수량 중 필요한 정보가 빠진 경우 해당 항목만 다시 질문
+- **주문 확인·수정·취소** : FSM을 이용해 주문 확인, 수정, 추가 주문, 취소 흐름 관리
+- **비언어 입력** : 주문 확인 단계의 NOD/SHAKE, 수량 질문 단계의 손가락 제스처를 실제 입력으로 사용
+- **공간 안내** : 화장실·픽업대 등 위치를 음성과 고개·팔 동작으로 함께 안내
+- **단골 고객 개인화** : 얼굴 임베딩 기반 고객 식별 후 선호 주문 제안
+- **사전주문 픽업** : 앱 사전주문 상태를 조회하고 준비 완료 주문의 픽업 위치 안내
+- **관리자 POS 연동** : `RECEIVED → PREPARING → READY → PICKED_UP` 주문 상태 관리
 
-NLU 데이터셋은 서비스 가격표가 아니라 **자연어 주문을 학습하기 위한 Intent/slot/order-status 기준**입니다.
+### **1-5. 기대 효과 및 활용 분야**
 
-현재 Structure B 계열 데이터는 다음을 학습합니다.
+- **기대 효과**
+  - 디지털 기기 사용에 익숙하지 않은 사용자의 무인매장 접근성 향상
+  - 음성과 비언어 표현을 함께 활용한 자연스러운 주문 경험 제공
+  - 반복적인 주문·안내 업무를 자동화하여 매장 운영 부담 완화
+  - 고객 앱과 얼굴 인식을 연계한 개인화 서비스 제공
 
-### Intent Labels
+- **활용 분야**
+  - 무인 카페 및 프랜차이즈 매장
+  - 베이커리·편의점 등 반복적인 고객 응대가 필요한 리테일 매장
+  - 도서관·병원·주민센터·터미널 등 공공시설 안내 서비스
 
-| 라벨 | 의미 |
+### **1-6. 기술 스택**
+
+| 구분 | 기술 |
 |---|---|
-| `ORDER` | 신규 주문 |
-| `MODIFY` | 주문 수정 |
-| `CANCEL` | 주문 취소 |
-| `AFFIRM` | 긍정 응답 |
-| `DENY` | 부정 응답 |
-| `GUIDE` | 매장 이용 및 위치 안내 |
-| `PAYMENT` | 결제 관련 문의 |
-| `UNKNOWN` | 지원 범위 밖이거나 불명확한 발화 |
+| **Edge / Robot** | NVIDIA Jetson Orin Nano, ROS2 Humble, Python |
+| **STT / TTS** | Faster-Whisper, VAD, eSpeak-NG |
+| **NLU** | koELECTRA, PyTorch, Item Query Transformer Decoder |
+| **Vision** | OpenCV, MediaPipe, InsightFace `buffalo_l` |
+| **Robot UI / Control** | ESP32 LCD, Head Motion, Arm Gesture, ROS2 Topic |
+| **Customer App** | React Native, Expo, TypeScript |
+| **POS Web** | React, Vite, Express |
+| **Backend / Cloud** | FastAPI, Google Cloud Run, Firebase Authentication, Firestore, Firebase Storage |
+| **Data / Service** | Menu Catalog, Order API, Cloud Relay |
 
-### Order Slots and Options
+---
 
-각 `ORDER` 샘플은 `items` 배열로 주문을 표현합니다.
+## **💡2. 팀원 소개(이름 기재 X)**
 
-| 필드 | 값 |
+> 개인정보를 기재하지 않고 프로젝트의 주요 역할 영역을 중심으로 정리했습니다.
+
+| 역할 영역 | 주요 담당 |
 |---|---|
-| `item_id` | 주문 항목 순서, 0부터 시작 |
-| `menu` | NLU가 예측하는 표준 메뉴 문자열 |
-| `temperature` | `ICE`, `HOT`, `null` |
-| `quantity` | 1~20의 정수 또는 `null` |
-| `missing_slots` | 누락된 `quantity`, `temperature` 목록 |
-| `validation_errors` | 항목 단위 검증 오류 |
+| **AI / NLU** | 주문 데이터 구축·전처리, koELECTRA 학습, Item Query Decoder, 주문 슬롯 검증 |
+| **Robot / ROS2** | Decision FSM, Action Node, TTS/LCD/고개·팔 동작 통합, 실물 로봇 시연 |
+| **Vision / Personalization** | 사람·고개·손 제스처 인식, 얼굴 임베딩 등록·식별, 개인화 응대 |
+| **App / Cloud / POS** | 고객용 사전주문 앱, Firebase·Cloud Run 연동, 관리자 POS 및 주문 상태 관리 |
+| **Mentoring** | 시스템 설계 및 기술 자문 |
 
-현재 NLU 학습 라벨에는 다음 정보가 포함되지 않습니다.
+---
 
-- 가격
-- 사이즈
-- 샷 추가
-- 시럽
-- 우유 종류
-- 얼음 양
-- 포장 여부
+## **💡3. 시스템 구성도**
 
-이 값들은 NLU 데이터셋만으로 예측하거나 임의로 채우지 않습니다.
+### **3-1. 서비스 전체 구성**
 
-## Order Status and Validation
+```mermaid
+flowchart LR
+    U[고객] -->|음성| STT[Faster-Whisper STT]
+    U -->|고개·손·얼굴| VISION[Vision]
 
-`ORDER`의 주문 상태는 다음 세 가지를 사용합니다.
+    STT --> NLU[koELECTRA + Item Query Decoder]
+    NLU --> FSM[Decision FSM]
+    VISION --> FSM
 
-| 상태 | 의미 |
-|---|---|
-| `VALID` | 주문에 필요한 정보가 유효함 |
-| `INCOMPLETE` | 수량 또는 온도가 누락됨 |
-| `OUT_OF_POLICY` | 지원하지 않는 옵션이 요청됨 |
+    FSM --> RESPONSE[Response / Action]
+    RESPONSE --> TTS[TTS]
+    RESPONSE --> LCD[LCD 표정]
+    RESPONSE --> HEAD[고개 동작]
+    RESPONSE --> ARM[팔 제스처]
 
-주요 검증 오류:
-
-| 오류 | 의미 |
-|---|---|
-| `MISSING_QUANTITY` | 수량 누락 |
-| `MISSING_TEMPERATURE` | ICE/HOT 선택형 메뉴의 온도 누락 |
-| `TEMPERATURE_NOT_ALLOWED` | 제공하지 않는 온도 요청 |
-
-수량 또는 온도가 누락되면 임의의 기본값으로 확정하지 않고 재질문합니다.
-
-```text
-사용자: 아메리카노 하나 주세요.
-로봇: 아메리카노는 아이스로 드릴까요, 따뜻하게 드릴까요?
+    APP[고객 앱] --> CLOUD[Cloud Run / Firebase]
+    CLOUD --> FSM
+    FSM --> RELAY[Order API / Cloud Relay]
+    RELAY --> POS[관리자 POS]
+    POS --> RELAY
 ```
 
-```text
-사용자: 차가운 카페라떼 주세요.
-로봇: 카페라떼는 몇 잔 주문하시겠어요?
+### **3-2. 주문 처리 흐름**
+
+```mermaid
+flowchart TD
+    A[고객 감지] --> W[주문할게요 wake phrase 감지]
+    W --> B[인사 및 주문 입력]
+    B --> C[STT 음성 인식]
+    C --> D[NLU 주문 구조화]
+    D --> E{필수 정보가 모두 있는가?}
+    E -- 아니오 --> F[누락된 메뉴·온도·수량 재질문]
+    F --> D
+    E -- 예 --> G[주문 확인]
+    G --> H[음성 또는 NOD/SHAKE 응답]
+    H --> I{주문 확정?}
+    I -- 수정/추가 --> B
+    I -- 확정 --> J[주문 서버 및 POS 반영]
+    J --> K[고객 퇴장 후 다음 세션 대기]
 ```
 
-지원하지 않는 온도 요청은 주문을 확정하지 않습니다.
+### **3-3. 얼굴 등록 및 개인화 흐름**
 
-```text
-사용자: 따뜻한 레몬에이드 한 잔 주세요.
-로봇: 레몬에이드는 아이스로만 주문할 수 있습니다.
+```mermaid
+flowchart LR
+    A[고객 앱 5방향 얼굴 촬영] --> B[Firebase Storage 임시 업로드]
+    B --> C[Cloud Run Face Backend]
+    C --> D[InsightFace 512차원 Embedding]
+    D --> E[5개 Embedding 평균 Centroid]
+    E --> F[Firestore users/uid]
+    F --> G[Jetson 실시간 얼굴 식별]
+    G --> H[선호 메뉴·사전주문 개인화 응대]
 ```
 
-## NLU Model
+---
 
-현재 주문 NLU는 다음 구조를 사용합니다.
+## **💡4. 작품 소개영상**
 
-1. 입력 주문 문장을 정규화합니다.
-2. koELECTRA Encoder가 문장의 문맥 특징을 추출합니다.
-3. CLS 표현을 이용해 Intent를 예측합니다.
-4. 최대 3개의 학습 가능한 Item Query를 Transformer Decoder에 입력합니다.
-5. 각 Query가 하나의 주문 항목을 담당하며 메뉴·온도·수량을 예측합니다.
-6. 누락 슬롯과 정책 위반 여부를 검사해 주문 상태를 결정합니다.
+> **작품 소개영상 공개 URL은 현재 저장소에서 확인되지 않아 아래 위치만 마련했습니다. 최종 제출 영상 URL 확정 후 링크를 교체하면 됩니다.**
 
-이 구조는 한 문장에 여러 메뉴가 포함된 경우에도 각 메뉴에 대응하는 온도와 수량을 묶어 출력하기 위한 것입니다.
+**[🎬 Pumpkin 작품 소개영상 링크 추가 예정](영상_URL_입력)**
 
-대표 학습·비교 실험:
+---
 
-```text
-experiments/nlu/kips_2026_item_query/
+## **💡5. 핵심 소스코드**
+
+### **5-1. FSM 기반 비언어 응답 처리**
+
+- **소스 위치** : [`ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py`](ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py)
+- **설명** : 사용자의 NOD/SHAKE를 항상 주문 입력으로 사용하는 것이 아니라, 주문 확인과 같은 **확인 상태에서만** 각각 `AFFIRM` / `DENY` 입력으로 변환합니다. 이를 통해 자연스러운 몸동작이 주문 흐름을 잘못 변경하는 것을 방지합니다.
+
+```python
+def make_user_gesture_decision(self, gesture: str):
+    normalized = str(gesture or "").strip().upper()
+
+    if normalized not in self.USER_GESTURES:
+        return None
+    if self.state not in self.CONFIRMATION_STATES:
+        return None
+
+    synthetic_input = {
+        "intent": "AFFIRM" if normalized == "NOD" else "DENY",
+        "input_modality": "VISION_GESTURE",
+        "user_gesture": normalized,
+        "confidence": 1.0,
+    }
+
+    if normalized == "NOD":
+        return self.handle_affirm_intent(synthetic_input)
+    return self.handle_deny_intent(synthetic_input)
 ```
 
-NLU/데이터 관련 최신 문서 인덱스:
+### **5-2. 주문 NLU 모델**
+
+- **비교 실험 및 재현 코드** : [`experiments/nlu/kips_2026_item_query/`](experiments/nlu/kips_2026_item_query/)
+- **현재 추론 코드** : [`nlu/`](nlu/)
+- **설명** : koELECTRA Encoder가 문장의 문맥 특징을 추출하고, 학습 가능한 Item Query를 Transformer Decoder에 입력하여 복수 주문의 **메뉴·온도·수량을 항목별로 예측**합니다.
+
+### **5-3. 얼굴 등록 및 실시간 식별**
+
+- **고객 앱** : [`apps/customer-mobile/`](apps/customer-mobile/)
+- **Face Backend** : [`face_backend/`](face_backend/)
+- **Jetson 실시간 인식** : [`ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py`](ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py)
+- **설명** : 앱에서 촬영한 5방향 얼굴을 Cloud Run에서 512차원 임베딩으로 변환하고 평균 centroid를 Firestore에 저장합니다. Jetson은 실시간 얼굴 임베딩과 등록 정보를 비교하여 고객을 식별합니다.
+
+---
+
+## **📁 주요 디렉터리**
 
 ```text
-docs/README.md
+pumpkin_public/
+├── api/             # FastAPI 주문·고객·얼굴 API
+├── apps/
+│   ├── customer-mobile/  # 고객 앱
+│   ├── pos-web/          # 관리자 POS
+│   └── monitor-web/      # 로봇 5인치 고객 화면
+├── cloud_relay/     # Cloud Run 주문 Relay
+├── config/          # 메뉴 카탈로그 및 공통 설정
+├── data/            # 제출본에 필요한 학습·테스트 데이터
+├── experiments/     # KIPS NLU 비교 실험 및 TOD SLM 학습·평가
+├── face_backend/    # 얼굴 임베딩 Cloud Run Backend
+├── nlu/             # 현재 NLU 추론 코드
+├── robot_face/      # ESP32 LCD 및 얼굴 표시 제어
+├── ros2_ws/         # ROS2 기반 로봇 통합 Runtime
+└── scripts/         # 실행·테스트·시연 스크립트
 ```
 
-## System Flow
+---
+
+## **🔎 프로젝트 핵심 흐름 요약**
 
 ```text
-사용자 음성
-→ Faster-Whisper STT
-→ koELECTRA + Item Query Decoder
-→ 주문 슬롯 및 오류 검증
+고객 음성 / 비언어 입력
+→ STT / Vision
+→ NLU
 → FSM 기반 대화 상태 판단
-→ 주문 확인 / 재질문 / 수정 / 취소
-→ TTS + LCD 표정 + 로봇 동작
-→ 주문 서버 및 관리자 화면
-```
+→ TTS + LCD + 고개·팔 동작
+→ 주문 서버 / POS
 
-## Repository Structure
-
-아래는 평가 시 확인할 주요 루트 디렉터리의 역할입니다.
-
-```text
-pumpkin/
-├── api/          # FastAPI, 주문/고객/얼굴 API, ROS-Web 연동
-├── apps/         # 고객용 앱 등 사용자 애플리케이션
-├── arduino/      # MCU/Arduino 펌웨어
-├── config/       # 공통 서비스 설정과 메뉴 카탈로그
-├── data/         # 현재 학습/테스트 데이터
-├── docs/         # 정책, 설계, 실행법, 실험/디버깅 기록
-├── experiments/  # KIPS NLU 비교 실험과 TOD SLM 학습·평가 코드
-├── hardware/     # 부품, 전원, 배선, 기구 제작 기록
-├── nlu/          # 현재 독립 NLU 추론 코드
-├── robot_face/   # ESP32 LCD 펌웨어와 Jetson Serial face controller
-├── ros2_ws/      # ROS2 노드와 통합 제어 runtime
-├── scripts/      # 실행, 테스트, 데이터 생성, 디버깅 스크립트
-├── tests/        # 저장소 루트 단위 테스트
-├── tools/        # 개발 보조 도구
-└── web/          # 관리자 웹
+고객 앱 얼굴 등록 / 사전주문
+→ Firebase / Cloud Run
+→ Jetson 얼굴 인식 및 고객 식별
+→ 개인화 주문 제안 / 사전주문 픽업 안내
 ```
 
 
-### Current Runtime Boundaries
+---
 
-- STT: `ros2_ws/src/robot_controller/robot_controller/stt_node_unbiased.py`
-- Vision: `ros2_ws/src/robot_controller/robot_controller/vision_node.py`
-- Face hardware driver: `robot_face/jetson/face_controller.py`
-- Face ROS adapter: `ros2_ws/src/robot_controller/robot_controller/face_display_node.py`
+## **🚀 실물 로봇 시연 실행**
 
-## Physical Robot Demo Startup
-
-실물 로봇 시연 시에는 **5인치 HDMI 고객 화면까지 함께 실행하는 통합 런처**를 사용합니다.
-
-### 권장 실행 명령
-
-팔 동작을 비활성화한 상태에서 전체 시스템을 실행하려면:
+Jetson Orin Nano에서 5인치 고객 화면과 ROS2 로봇 파이프라인을 함께 실행하는 최종 시연 진입점입니다.
 
 ```bash
 cd ~/pumpkin
-
-PUMPKIN_ENABLE_ARM=false \\
-PUMPKIN_VISION_STARTUP_TIMEOUT=30 \\
 bash scripts/run_robot_with_monitor.sh
 ```
 
-팔을 차렷(HOME) 자세로 맞춘 뒤 실제 팔 동작까지 사용할 경우:
-
-```bash
-cd ~/pumpkin
-
-PUMPKIN_ENABLE_ARM=true \\
-PUMPKIN_VISION_STARTUP_TIMEOUT=30 \\
-bash scripts/run_robot_with_monitor.sh
-```
-
-`run_robot_with_monitor.sh`는 다음 순서로 실행됩니다.
-
-```text
-5인치 HDMI 화면 설정 및 절전 해제
-→ monitor-web 서버 실행 (http://127.0.0.1:8770)
-→ 웹 서버 응답 확인
-→ Chromium 800×480 kiosk 실행
-→ 5인치 고객 화면 표시
-→ run_robot_interaction_demo.sh 실행
-→ ROS2 / Vision / STT / NLU / Decision / TTS / LCD / PCA9685 통합 로봇 시작
-```
-
-정상 기동 시 아래 로그를 확인합니다.
-
-```text
-[START] 5-inch monitor web server
-[OK] monitor-web ready
-[START] 5-inch Chromium kiosk
-[OK] 5-inch kiosk ready
-[START] 팔·목·카메라·음성·얼굴 LCD 통합 로봇 파이프라인
-```
-
-> **주의:** `scripts/run_robot_interaction_demo.sh`만 직접 실행하면 ROS2 대화 파이프라인과 로봇 하드웨어는 실행되지만, **5인치 HDMI monitor-web과 Chromium kiosk는 실행되지 않습니다.** 실물 시연의 최종 실행 명령은 `scripts/run_robot_with_monitor.sh`입니다.
-
-### Vision 시작 타임아웃
-
-`PUMPKIN_VISION_STARTUP_TIMEOUT=30`의 30초는 사람이 카메라 앞에 나타날 때까지 기다리는 시간이 아닙니다. Vision 모듈이 카메라를 열고 얼굴 인식·MediaPipe 등의 초기화를 마친 뒤 **첫 실제 카메라 프레임을 정상 처리할 때까지 기다리는 시작 제한 시간**입니다. 사람이 없어도 카메라 프레임이 정상 처리되면 Vision은 READY 상태가 됩니다.
-
-## Development Environment
-
-- Edge device: NVIDIA Jetson Orin Nano
-- Robot framework: ROS2 Humble
-- AI: PyTorch, Transformers, koELECTRA, Faster-Whisper
-- Vision: OpenCV, MediaPipe, Face Embedding
-- Backend: FastAPI
-- Frontend: React, Vite, TypeScript / Expo React Native
-- TTS: eSpeak-NG
-- MCU: ESP32, PCA9685
-- Language: Python, TypeScript, C/C++
-
-공통 Python 환경은 Python 3.11을 권장합니다.
-
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Windows PowerShell:
-
-```powershell
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-## Dataset–Service Consistency Rule
-
-메뉴나 옵션을 변경할 때는 한 파일만 수정하지 않습니다.
-
-1. `config/menu_catalog.json` — 서비스 메뉴 기준 원본
-2. NLU 학습 데이터의 메뉴 라벨
-3. NLU 모델의 출력 클래스와 설정
-4. 주문 검증 정책
-5. STT 보정용 메뉴 사전
-6. 고객 앱 메뉴 표시/조회
-7. 관리자 웹 메뉴 표시/관리
-8. 주문 서버 및 데이터베이스
-9. 관련 README/정책 문서
-
-**운영 메뉴의 최종 출처는 `config/menu_catalog.json`이고, NLU 데이터셋은 모델 학습 라벨의 기준입니다.**
-
-## Program
-
-- 2026 한이음 드림업
+현재 production runtime은 STT, Vision, NLU, Decision FSM, TTS, LCD 표정, 고개·팔 제어를 ROS2로 통합합니다.
