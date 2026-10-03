@@ -160,9 +160,7 @@ flowchart LR
 
 ## **💡4. 작품 소개영상**
 
-> **작품 소개영상 공개 URL은 현재 저장소에서 확인되지 않아 아래 위치만 마련했습니다. 최종 제출 영상 URL 확정 후 링크를 교체하면 됩니다.**
-
-**[🎬 Pumpkin 작품 소개영상 링크 추가 예정](영상_URL_입력)**
+[![Pumpkin 작품 소개영상](https://img.youtube.com/vi/Mvfm7oixeZE/hqdefault.jpg)](https://youtu.be/Mvfm7oixeZE?si=AmzJ6K4wyu5zOT1B)
 
 ---
 
