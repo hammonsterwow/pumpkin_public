@@ -1,0 +1,45 @@
+name: Generate single-menu quantity dataset
+
+on:
+  push:
+    branches:
+      - dataset/single-menu-quantity-1-20
+    paths:
+      - data/source_ice_americano_quantity_1.csv.gz.b64
+      - scripts/generate_single_menu_quantity_dataset.py
+      - .github/workflows/generate-single-menu-dataset.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: dataset/single-menu-quantity-1-20
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate and validate dataset
+        run: |
+          python3 scripts/generate_single_menu_quantity_dataset.py
+          gzip -f -9 data/single_menu_quantity_1_20_augmented.csv
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/single_menu_quantity_1_20_augmented.csv.gz data/single_menu_quantity_1_20_excluded.csv data/single_menu_quantity_1_20_statistics.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "data(nlu): generate balanced single-menu quantity dataset"
+            git push
+          fi
