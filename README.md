@@ -299,7 +299,7 @@ created = self.client.submit_confirmed_order(
 
 ## **📚 전체 파일 가이드**
 
-현재 `cleanup-hanium-submission` 브랜치에서 Git이 추적하는 **479개 파일 전체**를 폴더별로 정리했습니다. 파일명을 누르면 실제 소스로 이동합니다.
+현재 `main` 브랜치의 주요 파일을 폴더별로 정리했습니다. 파일명을 누르면 실제 소스로 이동합니다.
 
 <details>
 <summary><strong>최상위(root)/</strong> — 저장소 전체 설정·실행 환경·최상위 문서 (13개)</summary>
@@ -853,49 +853,22 @@ created = self.client.submit_confirmed_order(
 </details>
 
 <details>
-<summary><strong>scripts/</strong> — 실행·시연·데이터 생성·하드웨어 보조 스크립트 (40개)</summary>
+<summary><strong>scripts/</strong> — 실물 로봇 실행·시연·하드웨어 보조 스크립트 (12개)</summary>
 
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`scripts/apply_firebase_identity_patch.py`](scripts/apply_firebase_identity_patch.py) | apply firebase identity patch 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 3.4 KB |
-| [`scripts/check_jetson_nlu.sh`](scripts/check_jetson_nlu.sh) | check jetson nlu 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.5 KB |
-| [`scripts/deploy-firestore-rules.ps1`](scripts/deploy-firestore-rules.ps1) | deploy firestore rules 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 2.8 KB |
-| [`scripts/eval_tod_qwen.sh`](scripts/eval_tod_qwen.sh) | eval tod qwen 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 610 B |
-| [`scripts/generate_single_menu_quantity_dataset.py`](scripts/generate_single_menu_quantity_dataset.py) | generate single menu quantity dataset 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 11.7 KB |
-| [`scripts/generate_structure_b_followup_responses.py`](scripts/generate_structure_b_followup_responses.py) | generate structure b followup responses 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 13.9 KB |
-| [`scripts/merge_and_augment_structure_b.py`](scripts/merge_and_augment_structure_b.py) | merge and augment structure b 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 8.2 KB |
-| [`scripts/merge_tod_qwen_lora.sh`](scripts/merge_tod_qwen_lora.sh) | merge tod qwen lora 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 304 B |
-| [`scripts/pca9685/arm_pose_demo.py`](scripts/pca9685/arm_pose_demo.py) | arm pose demo 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 4.8 KB |
-| [`scripts/pca9685/servo_power_sequence.py`](scripts/pca9685/servo_power_sequence.py) | servo power sequence 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 7.6 KB |
-| [`scripts/README.md`](scripts/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 5.7 KB |
-| [`scripts/resolve_camera_device.py`](scripts/resolve_camera_device.py) | resolve camera device 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 5.7 KB |
-| [`scripts/robot_interaction_debug_terminal.py`](scripts/robot_interaction_debug_terminal.py) | robot interaction debug terminal 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 10.3 KB |
-| [`scripts/robot_interaction_simple_terminal.py`](scripts/robot_interaction_simple_terminal.py) | robot interaction simple terminal 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 11.5 KB |
-| [`scripts/robot_interaction_terminal.py`](scripts/robot_interaction_terminal.py) | robot interaction terminal 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 18.2 KB |
-| [`scripts/run_customer_mobile.ps1`](scripts/run_customer_mobile.ps1) | run customer mobile 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 3.7 KB |
-| [`scripts/run_demo_web.sh`](scripts/run_demo_web.sh) | run demo web 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 2.1 KB |
-| [`scripts/run_jetson_missing_slot_test.sh`](scripts/run_jetson_missing_slot_test.sh) | run jetson missing slot test 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 2.7 KB |
-| [`scripts/run_jetson_nlu_missing_slot_test.sh`](scripts/run_jetson_nlu_missing_slot_test.sh) | run jetson nlu missing slot test 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 3.8 KB |
-| [`scripts/run_nlu_node_cuda.sh`](scripts/run_nlu_node_cuda.sh) | run nlu node cuda 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.1 KB |
-| [`scripts/run_robot_debug.sh`](scripts/run_robot_debug.sh) | run robot debug 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 2.0 KB |
-| [`scripts/run_robot_interaction_demo.sh`](scripts/run_robot_interaction_demo.sh) | run robot interaction demo 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 11.1 KB |
-| [`scripts/run_robot_interaction_logs.sh`](scripts/run_robot_interaction_logs.sh) | run robot interaction logs 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.5 KB |
-| [`scripts/run_robot_interaction_test.sh`](scripts/run_robot_interaction_test.sh) | run robot interaction test 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 4.8 KB |
-| [`scripts/run_robot_interaction_view.sh`](scripts/run_robot_interaction_view.sh) | run robot interaction view 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 689 B |
-| [`scripts/run_robot_with_monitor.sh`](scripts/run_robot_with_monitor.sh) | 5인치 고객 화면과 전체 ROS2 robot pipeline을 시작하는 최종 시연 런처입니다. | 7.7 KB |
-| [`scripts/run_ros_voice_nodes_macos.sh`](scripts/run_ros_voice_nodes_macos.sh) | run ros voice nodes macos 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 5.5 KB |
-| [`scripts/run_ros_voice_nodes_pc.sh`](scripts/run_ros_voice_nodes_pc.sh) | run ros voice nodes pc 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 6.8 KB |
-| [`scripts/run_ros_voice_nodes.sh`](scripts/run_ros_voice_nodes.sh) | run ros voice nodes 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 17.0 KB |
-| [`scripts/run_tod_review_web.sh`](scripts/run_tod_review_web.sh) | run tod review web 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 170 B |
-| [`scripts/run_web_api.sh`](scripts/run_web_api.sh) | run web api 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 485 B |
-| [`scripts/servo_power_off.sh`](scripts/servo_power_off.sh) | servo power off 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 322 B |
-| [`scripts/servo_power_on.sh`](scripts/servo_power_on.sh) | servo power on 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 321 B |
-| [`scripts/stop_robot_interaction_nodes.sh`](scripts/stop_robot_interaction_nodes.sh) | stop robot interaction nodes 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.5 KB |
-| [`scripts/terminal_chat.py`](scripts/terminal_chat.py) | terminal chat 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 10.5 KB |
-| [`scripts/test_hand_quantity.sh`](scripts/test_hand_quantity.sh) | test hand quantity 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 763 B |
-| [`scripts/test_robot_controller.sh`](scripts/test_robot_controller.sh) | test robot controller 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.7 KB |
-| [`scripts/train_tod_qwen_lora.sh`](scripts/train_tod_qwen_lora.sh) | train tod qwen lora 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 1.1 KB |
-| [`scripts/voice_terminal_chat.py`](scripts/voice_terminal_chat.py) | voice terminal chat 실행·데이터 처리·하드웨어 점검을 지원하는 스크립트입니다. | 11.7 KB |
+| 파일 | 역할 |
+|---|---|
+| [`scripts/README.md`](scripts/README.md) | 현재 시연 실행 흐름과 각 스크립트의 역할을 설명합니다. |
+| [`scripts/run_robot_with_monitor.sh`](scripts/run_robot_with_monitor.sh) | 5인치 고객 화면과 전체 ROS2 로봇 파이프라인을 시작하는 최종 시연 런처입니다. |
+| [`scripts/run_robot_interaction_demo.sh`](scripts/run_robot_interaction_demo.sh) | 주문 전송·모터 제어·ROS 대화 파이프라인을 통합 실행합니다. |
+| [`scripts/run_ros_voice_nodes.sh`](scripts/run_ros_voice_nodes.sh) | STT, NLU, Decision, Response, Action, TTS, Face LCD, Vision 노드를 순차 실행합니다. |
+| [`scripts/run_nlu_node_cuda.sh`](scripts/run_nlu_node_cuda.sh) | Jetson CUDA 환경에서 NLU 노드를 실행합니다. |
+| [`scripts/resolve_camera_device.py`](scripts/resolve_camera_device.py) | 실제 프레임 입력이 가능한 USB 카메라 장치를 자동 탐색합니다. |
+| [`scripts/stop_robot_interaction_nodes.sh`](scripts/stop_robot_interaction_nodes.sh) | 이전 실행에서 남은 Pumpkin 관련 프로세스를 종료합니다. |
+| [`scripts/servo_power_on.sh`](scripts/servo_power_on.sh) | 서보 전원 ON 시퀀스를 실행합니다. |
+| [`scripts/servo_power_off.sh`](scripts/servo_power_off.sh) | 서보 전원 OFF 시퀀스를 실행합니다. |
+| [`scripts/pca9685/servo_power_sequence.py`](scripts/pca9685/servo_power_sequence.py) | PCA9685 서보 전원 시퀀스의 실제 제어 로직입니다. |
+| [`scripts/run_web_api.sh`](scripts/run_web_api.sh) | FastAPI 웹 API 서버를 실행합니다. |
+| [`scripts/run_customer_mobile.ps1`](scripts/run_customer_mobile.ps1) | Windows PowerShell에서 고객용 모바일 앱 개발 서버를 실행합니다. |
 
 </details>
 
