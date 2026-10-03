@@ -4,11 +4,15 @@ from typing import Any
 
 import rclpy
 from rclpy.node import Node
+
+from rclpy.executors import ExternalShutdownException
 from std_msgs.msg import Bool, String
 
 from .dialogue_act_resolver import DialogueActResolver
 from .dialogue_slots import recover_live_quantity_answer
 from .order_dialogue_manager import OrderDialogueManager
+
+from .order_exception_policy import detect_order_exception
 from .order_schema import new_session_id
 
 
@@ -19,7 +23,7 @@ _DEFAULT_DIALOGUE_ACT_RESOLVER = DialogueActResolver()
 _DEFAULT_ORDER_DIALOGUE_MANAGER = OrderDialogueManager()
 
 
-class DecisionNode(Node):
+class _CoreDecisionNode(Node):
     """ROS adapter and finite-state controller for the order dialogue.
 
     Responsibilities kept here:
@@ -994,12 +998,1370 @@ class DecisionNode(Node):
         self.greeting_tts_completed = False
 
 
+class _OrderHandoffMixin:
+    """Production FSM with explicit item confirmation and customer handoff.
+
+    Customer presence is intentionally session-latched. A camera ``True`` starts
+    one customer session, then subsequent presence changes are ignored for the
+    entire order. After the customer explicitly finishes the order, the FSM waits
+    for a real ``False`` (customer leaves) and only the following ``True`` starts
+    the next customer session.
+
+    Confirmation states are also latched. Ordinary speech or an accidental menu
+    mention cannot mutate the active order while the robot is waiting for yes/no.
+    Only confirmation, an explicit correction, an explicit additional-order act,
+    cancel, or restart can move those states.
+    """
+
+    ITEM_CONFIRM_STATE = "ITEM_CONFIRM"
+    ORDER_FINISH_STATE = "WAIT_NEXT_CUSTOMER"
+    WAIT_CUSTOMER_EXIT_STATE = "WAIT_CUSTOMER_EXIT"
+    HANDOFF_STATE = ORDER_FINISH_STATE
+    CONFIRMATION_STATES = {
+        ITEM_CONFIRM_STATE,
+        "ORDER_CONFIRM",
+        ORDER_FINISH_STATE,
+    }
+    USER_GESTURE_TOPIC = "/user/head_gesture"
+    USER_GESTURES = {"NOD", "SHAKE"}
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._customer_exit_seen = False
+        self.user_gesture_subscription = self.create_subscription(
+            String,
+            self.USER_GESTURE_TOPIC,
+            self.user_head_gesture_callback,
+            10,
+        )
+        self.get_logger().info(
+            f"Visual confirmation enabled on {self.USER_GESTURE_TOPIC}"
+        )
+
+    def human_presence_callback(self, msg) -> None:
+        """Use presence only to enter one session and hand off to the next one."""
+        human_present = bool(msg.data)
+
+        if not self.human_presence_initialized:
+            self.human_presence_initialized = True
+            self.last_human_presence = human_present
+            if human_present and self.state == "IDLE":
+                self.handle_human_detected()
+            return
+
+        # During an active order, camera presence is informational only.
+        if self.state != self.WAIT_CUSTOMER_EXIT_STATE:
+            if self.state == "IDLE":
+                rising_edge = human_present and not self.last_human_presence
+                self.last_human_presence = human_present
+                if rising_edge:
+                    self.handle_human_detected()
+                return
+
+            self.last_human_presence = human_present
+            return
+
+        # After order completion, require False -> True before greeting next user.
+        self.last_human_presence = human_present
+        if not self._customer_exit_seen:
+            if not human_present:
+                self._customer_exit_seen = True
+                self.get_logger().info(
+                    "Completed customer left camera view; waiting for next customer."
+                )
+            return
+
+        if not human_present:
+            return
+
+        self._customer_exit_seen = False
+        self.state = "IDLE"
+        self.current_order = None
+        self.waiting_for = None
+        self.reset_retry_counts()
+        self.get_logger().info(
+            "New customer detected after completed customer exit. Starting session."
+        )
+        self.handle_human_detected()
+
+    def _ensure_components(self) -> None:
+        """Support lightweight __new__-based unit tests and legacy subclasses."""
+        if not hasattr(self, "dialogue_act_resolver"):
+            self.dialogue_act_resolver = DialogueActResolver()
+        if not hasattr(self, "order_manager"):
+            self.order_manager = OrderDialogueManager(
+                slot_priority=self.SLOT_PRIORITY,
+                group_shared_slots=self.GROUP_SHARED_SLOTS,
+            )
+
+    def reprompt_slot(self, nlu_result, reason):
+        """Repeat the active slot question without ever discarding partial order state."""
+        self.slot_retry_count += 1
+        response_key, response_args = self.response_for_waiting()
+        return self.reprompt(
+            nlu_result,
+            reason,
+            response_key,
+            response_args=response_args,
+        )
+
+    def reprompt_nlu(
+        self,
+        nlu_result,
+        reason,
+        response_key="nlu_reprompt",
+        response_args=None,
+    ):
+        """Repeat the current prompt indefinitely while preserving the active order."""
+        self.nlu_reprompt_count += 1
+        return self.reprompt(
+            nlu_result,
+            reason,
+            response_key,
+            response_args=response_args,
+        )
+
+    def _implicit_confirmation_correction_items(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> list[dict[str, Any]] | None:
+        """Return a safe same-item correction spoken during ORDER_CONFIRM.
+
+        Users often correct a summary by simply restating the item, for example
+        ``아이스 아메리카노 두 잔이요`` after the robot asked whether one cup
+        was correct. Requiring a literal word such as ``수정`` or ``바꿔`` makes
+        that natural correction impossible.
+
+        At the same time, live microphone audio can contain unrelated chatter with
+        a bare quantity (for example ``...한 잔...``). To avoid mutating the order
+        from that noise, this implicit path is deliberately narrow: the utterance
+        must explicitly name exactly one menu already present in the current order,
+        and it must explicitly change quantity or temperature for that same item.
+        """
+        if self.state != "ORDER_CONFIRM" or self.current_order is None:
+            return None
+
+        explicit_slots = nlu_result.get("explicit_slots")
+        if not isinstance(explicit_slots, dict):
+            return None
+
+        explicit_menus = explicit_slots.get("menus")
+        if not isinstance(explicit_menus, list):
+            explicit_menus = []
+        explicit_menus = [str(menu) for menu in explicit_menus if menu]
+        if len(explicit_menus) != 1:
+            return None
+
+        incoming_items = self.extract_incoming_items(
+            nlu_result,
+            prefer_explicit=True,
+        )
+        if len(incoming_items) != 1:
+            return None
+
+        incoming = incoming_items[0]
+        incoming_menu = incoming.get("menu")
+        if not incoming_menu or incoming_menu != explicit_menus[0]:
+            return None
+
+        current_items = self.current_order.get("items", [])
+        matching_items = [
+            item
+            for item in current_items
+            if isinstance(item, dict) and item.get("menu") == incoming_menu
+        ]
+        if len(matching_items) != 1:
+            return None
+
+        target = matching_items[0]
+        changes_existing_slot = any(
+            incoming.get(slot) is not None
+            and incoming.get(slot) != target.get(slot)
+            for slot in ("quantity", "temperature")
+        )
+        if not changes_existing_slot:
+            return None
+
+        return incoming_items
+
+    def make_user_gesture_decision(self, gesture: str) -> dict[str, Any] | None:
+        """Map customer NOD/SHAKE to the same state handlers as spoken yes/no."""
+        normalized = str(gesture or "").strip().upper()
+        if normalized not in self.USER_GESTURES:
+            return None
+        if self.state not in self.CONFIRMATION_STATES:
+            return None
+
+        synthetic_input: dict[str, Any] = {
+            "text": "",
+            "intent": "AFFIRM" if normalized == "NOD" else "DENY",
+            "confidence": 1.0,
+            "needs_reprompt": False,
+            "order_status": "NONE",
+            "items": [],
+            "input_modality": "VISION_GESTURE",
+            "user_gesture": normalized,
+        }
+
+        if normalized == "NOD":
+            decision = self.handle_affirm_intent(synthetic_input)
+        else:
+            decision = self.handle_deny_intent(synthetic_input)
+
+        decision["input_modality"] = "VISION_GESTURE"
+        decision["user_gesture"] = normalized
+        return decision
+
+    def user_head_gesture_callback(self, msg: String) -> None:
+        gesture = msg.data.strip().upper()
+        decision = self.make_user_gesture_decision(gesture)
+        if decision is None:
+            if gesture in self.USER_GESTURES:
+                self.get_logger().info(
+                    "Ignoring user head gesture outside confirmation state: "
+                    f"gesture={gesture}, state={self.state}"
+                )
+            return
+
+        self.get_logger().info(
+            "Accepted visual confirmation: "
+            f"gesture={gesture}, decision={decision.get('decision')}"
+        )
+        self.publish_decision(decision)
+
+    def _location_guide_resume_prompt(self):
+        if self.state == self.ITEM_CONFIRM_STATE and self.current_order is not None:
+            response_args = (
+                self.response_args_for_waiting(
+                    self.waiting_for,
+                    self.current_order.get("items", []),
+                )
+                if self.waiting_for
+                else {}
+            )
+            return {
+                "decision": "CONFIRM_ITEM",
+                "response_key": "confirm_item",
+                "response_args": response_args,
+            }
+        if self.state == self.ORDER_FINISH_STATE and self.current_order is not None:
+            return {
+                "decision": "ORDER_CONFIRMED",
+                "response_key": "ask_next_customer",
+                "response_args": {},
+            }
+        return super()._location_guide_resume_prompt()
+
+    def make_decision(self, nlu_result):
+        """Apply correction handling and guard yes/no confirmation states."""
+        self._ensure_components()
+
+        command = self.dialogue_act_resolver.resolve_command(nlu_result)
+        confirmation = self.detect_confirmation_intent(nlu_result)
+
+        # Location questions are valid even in guarded yes/no states. Preserve
+        # the active confirmation and repeat it after the guide response.
+        if command is None:
+            guide_decision = self.make_location_guide_decision(nlu_result)
+            if guide_decision is not None:
+                return guide_decision
+
+        if self.current_order is not None:
+            intent = str(nlu_result.get("intent", "UNKNOWN")).upper()
+            correction_context = self.state == "ORDER_CORRECTION"
+            correction_request = self.dialogue_act_resolver.is_correction_request(
+                nlu_result,
+                correction_context=correction_context,
+            )
+
+            # Corrections are allowed only in states where editing is meaningful.
+            correction_allowed = self.state in {
+                "ORDER_CORRECTION",
+                "ORDER_CONFIRM",
+                self.ITEM_CONFIRM_STATE,
+            }
+            if correction_request and correction_allowed:
+                incoming_items = self.extract_incoming_items(
+                    nlu_result,
+                    prefer_explicit=True,
+                )
+                if self.has_slot_values(incoming_items):
+                    self.reset_retry_counts()
+                    return self.handle_order_intent(
+                        nlu_result,
+                        incoming_items=incoming_items,
+                        overwrite=True,
+                    )
+
+                if intent == "MODIFY" and not correction_context:
+                    return self.request_correction(nlu_result, "modify_detected")
+
+            # A natural correction may omit words such as "수정" or "바꿔".
+            # Accept it only when the user explicitly repeats exactly one menu that
+            # already exists and changes that item's quantity or temperature.
+            if (
+                self.state == "ORDER_CONFIRM"
+                and command is None
+                and confirmation is None
+            ):
+                incoming_items = self._implicit_confirmation_correction_items(
+                    nlu_result
+                )
+                if incoming_items is not None:
+                    self.reset_retry_counts()
+                    return self.handle_order_intent(
+                        nlu_result,
+                        incoming_items=incoming_items,
+                        overwrite=True,
+                    )
+
+        # While a yes/no answer is expected, arbitrary ORDER predictions must not
+        # append items. This prevents surrounding conversation such as a menu name
+        # from silently changing an already-confirmed order.
+        if (
+            self.state in self.CONFIRMATION_STATES
+            and command is None
+            and confirmation is None
+        ):
+            return self._repeat_current_confirmation(nlu_result)
+
+        decision = super().make_decision(nlu_result)
+        return self._maybe_confirm_item_before_quantity(decision)
+
+    def _repeat_current_confirmation(self, nlu_result):
+        if self.state == self.ITEM_CONFIRM_STATE:
+            if self.current_order is None:
+                return self.reprompt_nlu(
+                    nlu_result,
+                    "item_confirm_without_order",
+                    response_key="affirm_without_order",
+                )
+            response_args = self.response_args_for_waiting(
+                self.waiting_for,
+                self.current_order.get("items", []),
+            ) if self.waiting_for else {}
+            return self.order_decision(
+                "CONFIRM_ITEM",
+                "confirm_item",
+                "confirmation_required",
+                self.current_order,
+                nlu_result,
+                response_args=response_args,
+            )
+
+        if self.state == "ORDER_CONFIRM" and self.current_order is not None:
+            return self.order_decision(
+                "CONFIRM_ORDER",
+                "confirm_order",
+                "confirmation_required",
+                self.current_order,
+                nlu_result,
+            )
+
+        if self.state == self.ORDER_FINISH_STATE and self.current_order is not None:
+            return self.order_decision(
+                "ORDER_CONFIRMED",
+                "ask_next_customer",
+                "finish_confirmation_required",
+                self.current_order,
+                nlu_result,
+            )
+
+        return self.reprompt_nlu(nlu_result, "confirmation_required")
+
+    def _maybe_confirm_item_before_quantity(
+        self,
+        decision: dict[str, Any],
+    ) -> dict[str, Any]:
+        """Turn a single-item quantity question into a separate item confirmation.
+
+        When the NLU has already grounded multiple drinks, confirming only the
+        first incomplete item makes the dialogue sound as if the later drinks were
+        dropped. Multi-item orders therefore keep the normal slot-collection flow:
+        ask the first missing quantity, then the next one, and only confirm the
+        complete order after every item is filled. The legacy CONFIRM_ITEM step is
+        retained for a single tentative drink.
+        """
+        if decision.get("decision") != "ASK_QUANTITY":
+            return decision
+        if decision.get("reason") != "missing_quantity":
+            return decision
+
+        order = decision.get("order")
+        waiting_for = decision.get("waiting_for")
+        if not isinstance(order, dict) or not isinstance(waiting_for, dict):
+            return decision
+
+        item_id = waiting_for.get("item_id")
+        items = order.get("items", [])
+        grounded_items = [item for item in items if isinstance(item, dict)]
+        if len(grounded_items) > 1:
+            return decision
+
+        target = next(
+            (
+                item
+                for index, item in enumerate(items)
+                if isinstance(item, dict)
+                and item.get("item_id", index) == item_id
+            ),
+            None,
+        )
+        if not isinstance(target, dict):
+            return decision
+        if not target.get("menu") or target.get("temperature") not in {"ICE", "HOT"}:
+            return decision
+        if target.get("quantity") is not None:
+            return decision
+
+        self.state = self.ITEM_CONFIRM_STATE
+        decision["decision"] = "CONFIRM_ITEM"
+        decision["response_key"] = "confirm_item"
+        decision["reason"] = "confirm_item_before_quantity"
+        decision["state"] = self.ITEM_CONFIRM_STATE
+        return decision
+
+    def _quantity_question_after_item_affirm(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> dict[str, Any]:
+        if self.current_order is None or self.waiting_for is None:
+            return self.reprompt_nlu(
+                nlu_result,
+                "item_confirm_without_order",
+                response_key="affirm_without_order",
+            )
+
+        self.state = "ASK_QUANTITY"
+        self.reset_retry_counts()
+        return {
+            **self.order_decision(
+                "ASK_QUANTITY",
+                "ask_quantity",
+                "item_confirmed",
+                self.current_order,
+                nlu_result,
+                response_args=self.response_args_for_waiting(
+                    self.waiting_for,
+                    self.current_order.get("items", []),
+                ),
+            ),
+            "waiting_for": dict(self.waiting_for),
+            "missing_item_id": self.waiting_for.get("item_id"),
+            "missing_slot": "quantity",
+        }
+
+    def handle_affirm_intent(self, nlu_result):
+        self._ensure_components()
+
+        if self.state == self.ITEM_CONFIRM_STATE:
+            return self._quantity_question_after_item_affirm(nlu_result)
+
+        if self.state == self.ORDER_FINISH_STATE:
+            previous_session_id = self.session_id
+            self.current_order = None
+            self.waiting_for = None
+            self.reset_retry_counts()
+            self.state = self.WAIT_CUSTOMER_EXIT_STATE
+            self._customer_exit_seen = not bool(
+                getattr(self, "last_human_presence", True)
+            )
+            decision = self.simple_decision(
+                "NEXT_CUSTOMER_READY",
+                "next_customer_ready",
+                "order_finished",
+                nlu_result,
+            )
+            decision["previous_session_id"] = previous_session_id
+            decision["next_state"] = self.WAIT_CUSTOMER_EXIT_STATE
+            decision["semantic_state"] = self.WAIT_CUSTOMER_EXIT_STATE
+            decision["semantic_event"] = "ORDER_FINISHED"
+            return decision
+
+        if self.state != "ORDER_CONFIRM" or self.current_order is None:
+            return self.reprompt_nlu(
+                nlu_result,
+                "affirm_without_order_confirm",
+                response_key="affirm_without_order",
+            )
+
+        confirmed_order = self.current_order
+        self.state = self.ORDER_FINISH_STATE
+        decision = self.order_decision(
+            "ORDER_CONFIRMED",
+            "ask_next_customer",
+            "order_summary_affirmed",
+            confirmed_order,
+            nlu_result,
+        )
+        decision["next_state"] = self.ORDER_FINISH_STATE
+        decision["semantic_state"] = "WAIT_ORDER_FINISH"
+        decision["semantic_response_key"] = "ask_finish_order"
+
+        self.waiting_for = None
+        self.reset_retry_counts()
+        return decision
+
+    def handle_deny_intent(self, nlu_result):
+        self._ensure_components()
+
+        if self.state == self.ITEM_CONFIRM_STATE:
+            self.current_order = None
+            self.waiting_for = None
+            self.reset_retry_counts()
+            self.state = "ORDER_LISTEN"
+            return self.simple_decision(
+                "REORDER_REQUEST",
+                "ask_order",
+                "item_confirmation_denied",
+                nlu_result,
+            )
+
+        if self.state == self.ORDER_FINISH_STATE:
+            self.waiting_for = None
+            self.reset_retry_counts()
+            self.state = "ORDER_LISTEN"
+            decision = self.simple_decision(
+                "CONTINUE_ORDER",
+                "continue_order",
+                "additional_order_requested",
+                nlu_result,
+            )
+            decision["next_state"] = "ORDER_LISTEN"
+            return decision
+
+        if (
+            self.state == "ORDER_CONFIRM"
+            and self.dialogue_act_resolver.is_additional_order_request(nlu_result)
+        ):
+            self.waiting_for = None
+            self.reset_retry_counts()
+            self.state = "ORDER_LISTEN"
+            decision = self.simple_decision(
+                "CONTINUE_ORDER",
+                "continue_order",
+                "additional_order_requested_before_confirmation",
+                nlu_result,
+            )
+            decision["next_state"] = "ORDER_LISTEN"
+            return decision
+
+        return super().handle_deny_intent(nlu_result)
+
+    def detect_confirmation_intent(self, nlu_result):
+        self._ensure_components()
+        return self.dialogue_act_resolver.resolve_confirmation(
+            nlu_result,
+            state=self.state,
+            confirmation_states=self.CONFIRMATION_STATES,
+            additional_order_as_deny=self.state == "ORDER_CONFIRM",
+        )
+
+    def is_additional_order_request(self, nlu_result):
+        """Compatibility wrapper for existing tests and callers."""
+        self._ensure_components()
+        return self.dialogue_act_resolver.is_additional_order_request(nlu_result)
+
+
+class _AdditionalOrderMixin:
+    """Production order flow with additional-order and staged correction support.
+
+    Additional drinks can still be appended while an order is being confirmed.
+    Bare/ambiguous correction requests use a separate two-turn target-selection
+    flow so a multi-item order is never modified by guessing which drink the
+    customer meant.
+    """
+
+    ADDITIONAL_STATES = {"ORDER_CONFIRM", _OrderHandoffMixin.ORDER_FINISH_STATE}
+    CORRECTION_TARGET_STATE = "ORDER_CORRECTION_TARGET"
+    CORRECTION_REPLACEMENT_STATE = "ORDER_CORRECTION_REPLACEMENT"
+    ORDER_EXCEPTION_STATES = {
+        "GREETING",
+        "ORDER_LISTEN",
+        "ASK_MENU",
+        "ASK_TEMPERATURE",
+    }
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.correction_target_item_id: int | None = None
+
+    @classmethod
+    def _looks_like_explicit_addition_text(cls, text: object) -> bool:
+        compact = cls.compact_text(text)
+        if not compact:
+            return False
+
+        # "추가" is an unambiguous dialogue cue in the cafe order domain.
+        if "추가" in compact:
+            return True
+
+        # Natural variants such as "딸기스무디 두 잔 더 주세요".
+        if "더" in compact and any(
+            cue in compact
+            for cue in (
+                "주세요",
+                "주문",
+                "시켜",
+                "시킬",
+                "넣어",
+                "할게",
+                "할래",
+            )
+        ):
+            return True
+
+        return False
+
+    def _is_slot_bearing_additional_order(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> tuple[bool, list[dict[str, Any]]]:
+        self._ensure_components()
+        if self.state not in self.ADDITIONAL_STATES or self.current_order is None:
+            return False, []
+
+        text_addition = self._looks_like_explicit_addition_text(
+            nlu_result.get("text", "")
+        )
+        resolver_addition = self.dialogue_act_resolver.is_additional_order_request(
+            nlu_result
+        )
+        if not text_addition and not resolver_addition:
+            return False, []
+
+        # Use grounded/model items rather than explicit_slots only. Some menus have
+        # a deterministic temperature (for example a smoothie can already be ICE)
+        # that is intentionally absent from explicit text evidence.
+        incoming_items = self.extract_incoming_items(
+            nlu_result,
+            prefer_explicit=False,
+        )
+        if not self.has_slot_values(incoming_items):
+            return False, []
+
+        # Require an actual new order slot. This prevents a bare "추가할게요" from
+        # creating an empty phantom item.
+        if not any(item.get("menu") for item in incoming_items):
+            return False, []
+
+        return True, incoming_items
+
+    def _append_additional_items(
+        self,
+        nlu_result: dict[str, Any],
+        incoming_items: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        current_items = (
+            self.current_order.get("items", [])
+            if isinstance(self.current_order, dict)
+            else []
+        )
+        combined_items = [dict(item) for item in current_items]
+        combined_items.extend(dict(item) for item in incoming_items)
+
+        # Each standalone NLU turn numbers its predicted items from zero again.
+        # After appending, reassign IDs across the full order so a missing slot on
+        # the new drink cannot accidentally resolve to an older item with item_id=0.
+        for item_id, item in enumerate(combined_items):
+            item["item_id"] = item_id
+            item["missing_slots"] = [
+                slot for slot in self.SLOT_PRIORITY if item.get(slot) is None
+            ]
+
+        self.waiting_for = None
+        self.reset_retry_counts()
+        self.state = "ORDER_LISTEN"
+        decision = self.handle_order_intent(
+            nlu_result,
+            incoming_items=combined_items,
+            replace_items=True,
+        )
+
+        if decision.get("decision") == "CONFIRM_ORDER":
+            decision["reason"] = "additional_order_appended"
+        return self._maybe_confirm_item_before_quantity(decision)
+
+    # ------------------------------------------------------------------
+    # Staged partial-item correction
+    # ------------------------------------------------------------------
+    def _clear_correction_target(self) -> None:
+        self.correction_target_item_id = None
+
+    def _current_items(self) -> list[dict[str, Any]]:
+        if not isinstance(self.current_order, dict):
+            return []
+        return [
+            item
+            for item in self.current_order.get("items", [])
+            if isinstance(item, dict)
+        ]
+
+    @staticmethod
+    def _has_explicit_from_to_correction(explicit_slots: object) -> bool:
+        if not isinstance(explicit_slots, dict):
+            return False
+        correction = explicit_slots.get("correction")
+        if not isinstance(correction, dict):
+            return False
+        source = correction.get("from")
+        target = correction.get("to")
+        return source is not None and target is not None and source != target
+
+    @staticmethod
+    def _target_criteria(explicit_slots: object) -> dict[str, Any]:
+        if not isinstance(explicit_slots, dict):
+            return {}
+        criteria: dict[str, Any] = {}
+        for slot in ("menu", "temperature", "quantity"):
+            value = explicit_slots.get(slot)
+            if value is not None:
+                criteria[slot] = value
+        return criteria
+
+    def _matching_correction_targets(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        explicit_slots = nlu_result.get("explicit_slots")
+        criteria = self._target_criteria(explicit_slots)
+        if not criteria:
+            return [], {}
+
+        matches: list[dict[str, Any]] = []
+        for index, item in enumerate(self._current_items()):
+            if any(item.get(slot) != value for slot, value in criteria.items()):
+                continue
+            candidate = dict(item)
+            candidate.setdefault("item_id", index)
+            matches.append(candidate)
+        return matches, criteria
+
+    def _target_prompt_decision(
+        self,
+        nlu_result: dict[str, Any],
+        *,
+        response_key: str,
+        reason: str,
+        response_args: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        self.state = self.CORRECTION_TARGET_STATE
+        self.waiting_for = None
+        return self.order_decision(
+            "MODIFY_ORDER",
+            response_key,
+            reason,
+            self.current_order,
+            nlu_result,
+            response_args=response_args,
+        )
+
+    def _select_correction_target(
+        self,
+        nlu_result: dict[str, Any],
+        matches: list[dict[str, Any]],
+        criteria: dict[str, Any],
+    ) -> dict[str, Any]:
+        if not matches:
+            return self._target_prompt_decision(
+                nlu_result,
+                response_key="ask_correction_target_not_found",
+                reason="correction_target_not_found",
+            )
+
+        if len(matches) > 1:
+            return self._target_prompt_decision(
+                nlu_result,
+                response_key="ask_correction_target_disambiguation",
+                reason="correction_target_ambiguous",
+                response_args={
+                    "requested_menu": criteria.get("menu"),
+                    "candidates": [dict(item) for item in matches],
+                },
+            )
+
+        target = dict(matches[0])
+        try:
+            target_item_id = int(target.get("item_id", 0))
+        except (TypeError, ValueError):
+            target_item_id = 0
+
+        self.correction_target_item_id = target_item_id
+        self.state = self.CORRECTION_REPLACEMENT_STATE
+        self.waiting_for = None
+        self.reset_retry_counts()
+        return self.order_decision(
+            "MODIFY_ORDER",
+            "ask_correction_replacement",
+            "correction_target_selected",
+            self.current_order,
+            nlu_result,
+            response_args={
+                "target_item_id": target_item_id,
+                "target_item": target,
+            },
+        )
+
+    def _handle_correction_target_answer(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> dict[str, Any]:
+        matches, criteria = self._matching_correction_targets(nlu_result)
+        if not criteria:
+            return self._target_prompt_decision(
+                nlu_result,
+                response_key="ask_correction_target_selection",
+                reason="correction_target_missing",
+            )
+        return self._select_correction_target(nlu_result, matches, criteria)
+
+    def _handle_correction_replacement(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> dict[str, Any]:
+        current_items = self._current_items()
+        target_item_id = getattr(self, "correction_target_item_id", None)
+        if target_item_id is None or not current_items:
+            self._clear_correction_target()
+            return self._target_prompt_decision(
+                nlu_result,
+                response_key="ask_correction_target_selection",
+                reason="correction_target_lost",
+            )
+
+        target_index = next(
+            (
+                index
+                for index, item in enumerate(current_items)
+                if int(item.get("item_id", index)) == int(target_item_id)
+            ),
+            None,
+        )
+        if target_index is None:
+            self._clear_correction_target()
+            return self._target_prompt_decision(
+                nlu_result,
+                response_key="ask_correction_target_selection",
+                reason="correction_target_lost",
+            )
+
+        incoming_items = self.extract_incoming_items(
+            nlu_result,
+            prefer_explicit=False,
+        )
+        replacements = [
+            dict(item)
+            for item in incoming_items
+            if isinstance(item, dict) and item.get("menu")
+        ]
+        if len(replacements) != 1:
+            target = dict(current_items[target_index])
+            return self.order_decision(
+                "MODIFY_ORDER",
+                "ask_correction_replacement",
+                "correction_replacement_menu_required",
+                self.current_order,
+                nlu_result,
+                response_args={
+                    "target_item_id": target_item_id,
+                    "target_item": target,
+                },
+            )
+
+        replacement = replacements[0]
+        replacement["item_id"] = int(target_item_id)
+
+        updated_items = [dict(item) for item in current_items]
+        updated_items[target_index] = replacement
+
+        self._clear_correction_target()
+        self.waiting_for = None
+        self.reset_retry_counts()
+        self.state = "ORDER_CORRECTION"
+        return self.handle_order_intent(
+            nlu_result,
+            incoming_items=updated_items,
+            overwrite=True,
+            replace_items=True,
+        )
+
+    def request_correction(
+        self,
+        nlu_result,
+        reason,
+        response_key="modify_order",
+        response_args=None,
+    ):
+        """Ask for correction content directly when only one drink can be meant."""
+        if self.current_order is None:
+            return super().request_correction(
+                nlu_result,
+                reason,
+                response_key=response_key,
+                response_args=response_args,
+            )
+
+        current_items = self._current_items()
+        self._clear_correction_target()
+        if len(current_items) == 1:
+            return super().request_correction(
+                nlu_result,
+                reason,
+                response_key="ask_correction_content",
+                response_args=response_args,
+            )
+
+        return self._target_prompt_decision(
+            nlu_result,
+            response_key="ask_correction_target_selection",
+            reason=reason,
+        )
+
+    def handle_restart(self, nlu_result):
+        self._clear_correction_target()
+        return super().handle_restart(nlu_result)
+
+    def handle_cancel(self, nlu_result):
+        self._clear_correction_target()
+        return super().handle_cancel(nlu_result)
+
+    def _handle_s8_order_exception(
+        self,
+        nlu_result: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        if self.state not in self.ORDER_EXCEPTION_STATES:
+            return None
+
+        exception = detect_order_exception(
+            nlu_result,
+            state=self.state,
+            current_order=self.current_order,
+            waiting_for=self.waiting_for,
+        )
+        if exception is None:
+            return None
+
+        self._clear_correction_target()
+        self.current_order = None
+        self.waiting_for = None
+        self.reset_retry_counts()
+        self.state = "ORDER_LISTEN"
+
+        kind = str(exception.get("kind") or "")
+        if kind == "UNSUPPORTED_TEMPERATURE_FOR_MENU":
+            return self.simple_decision(
+                "OUT_OF_POLICY",
+                "unsupported_temperature_for_menu",
+                "unsupported_temperature_for_menu",
+                nlu_result,
+                response_args={
+                    "menu": exception.get("menu"),
+                    "temperature": exception.get("temperature"),
+                },
+            )
+
+        if kind == "UNSUPPORTED_MENU":
+            return self.simple_decision(
+                "OUT_OF_POLICY",
+                "unsupported_menu",
+                "unsupported_menu",
+                nlu_result,
+                response_args={
+                    "observed_text": exception.get("observed_text"),
+                },
+            )
+        return None
+
+    def make_decision(self, nlu_result):
+        self._ensure_components()
+        nlu_result = self.recover_contextual_slot_answer(nlu_result)
+
+        # Cancellation/restart must remain available while the staged correction
+        # flow is asking either of its follow-up questions.
+        command = self.dialogue_act_resolver.resolve_command(nlu_result)
+        if command == "CANCEL":
+            return self.handle_cancel(nlu_result)
+        if command == "RESTART":
+            return self.handle_restart(nlu_result)
+
+        guide_decision = self.make_location_guide_decision(nlu_result)
+        if guide_decision is not None:
+            return guide_decision
+
+        exception_decision = self._handle_s8_order_exception(nlu_result)
+        if exception_decision is not None:
+            return exception_decision
+
+        if self.state == self.CORRECTION_TARGET_STATE:
+            return self._handle_correction_target_answer(nlu_result)
+        if self.state == self.CORRECTION_REPLACEMENT_STATE:
+            return self._handle_correction_replacement(nlu_result)
+
+        is_addition, incoming_items = self._is_slot_bearing_additional_order(
+            nlu_result
+        )
+        if is_addition:
+            return self._append_additional_items(nlu_result, incoming_items)
+
+        # A phrase such as "아메리카노 바꿀게요" identifies an existing target,
+        # but does not yet say what should replace it. If one exact item matches,
+        # remember that item and ask for the replacement. If multiple items match
+        # (e.g. ICE and HOT Americano), never guess: ask the customer to narrow it.
+        if self.current_order is not None and self.state in {
+            "ORDER_CONFIRM",
+            self.ITEM_CONFIRM_STATE,
+        }:
+            correction_request = self.dialogue_act_resolver.is_correction_request(
+                nlu_result,
+                correction_context=False,
+            )
+            explicit_slots = nlu_result.get("explicit_slots")
+
+            # Preserve the existing one-shot source->replacement path when the
+            # customer says both sides explicitly, e.g. "아메리카노를
+            # 딸기스무디로 바꿀게요". The staged flow is for requests that only
+            # identify a target or are otherwise ambiguous.
+            if (
+                correction_request
+                and self._has_explicit_from_to_correction(explicit_slots)
+            ):
+                corrected_items = self.apply_explicit_correction(explicit_slots)
+                if corrected_items is not None:
+                    self.reset_retry_counts()
+                    return self.handle_order_intent(
+                        nlu_result,
+                        incoming_items=corrected_items,
+                        overwrite=True,
+                        replace_items=True,
+                    )
+
+            if (
+                correction_request
+                and not self._has_explicit_from_to_correction(explicit_slots)
+            ):
+                matches, criteria = self._matching_correction_targets(nlu_result)
+                if criteria and matches:
+                    return self._select_correction_target(
+                        nlu_result,
+                        matches,
+                        criteria,
+                    )
+
+        return super().make_decision(nlu_result)
+
+
+class _HandQuantityMixin:
+    """Production dialogue node with wake-gated ordering and hand quantity input.
+
+    A camera presence event alone no longer starts the order dialogue. Presence
+    only arms a narrow wake gate and opens STT. The existing order flow begins
+    only after STT/NLU returns the exact wake phrase ``주문할게요`` (ignoring
+    whitespace and punctuation) while the customer is still present.
+
+    Hand gestures are intentionally interpreted only while the FSM is waiting
+    for a quantity slot. This prevents a casual V-sign elsewhere in the
+    conversation from mutating the order.
+    """
+
+    USER_HAND_GESTURE_TOPIC = "/user/hand_gesture"
+    HAND_QUANTITY_MAP = {
+        "ONE_FINGER": 1,
+        "TWO_FINGERS": 2,
+        "THREE_FINGERS": 3,
+        "FOUR_FINGERS": 4,
+        "FIVE_FINGERS": 5,
+    }
+
+    WAIT_ORDER_WAKE_STATE = "WAIT_ORDER_WAKE"
+    ORDER_WAKE_PHRASE = "주문할게요"
+    STT_STATUS_TOPIC = "/stt/status"
+    WAKE_RETRY_STT_STATUSES = {
+        "no_speech",
+        "too_quiet",
+        "empty",
+        "rejected",
+    }
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.user_hand_gesture_subscription = self.create_subscription(
+            String,
+            self.USER_HAND_GESTURE_TOPIC,
+            self.user_hand_gesture_callback,
+            10,
+        )
+        self.wake_stt_status_subscription = self.create_subscription(
+            String,
+            self.STT_STATUS_TOPIC,
+            self.wake_stt_status_callback,
+            10,
+        )
+        self.get_logger().info(
+            f"Hand quantity input enabled on {self.USER_HAND_GESTURE_TOPIC}"
+        )
+        self.get_logger().info(
+            "Order wake gate enabled: human presence arms STT; "
+            f"'{self.ORDER_WAKE_PHRASE}' starts the existing order dialogue."
+        )
+
+    # ------------------------------------------------------------------
+    # Demo-safe order wake gate
+    # ------------------------------------------------------------------
+    @classmethod
+    def _normalize_wake_text(cls, text: object) -> str:
+        """Remove spaces/punctuation without broadening the wake phrase."""
+        return re.sub(r"[\W_]+", "", str(text or ""), flags=re.UNICODE)
+
+    @classmethod
+    def _is_order_wake_phrase(cls, text: object) -> bool:
+        return cls._normalize_wake_text(text) == cls.ORDER_WAKE_PHRASE
+
+    def _publish_stt_trigger(self, command: str) -> None:
+        msg = String()
+        msg.data = command
+        self.stt_trigger_publisher.publish(msg)
+
+    def _arm_order_wake_listen(self, *, reason: str) -> None:
+        """Start one STT turn only while a detected customer is waiting."""
+        if self.state != self.WAIT_ORDER_WAKE_STATE:
+            return
+        if not bool(getattr(self, "last_human_presence", False)):
+            return
+
+        self.get_logger().info(
+            "Wake gate listening for "
+            f"'{self.ORDER_WAKE_PHRASE}' (reason={reason})."
+        )
+        self._publish_stt_trigger("listen")
+
+    def _enter_order_wake_gate(self, *, reason: str) -> None:
+        """Presence arms listening but deliberately does not greet/start an order."""
+        self.state = self.WAIT_ORDER_WAKE_STATE
+        self.current_order = None
+        self.waiting_for = None
+        self.pending_customer_context = None
+        self.personalized_customer_id = None
+        self.greeting_tts_completed = False
+        self.reset_retry_counts()
+        self._customer_exit_seen = False
+
+        self.get_logger().info(
+            "Customer present; order dialogue remains idle until "
+            f"'{self.ORDER_WAKE_PHRASE}' is recognized (reason={reason})."
+        )
+        self._arm_order_wake_listen(reason="presence_detected")
+
+    def _leave_order_wake_gate(self) -> None:
+        """Cancel wake listening when the detected person leaves."""
+        if self.state != self.WAIT_ORDER_WAKE_STATE:
+            return
+
+        self._publish_stt_trigger("cancel")
+        self.state = "IDLE"
+        self.current_order = None
+        self.waiting_for = None
+        self.pending_customer_context = None
+        self.personalized_customer_id = None
+        self.greeting_tts_completed = False
+        self.reset_retry_counts()
+        self.get_logger().info(
+            "Customer left before the wake phrase; wake gate reset to IDLE."
+        )
+
+    def _start_order_after_wake(self, nlu_result: dict[str, Any]) -> None:
+        """Consume the wake phrase, then enter the existing START_ORDER flow once."""
+        if self.state != self.WAIT_ORDER_WAKE_STATE:
+            return
+        if not bool(getattr(self, "last_human_presence", False)):
+            self.get_logger().info(
+                "Ignoring wake phrase because no customer is currently present."
+            )
+            return
+
+        pending_context = self.pending_customer_context
+
+        self.get_logger().info(
+            "Wake phrase accepted with customer present; starting order dialogue: "
+            f"text={nlu_result.get('text', '')!r}"
+        )
+        self.state = "IDLE"
+        self.last_greeting_time = 0.0
+        self.handle_human_detected()
+
+        if self.state == "ORDER_LISTEN" and pending_context is not None:
+            self.pending_customer_context = pending_context
+
+    def human_presence_callback(self, msg) -> None:
+        """Use presence only to arm/cancel wake listening, not to gate a new order."""
+        human_present = bool(msg.data)
+
+        if not self.human_presence_initialized:
+            self.human_presence_initialized = True
+            self.last_human_presence = human_present
+            if human_present and self.state == "IDLE":
+                self._enter_order_wake_gate(reason="initial_presence")
+            return
+
+        self.last_human_presence = human_present
+
+        if self.state == self.WAIT_ORDER_WAKE_STATE:
+            if not human_present:
+                self._leave_order_wake_gate()
+            return
+
+        if self.state == "IDLE" and human_present:
+            self._enter_order_wake_gate(reason="presence_available")
+            return
+
+        # After a completed order, the same still-present customer may begin a
+        # fresh order by saying the wake phrase again. Do not require a
+        # human_presence False -> True transition between orders.
+        if self.state == self.WAIT_CUSTOMER_EXIT_STATE and human_present:
+            self.state = "IDLE"
+            self.current_order = None
+            self.waiting_for = None
+            self.reset_retry_counts()
+            self.get_logger().info(
+                "Order complete; customer is still present. "
+                "Re-arming wake gate without requiring an exit/re-entry."
+            )
+            self._enter_order_wake_gate(reason="order_complete_customer_present")
+            return
+
+    def wake_stt_status_callback(self, msg: String) -> None:
+        """Re-arm wake listening when a turn ended without any NLU text."""
+        if self.state != self.WAIT_ORDER_WAKE_STATE:
+            return
+        if not bool(getattr(self, "last_human_presence", False)):
+            return
+
+        status = str(msg.data or "").strip().lower()
+        if status in self.WAKE_RETRY_STT_STATUSES:
+            self._arm_order_wake_listen(reason=f"stt_{status}")
+
+    def intent_callback(self, msg: String) -> None:
+        """Consume all pre-order speech unless it is the exact wake phrase."""
+        if self.state != self.WAIT_ORDER_WAKE_STATE:
+            if self.state == "IDLE" and not bool(
+                getattr(self, "last_human_presence", False)
+            ):
+                self.get_logger().info(
+                    "Ignoring NLU result while IDLE because no customer is present."
+                )
+                return
+            super().intent_callback(msg)
+            return
+
+        try:
+            nlu_result = json.loads(msg.data)
+        except json.JSONDecodeError as error:
+            self.get_logger().error(f"Invalid NLU JSON while waiting for wake phrase: {error}")
+            self._arm_order_wake_listen(reason="invalid_nlu_json")
+            return
+
+        text = nlu_result.get("text", "")
+        if self._is_order_wake_phrase(text):
+            self._start_order_after_wake(nlu_result)
+            return
+
+        self.get_logger().info(
+            "Ignoring pre-order speech because wake phrase did not match: "
+            f"text={text!r}"
+        )
+        # Stay silent and passive until the exact wake phrase is heard.
+        # Background speech from presenters/judges must never reach the normal
+        # dialogue/action pipeline while we are only waiting for "주문할게요".
+        self._arm_order_wake_listen(reason="non_wake_speech")
+
+    def make_user_hand_gesture_decision(
+        self,
+        gesture: str,
+    ) -> dict[str, Any] | None:
+        """Map a supported hand pose to the active quantity slot.
+
+        The synthetic input follows the same structured slot path used by short
+        spoken answers such as "두 잔이요". NLU inference is deliberately
+        skipped because vision already produced a structured quantity value.
+        """
+        normalized = str(gesture or "").strip().upper()
+        quantity = self.HAND_QUANTITY_MAP.get(normalized)
+        if quantity is None:
+            return None
+
+        if self.state != "ASK_QUANTITY":
+            return None
+        if not isinstance(self.waiting_for, dict):
+            return None
+        if self.waiting_for.get("slot") != "quantity":
+            return None
+        if self.current_order is None:
+            return None
+
+        synthetic_input: dict[str, Any] = {
+            "text": "",
+            "intent": "ORDER",
+            "confidence": 1.0,
+            "intent_confidence": 1.0,
+            "needs_reprompt": False,
+            "order_status": "INCOMPLETE",
+            "items": [],
+            "explicit_slots": {
+                "menu": None,
+                "menus": [],
+                "temperature": None,
+                "quantity": quantity,
+            },
+            "input_modality": "VISION_HAND_GESTURE",
+            "user_hand_gesture": normalized,
+            "vision_quantity": quantity,
+        }
+
+        decision = self.make_decision(synthetic_input)
+        decision["input_modality"] = "VISION_HAND_GESTURE"
+        decision["user_hand_gesture"] = normalized
+        decision["vision_quantity"] = quantity
+        return decision
+
+    def user_hand_gesture_callback(self, msg: String) -> None:
+        gesture = str(msg.data or "").strip().upper()
+        decision = self.make_user_hand_gesture_decision(gesture)
+        if decision is None:
+            if gesture in self.HAND_QUANTITY_MAP:
+                self.get_logger().info(
+                    "Ignoring hand quantity gesture outside quantity state: "
+                    f"gesture={gesture}, state={self.state}, "
+                    f"waiting_for={self.waiting_for}"
+                )
+            return
+
+        self.get_logger().info(
+            "Accepted visual quantity input: "
+            f"gesture={gesture}, quantity={decision.get('vision_quantity')}, "
+            f"decision={decision.get('decision')}"
+        )
+        self.publish_decision(decision)
+
+
+class DecisionNode(
+    _HandQuantityMixin,
+    _AdditionalOrderMixin,
+    _OrderHandoffMixin,
+    _CoreDecisionNode,
+):
+    """Production decision node composed from feature mixins without chained subclasses."""
+
+
 def main(args=None):
     rclpy.init(args=args)
     node = DecisionNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == "__main__":
