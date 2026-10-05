@@ -264,12 +264,6 @@ export PUMPKIN_NLU_CONFIDENCE_THRESHOLD=0.5
 python3 -m nlu.cli "아이스 아메리카노 두 잔 주세요"
 ```
 
-Jetson NLU 환경 전체 점검:
-
-```bash
-bash scripts/check_jetson_nlu.sh
-```
-
 운영 서비스에서는 Python 코드에서 Predictor를 여러 번 만들지 않고 ROS2 `nlu_node`가 모델 하나를 소유합니다.
 
 ## 메뉴 변경 시 주의
