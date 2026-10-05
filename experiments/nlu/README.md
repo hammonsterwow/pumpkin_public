@@ -1,6 +1,6 @@
 # NLU Experiments
 
-이 디렉터리는 한이음 제출본에서 **현재 프로젝트의 연구 근거로 사용하는 NLU 비교 실험**만 보관합니다.
+이 디렉터리는 현재 프로젝트의 **NLU 모델 비교·평가 실험과 재현 자료**를 보관합니다.
 
 ## KIPS 2026 Item Query 실험
 
@@ -17,4 +17,4 @@
 
 현재 서비스에서 사용하는 NLU 추론 코드는 루트 `nlu/`를 기준으로 하며, ROS2 통합 실행은 `ros2_ws/src/robot_controller/`를 기준으로 합니다.
 
-과거 intent-only, hierarchical multi-task, standalone STT/NLU 실험 코드는 한이음 제출본에서 제외했습니다.
+현재 저장소에는 최종 모델 비교와 재현에 필요한 실험 자료를 유지합니다.

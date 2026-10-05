@@ -1,55 +1,30 @@
 # Google Colab 실행 코드
 
-아래 순서대로 Colab 셀에 실행하면 됩니다. 저장소가 private이므로 Colab Secrets에 `GITHUB_TOKEN`을 먼저 등록하는 방식을 권장합니다.
-
-## 0. Colab Secrets 준비
-
-Colab 왼쪽의 열쇠 아이콘(Secrets)에서 다음 값을 추가합니다.
-
-```text
-Name: GITHUB_TOKEN
-Value: 본인 GitHub Personal Access Token
-```
-
-토큰은 이 private repository를 읽을 수 있는 권한만 있으면 됩니다.
+아래 순서대로 Colab 셀에 실행하면 됩니다.
 
 ## 1. 패키지 설치 및 repository clone
 
 ```python
-from google.colab import userdata
 import os
 import subprocess
 from pathlib import Path
 
-TOKEN = userdata.get('GITHUB_TOKEN')
-if not TOKEN:
-    raise RuntimeError('Colab Secrets에 GITHUB_TOKEN을 등록하세요.')
-
-REPO_DIR = Path('/content/pumpkin')
+REPO_DIR = Path('/content/pumpkin_public')
 if not REPO_DIR.exists():
-    env = os.environ.copy()
-    env['GIT_TERMINAL_PROMPT'] = '0'
-    clone_url = f'https://{TOKEN}@github.com/yulllee0829/pumpkin.git'
-    subprocess.run(
-        ['git', 'clone', '--depth', '1', clone_url, str(REPO_DIR)],
-        check=True,
-        env=env,
-    )
+    subprocess.run([
+        'git', 'clone', '--depth', '1',
+        'https://github.com/hammonsterwow/pumpkin_public.git',
+        str(REPO_DIR),
+    ], check=True)
 
 os.chdir(REPO_DIR)
 subprocess.run([
-    'pip', 'install', '-q', '-U',
-    'transformers==4.46.3',
-    'scikit-learn==1.6.1',
-    'pandas>=2.0',
-    'tqdm>=4.66',
-    'sentencepiece==0.2.0',
+    'pip', 'install', '-q', '-r',
+    'experiments/nlu/kips_2026_item_query/requirements-colab.txt',
 ], check=True)
 
 print('repo:', REPO_DIR)
 ```
-
-> 주의: clone URL에 token이 포함되므로 notebook을 다른 사람과 공유할 때 해당 셀의 출력이나 실행 기록에 token이 노출되지 않았는지 확인하세요. 가능하면 Colab Secrets를 사용하고 notebook에는 token 값을 직접 적지 마세요.
 
 ## 2. GPU 확인
 
