@@ -186,7 +186,7 @@ robot_face/jetson/requirements.txt
 - `NEUTRAL`, `SMILE`, `HAPPY`, `QUESTION`, `ERROR` 전송
 - 단일 표정 출력, 전체 데모, 대화형 시험
 - USB 연결이 끊긴 경우 1회 재연결 시도
-- 향후 주문 FSM 또는 ROS2 출력값을 전달할 수 있는 `FaceController` 제공
+- ROS2 `face_display_node`가 `/robot_action`의 표정 값을 받아 `FaceController`로 전달
 
 평소 실행:
 
@@ -258,7 +258,7 @@ hardware/JETSON_ESP32_LCD_SETUP.md
 - [x] Jetson Orin Nano에서 CH340 `/dev/ttyUSB0` 인식
 - [x] Jetson Python → ESP32 → LCD 전체 표정 데모
 - [x] Jetson 표정 제어 코드를 메인 브랜치에 병합
-- [ ] ROS2/FSM 주문 흐름과 표정 출력 통합
+- [x] ROS2 `/robot_action` → `face_display_node` → `FaceController` 표정 출력 연동 코드 구현
 - [ ] 최종 커넥터 및 배선 고정
 - [ ] 장시간 출력 및 발열 시험
 
