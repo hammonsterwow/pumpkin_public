@@ -8,7 +8,8 @@ This service completes the mobile app's Firebase-based face enrollment flow.
 - The service verifies the token and requires the URL UID, JSON UID, and token UID to match.
 - It reads only the five fixed JPEG objects under
   `face-enrollment-temp/{uid}/`.
-- It writes the generated centroid to `users/{uid}` in Firestore.
+- It stores the generated embedding centroid under
+  `users/{uid}.faceEmbedding` in Firestore.
 - Temporary Storage objects and pose metadata are deleted only after the
   embedding is stored successfully.
 
