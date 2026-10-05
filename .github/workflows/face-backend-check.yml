@@ -7,7 +7,7 @@ on:
       - '.github/workflows/face-backend-check.yml'
   push:
     branches:
-      - agent/add-face-cloud-run-backend
+      - main
     paths:
       - 'face_backend/**'
       - '.github/workflows/face-backend-check.yml'
