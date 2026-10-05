@@ -15,7 +15,6 @@
 
 ## NLU 및 데이터셋
 
-- [`nlu_training_data_gap_guide.md`](./nlu_training_data_gap_guide.md): 다음 NLU 모델 재학습 시 추가해야 할 짧은 후속 답변, 추가 주문, 질문형 발화, 다중 주문, 앞부분 잡음·STT 오류 데이터와 라벨링 원칙
 - [`★ structure_b_final_dataset.md`](./★%20structure_b_final_dataset.md): Structure B 데이터셋 설계 및 과거 최종 데이터셋 기록
 - [`single_menu_quantity_dataset_summary.md`](./single_menu_quantity_dataset_summary.md): 단일 메뉴 수량 데이터셋 기록
 
