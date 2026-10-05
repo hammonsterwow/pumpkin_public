@@ -172,7 +172,6 @@ def _save_result(
     uid: str,
     centroid: np.ndarray,
     quality: dict[str, dict[str, object]],
-    generated_at: str,
 ) -> None:
     client = firestore.client()
     user_ref = client.collection("users").document(uid)
@@ -246,7 +245,7 @@ def generate_embedding(
     centroid = _normalize(np.mean(np.stack(pose_vectors), axis=0))
     generated_at = datetime.now(timezone.utc).isoformat()
     try:
-        _save_result(uid, centroid, quality, generated_at)
+        _save_result(uid, centroid, quality)
     except Exception as error:
         raise HTTPException(status_code=502, detail="얼굴 임베딩을 Firestore에 저장하지 못했습니다.") from error
 
