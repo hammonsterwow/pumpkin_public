@@ -5,9 +5,9 @@
 >
 > 실제 동작 기준은 아래 코드이다.
 >
-> - 대화/FSM: `robot_controller/decision_node.py`, `decision_node_order_handoff.py`
+> - 대화/FSM: `robot_controller/decision_node.py`
 > - 로봇 대사: `robot_controller/response_manager.py`
-> - 표정·고개·팔 결정: `robot_controller/action_node.py`, `action_node_order_handoff.py`
+> - 표정·고개·팔 결정: `robot_controller/action_node.py`
 > - 고개 실행: `robot_controller/head_motion_node.py`
 > - 3.5인치 얼굴 LCD 실행: `robot_controller/face_display_node.py`
 
@@ -625,10 +625,10 @@ WAIT_NEXT_CUSTOMER
 
 ```text
 ros2_ws/src/robot_controller/robot_controller/decision_node.py
-ros2_ws/src/robot_controller/robot_controller/decision_node_order_handoff.py
+ros2_ws/src/robot_controller/robot_controller/decision_node.py
 ```
 
-`decision_node_order_handoff.py`는 기본 Decision 위에 다음을 추가한다.
+`decision_node.py`는 기본 Decision 위에 다음을 추가한다.
 
 - item 확인 단계
 - 주문 종료 여부 확인
@@ -648,10 +648,10 @@ ros2_ws/src/robot_controller/robot_controller/response_manager.py
 
 ```text
 ros2_ws/src/robot_controller/robot_controller/action_node.py
-ros2_ws/src/robot_controller/robot_controller/action_node_order_handoff.py
+ros2_ws/src/robot_controller/robot_controller/action_node.py
 ```
 
-`action_node_order_handoff.py`는 기본 Action 위에 `CONTINUE_ORDER`, `NEXT_CUSTOMER_READY` 등의 고객 인계 동작을 추가한다.
+`action_node.py`는 기본 Action 위에 `CONTINUE_ORDER`, `NEXT_CUSTOMER_READY` 등의 고객 인계 동작을 추가한다.
 
 ### 실제 고개 실행
 
