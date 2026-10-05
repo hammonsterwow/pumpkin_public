@@ -4,8 +4,8 @@ last_updated: "2026-08-26"
 
 # 상태 값: planned, ordered, received, mounted, unit_tested, integrated, issue
 # 공식 사양은 hardware/components/*.md, 구매 수량은 PARTS.md와
-# LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md를 기준으로 합니다.
-# 확인되지 않은 값은 임의로 채우지 않고 TODO 또는 null로 유지합니다.
+# SERVO_POWER_CONNECTION_PLAN.md를 기준으로 합니다.
+# 확인되지 않은 값은 임의로 채우지 않고 null로 유지합니다.
 
 components:
   - id: COMPUTE_JETSON_MAIN
@@ -113,7 +113,7 @@ components:
     status: integrated
     electrical:
       input_voltage_v: 5
-      typical_current_a: TODO
+      typical_current_a: null
     interfaces: ["USB Video Class"]
     power_source: POWER_USB_HUB_5V_2A
     controller_or_host: USB_HUB_NEXT_UH308
@@ -130,7 +130,7 @@ components:
     status: integrated
     electrical:
       input_voltage_v: 5
-      typical_current_a: TODO
+      typical_current_a: null
     interfaces: ["USB Audio"]
     power_source: POWER_USB_HUB_5V_2A
     controller_or_host: USB_HUB_NEXT_UH308
@@ -221,8 +221,8 @@ components:
     quantity: 1
     status: received
     electrical:
-      input_voltage_v: TODO
-      logic_voltage_v: TODO
+      input_voltage_v: null
+      logic_voltage_v: null
     interfaces: ["SPI"]
     power_source: MCU_ESP32_MAIN
     controller_or_host: MCU_ESP32_MAIN
@@ -271,7 +271,7 @@ components:
   - id: DISPLAY_MAIN_5INCH
     category: display
     role: "주문·상태 표시용 최종 메인 화면"
-    manufacturer: "TODO"
+    manufacturer: null
     model: "5inch HDMI Display"
     variant: "800 x 480"
     quantity: 1
@@ -293,13 +293,13 @@ components:
   - id: POWER_DISPLAY_5V_2_1A
     category: power_supply
     role: "5인치 메인 LCD 전용 전원"
-    manufacturer: "TODO"
+    manufacturer: null
     model: "MXW-10W2U"
     variant: "USB power adapter"
     quantity: 1
     status: received
     electrical:
-      ac_input: "TODO"
+      ac_input: null
       dc_output_voltage_v: 5
       rated_output_current_a: 2.1
       rated_output_power_w: 10.5
@@ -472,7 +472,7 @@ components:
       branch_count: 6
     power_source: POWER_SERVO_FINAL_5V_22A
     controller_or_host: null
-    detail_doc: "LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md"
+    detail_doc: "SERVO_POWER_CONNECTION_PLAN.md"
     test_status: "공통입력·총정격·메인/분기 나사 규격 확인 필요"
     notes:
       - "F1~F4 사용, F5~F6 예비"
@@ -489,7 +489,7 @@ components:
       minimum_total_current_a: 30
     power_source: POWER_SERVO_FINAL_5V_22A
     controller_or_host: null
-    detail_doc: "LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md"
+    detail_doc: "SERVO_POWER_CONNECTION_PLAN.md"
     test_status: "메인 M5/M6·분기 나사 규격 확인 필요"
     notes: []
 
@@ -502,7 +502,7 @@ components:
     status: planned
     power_source: DISTRIBUTION_FUSEBOX_5V
     controller_or_host: null
-    detail_doc: "LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md"
+    detail_doc: "SERVO_POWER_CONNECTION_PLAN.md"
     test_status: "정품·전선 삽입 상태 확인 필요"
     notes:
       - "3개 모두 사용: F1 목, F2 DS3218, F3 팔 MG996R"
@@ -516,7 +516,7 @@ components:
     status: planned
     power_source: DISTRIBUTION_FUSEBOX_5V
     controller_or_host: null
-    detail_doc: "LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md"
+    detail_doc: "SERVO_POWER_CONNECTION_PLAN.md"
     test_status: "정품·전선 삽입 상태 확인 필요"
     notes:
       - "5개 모두 사용: F4 +5 V 1개 + GND 그룹 4개"
@@ -530,7 +530,7 @@ components:
     status: planned
     power_source: POWER_SERVO_FINAL_5V_22A
     controller_or_host: PWM_PCA9685_MAIN
-    detail_doc: "LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md"
+    detail_doc: "SERVO_POWER_CONNECTION_PLAN.md"
     test_status: "핀 순서·내부 전선 굵기 확인 필요"
     notes:
       - "9개 사용, 2개 예비"
@@ -546,8 +546,8 @@ components:
       input_voltage_v: "4.8-6.0"
       stall_torque_5v_kg_cm: 19
       stall_torque_6v_kg_cm: 21.5
-      no_load_current_a: TODO
-      stall_current_a: TODO
+      no_load_current_a: null
+      stall_current_a: null
     interfaces: ["PWM"]
     power_source: POWER_SERVO_FINAL_5V_22A
     controller_or_host: PWM_PCA9685_MAIN
@@ -687,7 +687,7 @@ components:
     status: planned
     electrical: &mg90s
       input_voltage_v: "4.8-6.0"
-      stall_current_a: TODO
+      stall_current_a: null
     interfaces: ["PWM"]
     power_source: POWER_SERVO_FINAL_5V_22A
     controller_or_host: PWM_PCA9685_MAIN
@@ -746,12 +746,12 @@ components:
     role: "보유 DC 5.5 x 2.1 mm 커넥터"
     manufacturer: null
     model: "DC 5.5 x 2.1 mm connector"
-    quantity: TODO
+    quantity: null
     status: received
     electrical:
-      rated_voltage_v: TODO
-      rated_current_a: TODO
-      polarity: TODO
+      rated_voltage_v: null
+      rated_current_a: null
+      polarity: null
     power_source: null
     controller_or_host: null
     detail_doc: null

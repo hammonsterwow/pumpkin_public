@@ -4,9 +4,9 @@
 
 - 부품별 공식 사양: [`components/`](./components/)
 - 기계 판독 부품 데이터: [`components.yaml`](./components.yaml)
-- 구매 실행안: [`LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](./LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md)
+- 구매 실행안: [`SERVO_POWER_CONNECTION_PLAN.md`](./SERVO_POWER_CONNECTION_PLAN.md)
 - 공식 설치 가이드: [`LRS-150F-5_CONNECTION_GUIDE.md`](./LRS-150F-5_CONNECTION_GUIDE.md)
-- 남은 작업: [`TODO.md`](./TODO.md)
+- 남은 작업: [`components.yaml`](./components.yaml)
 
 ## 로봇 조건
 

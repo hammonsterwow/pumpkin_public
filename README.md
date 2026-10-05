@@ -29,7 +29,6 @@
 - 디지털 소외 문제 해결: 고객이 대화를 통해 주문할 수 있도록 함으로써 누구나 보다 쉽게 주문할 수 있는 환경을 구현하고자 한다.
 - 획일적인 무인매장 응대를 보완: 얼굴 인식을 활용하여 등록된 단골 고객을 식별하고 해당 , 고객의 선호 메뉴를 기억하여 개인화된 응대를 제공한다.
 
-
 ### **1-3. 프로젝트 특장점**
 
 - **비언어적 표현 기반 자연스러운 응대** : 음성 응답과 함께 얼굴 표정, 고개 움직임, 팔 제스처를 출력해 주문 상태와 로봇의 반응을 직관적으로 전달
@@ -564,13 +563,11 @@ created = self.client.submit_confirmed_order(
 | [`docs/★ order_interaction_flow.md`](docs/%E2%98%85%20order_interaction_flow.md) | ★ order interaction flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 18.8 KB |
 | [`docs/★ service_scenario_catalog.md`](docs/%E2%98%85%20service_scenario_catalog.md) | ★ service scenario catalog 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 26.2 KB |
 | [`docs/★ structure_b_final_dataset.md`](docs/%E2%98%85%20structure_b_final_dataset.md) | ★ structure b final dataset 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 12.9 KB |
-| [`docs/2026-08-10_robot_interaction_troubleshooting_log.md`](docs/2026-08-10_robot_interaction_troubleshooting_log.md) | 2026 08 10 robot interaction troubleshooting log 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 20.7 KB |
 | [`docs/2026-08-10_stt_respeaker_debug_log.md`](docs/2026-08-10_stt_respeaker_debug_log.md) | 2026 08 10 stt respeaker debug log 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.3 KB |
 | [`docs/2026-09-05_qwen3_multiturn_repeat_issue.md`](docs/2026-09-05_qwen3_multiturn_repeat_issue.md) | 2026 09 05 qwen3 multiturn repeat issue 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 6.1 KB |
 | [`docs/2026-09-05_qwen3_smalltalk_standalone_log.md`](docs/2026-09-05_qwen3_smalltalk_standalone_log.md) | 2026 09 05 qwen3 smalltalk standalone log 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 12.1 KB |
 | [`docs/ARM_GESTURE_INTEGRATION.md`](docs/ARM_GESTURE_INTEGRATION.md) | ARM GESTURE INTEGRATION 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 3.6 KB |
 | [`docs/cloud_run_relay.md`](docs/cloud_run_relay.md) | cloud run relay 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 3.4 KB |
-| [`docs/current_order_flow_issues_and_action_plan.md`](docs/current_order_flow_issues_and_action_plan.md) | current order flow issues and action plan 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 29.0 KB |
 | [`docs/data_collection_flow.md`](docs/data_collection_flow.md) | data collection flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.1 KB |
 | [`docs/DEMO_TEST_SCENARIOS.md`](docs/DEMO_TEST_SCENARIOS.md) | DEMO TEST SCENARIOS 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.3 KB |
 | [`docs/diagrams/01_service_system_architecture.drawio`](docs/diagrams/01_service_system_architecture.drawio) | 01 service system architecture 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.8 KB |
@@ -579,16 +576,11 @@ created = self.client.submit_confirmed_order(
 | [`docs/diagrams/09_2_entity_relationship_diagram.drawio`](docs/diagrams/09_2_entity_relationship_diagram.drawio) | 09 2 entity relationship diagram 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 9.3 KB |
 | [`docs/diagrams/data_collection_processing_flow.drawio`](docs/diagrams/data_collection_processing_flow.drawio) | data collection processing flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 19.1 KB |
 | [`docs/diagrams/pumpkin_network_architecture_simple.drawio`](docs/diagrams/pumpkin_network_architecture_simple.drawio) | pumpkin network architecture simple 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.3 KB |
-| [`docs/face_enrollment_api.md`](docs/face_enrollment_api.md) | face enrollment api 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.6 KB |
-| [`docs/firebase_auth_setup.md`](docs/firebase_auth_setup.md) | firebase auth setup 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.2 KB |
 | [`docs/HAND_GESTURE_QUANTITY.md`](docs/HAND_GESTURE_QUANTITY.md) | HAND GESTURE QUANTITY 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 5.8 KB |
 | [`docs/images/data_collection_simple_ppt.svg`](docs/images/data_collection_simple_ppt.svg) | data collection simple ppt 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 8.1 KB |
 | [`docs/JETSON_ENVIRONMENT_STATUS.md`](docs/JETSON_ENVIRONMENT_STATUS.md) | JETSON ENVIRONMENT STATUS 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.9 KB |
-| [`docs/jetson_expo_order_manual.md`](docs/jetson_expo_order_manual.md) | jetson expo order manual 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 13.5 KB |
 | [`docs/jetson_realtime_face_recognition.md`](docs/jetson_realtime_face_recognition.md) | jetson realtime face recognition 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.7 KB |
-| [`docs/macos_local_run.md`](docs/macos_local_run.md) | macos local run 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 3.6 KB |
 | [`docs/menu_catalog_policy.md`](docs/menu_catalog_policy.md) | menu catalog policy 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.3 KB |
-| [`docs/motor_controller.md`](docs/motor_controller.md) | motor controller 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.5 KB |
 | [`docs/nlu_labeling_guidelines.md`](docs/nlu_labeling_guidelines.md) | nlu labeling guidelines 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 11.5 KB |
 | [`docs/nlu_training_data_gap_guide.md`](docs/nlu_training_data_gap_guide.md) | nlu training data gap guide 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 15.4 KB |
 | [`docs/order_dialogue_rules.md`](docs/order_dialogue_rules.md) | order dialogue rules 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.2 KB |
@@ -596,12 +588,10 @@ created = self.client.submit_confirmed_order(
 | [`docs/preorder_face_pickup_contract.md`](docs/preorder_face_pickup_contract.md) | preorder face pickup contract 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 11.1 KB |
 | [`docs/README.md`](docs/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 5.0 KB |
 | [`docs/response_manager.md`](docs/response_manager.md) | response manager 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 4.9 KB |
-| [`docs/scenario-flows/usecase-flows.md`](docs/scenario-flows/usecase-flows.md) | usecase flows 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 4.9 KB |
 | [`docs/service_customer_and_display_policy.md`](docs/service_customer_and_display_policy.md) | service customer and display policy 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 13.4 KB |
 | [`docs/single_menu_quantity_dataset_summary.md`](docs/single_menu_quantity_dataset_summary.md) | single menu quantity dataset summary 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 5.1 KB |
 | [`docs/table_definition.md`](docs/table_definition.md) | table definition 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 8.6 KB |
 | [`docs/unified_order_api.md`](docs/unified_order_api.md) | unified order api 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.8 KB |
-| [`docs/web_team_setup.md`](docs/web_team_setup.md) | web team setup 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 5.7 KB |
 
 </details>
 
@@ -690,7 +680,6 @@ created = self.client.submit_confirmed_order(
 | [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 209.8 KB |
 | [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 415.2 KB |
 | [`experiments/nlu/kips_2026_item_query/run_all.py`](experiments/nlu/kips_2026_item_query/run_all.py) | run all KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 7.1 KB |
-| [`experiments/nlu/kips_2026_item_query/TEAM_SPLIT.md`](experiments/nlu/kips_2026_item_query/TEAM_SPLIT.md) | TEAM SPLIT KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 2.4 KB |
 | [`experiments/nlu/kips_2026_item_query/train_eval.py`](experiments/nlu/kips_2026_item_query/train_eval.py) | train eval KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 16.9 KB |
 | [`experiments/nlu/README.md`](experiments/nlu/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 997 B |
 | [`experiments/tod_slm/data_generation/build_multiturn_scenarios.py`](experiments/tod_slm/data_generation/build_multiturn_scenarios.py) | build multiturn scenarios TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 36.2 KB |
@@ -750,7 +739,7 @@ created = self.client.submit_confirmed_order(
 | [`hardware/diagrams/06_3_SENSOR_ACTUATOR_CONFIGURATION.drawio`](hardware/diagrams/06_3_SENSOR_ACTUATOR_CONFIGURATION.drawio) | 06 3 SENSOR ACTUATOR CONFIGURATION 하드웨어 부품·전원·배선·제작 자료입니다. | 10.1 KB |
 | [`hardware/JETSON_ESP32_LCD_SETUP.md`](hardware/JETSON_ESP32_LCD_SETUP.md) | JETSON ESP32 LCD SETUP 하드웨어 부품·전원·배선·제작 자료입니다. | 7.2 KB |
 | [`hardware/LRS-150F-5_CONNECTION_GUIDE.md`](hardware/LRS-150F-5_CONNECTION_GUIDE.md) | LRS 150F 5 CONNECTION GUIDE 하드웨어 부품·전원·배선·제작 자료입니다. | 15.4 KB |
-| [`hardware/LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](hardware/LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md) | LRS 150F 5 CONNECTION PLAN FROM CHAT 하드웨어 부품·전원·배선·제작 자료입니다. | 11.0 KB |
+| [`hardware/SERVO_POWER_CONNECTION_PLAN.md`](hardware/SERVO_POWER_CONNECTION_PLAN.md) | LRS 150F 5 CONNECTION PLAN FROM CHAT 하드웨어 부품·전원·배선·제작 자료입니다. | 11.0 KB |
 | [`hardware/MOTORS.md`](hardware/MOTORS.md) | MOTORS 하드웨어 부품·전원·배선·제작 자료입니다. | 10.8 KB |
 | [`hardware/PARTS.md`](hardware/PARTS.md) | PARTS 하드웨어 부품·전원·배선·제작 자료입니다. | 11.8 KB |
 | [`hardware/power-budget.md`](hardware/power-budget.md) | power budget 하드웨어 부품·전원·배선·제작 자료입니다. | 8.8 KB |
@@ -760,7 +749,6 @@ created = self.client.submit_confirmed_order(
 | [`hardware/SERVO_POWER_ON_OFF_MANUAL.md`](hardware/SERVO_POWER_ON_OFF_MANUAL.md) | SERVO POWER ON OFF MANUAL 하드웨어 부품·전원·배선·제작 자료입니다. | 11.0 KB |
 | [`hardware/SERVO_POWER_WAGO_MAP.md`](hardware/SERVO_POWER_WAGO_MAP.md) | SERVO POWER WAGO MAP 하드웨어 부품·전원·배선·제작 자료입니다. | 8.0 KB |
 | [`hardware/TERMINAL_PURCHASE_GUIDE.md`](hardware/TERMINAL_PURCHASE_GUIDE.md) | TERMINAL PURCHASE GUIDE 하드웨어 부품·전원·배선·제작 자료입니다. | 5.0 KB |
-| [`hardware/TODO.md`](hardware/TODO.md) | TODO 하드웨어 부품·전원·배선·제작 자료입니다. | 7.6 KB |
 | [`hardware/wiring.md`](hardware/wiring.md) | wiring 하드웨어 부품·전원·배선·제작 자료입니다. | 10.1 KB |
 
 </details>
@@ -862,7 +850,5 @@ created = self.client.submit_confirmed_order(
 | [`scripts/run_customer_mobile.ps1`](scripts/run_customer_mobile.ps1) | Windows PowerShell에서 고객용 모바일 앱 개발 서버를 실행합니다. |
 
 </details>
-
-
 
 

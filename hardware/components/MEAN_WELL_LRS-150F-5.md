@@ -189,7 +189,7 @@ MEAN WELL이 특정 포크단자 제품을 지정한 것은 아닙니다. 실물
 ## 관련 문서
 
 - [`../LRS-150F-5_CONNECTION_GUIDE.md`](../LRS-150F-5_CONNECTION_GUIDE.md): 공식 설치·안전·시험 절차
-- [`../LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](../LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md): 실제 구매 품목·수량과 연결 위치
+- [`../SERVO_POWER_CONNECTION_PLAN.md`](../SERVO_POWER_CONNECTION_PLAN.md): 실제 구매 품목·수량과 연결 위치
 - [`INALWAYS_0717-2SCQ.md`](./INALWAYS_0717-2SCQ.md): AC 인렛 상세 사양
 - [`../power-budget.md`](../power-budget.md): 서보 전류 예산과 실측 기록
 - [`../wiring.md`](../wiring.md): 전체 시스템 배선
