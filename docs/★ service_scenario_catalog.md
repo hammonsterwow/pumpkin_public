@@ -12,7 +12,7 @@
 
 현재 동작의 기준은 다음 구성요소이다.
 
-- 대화/FSM: `decision_node.py`, `decision_node_order_handoff.py`, `order_dialogue_manager.py`
+- 대화/FSM: `decision_node.py`, `order_dialogue_manager.py`
 - 주문 해석: `nlu_node.py`, `nlu_postprocess.py`, `dialogue_slots.py`
 - 응답 생성: `response_manager.py`
 - 로봇 행동: `action_node.py`
