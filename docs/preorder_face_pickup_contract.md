@@ -1,34 +1,20 @@
 # 앱 사전주문 · 얼굴인식 픽업 연동 계약
 
-> 상태: 구현 중 (Working Contract)  
+> 상태: 현재 `main` 기준 연동 계약  
 > 기준 정책: `docs/service_customer_and_display_policy.md`  
-> 기준 브랜치: `agent/preorder-face-pickup`  
-> 시작점: `main@2d024a3fad3551fb94f2436c7310b8228933232f`  
-> 최종 갱신: 2026-08-16
+> 기준 코드: 고객 앱 · Cloud Run relay · Jetson ROS2 연동 구현  
+> 최종 정리: 2026-10-05
 
 이 문서는 고객 앱, Cloud Run 주문 중계, POS 웹, Jetson 얼굴인식 및 ROS 픽업 안내가 공유하는 단일 계약이다. 코드와 문서가 충돌하면 추측해서 별도 스키마를 만들지 말고 이 문서를 먼저 갱신한다.
 
-## 1. 매 작업 시작 시 반드시 읽기
+## 1. 문서 기준
 
-이 브랜치 작업자:
+이 문서는 현재 `main` 브랜치의 고객 앱, Cloud Run 주문 중계, POS, Jetson 얼굴인식 및 ROS 픽업 안내가 공유하는 연동 기준을 정리한다.
 
-```bash
-cd ~/pumpkin
-git fetch origin
-git switch agent/preorder-face-pickup
-git pull --ff-only origin agent/preorder-face-pickup
-sed -n '1,999p' docs/preorder_face_pickup_contract.md
-```
-
-다른 브랜치 작업자:
-
-```bash
-cd ~/pumpkin
-git fetch origin
-git show origin/agent/preorder-face-pickup:docs/preorder_face_pickup_contract.md
-```
-
-유효한 원본은 `origin/agent/preorder-face-pickup`의 최신 파일이다. 필드, enum, API, ROS decision을 바꾸면 같은 커밋에서 이 문서도 바꾼다. 토큰·서비스 계정 JSON·API 키는 기록하지 않는다.
+- 주문 API 계약은 `/api/v1/orders`와 현재 API 구현을 기준으로 한다.
+- 얼굴 프로필과 선호정보는 Firestore `users/{uid}`를 기준으로 한다.
+- 토큰·서비스 계정 JSON·비밀 키는 문서나 클라이언트 번들에 기록하지 않는다.
+- 코드와 문서가 다를 경우 현재 `main`의 구현을 확인하고 이 문서를 함께 갱신한다.
 
 ## 2. 확정 아키텍처
 
@@ -45,7 +31,7 @@ Jetson 얼굴인식 UID → APP 활성 주문 조회 → ROS 픽업 안내
 - 얼굴 프로필은 기존 Firestore `users/{uid}`를 상태·임베딩·선호음료의 기준 원본으로 사용한다.
 - Jetson 로컬 `data/face_enrollment/{uid}`가 비어 있어도 Firestore의
   `faceRegistered=true`와 유효한 `faceEmbedding`이 있으면 앱에는 등록 완료로 표시한다.
-- 앱의 선호음료 변경은 Firestore와 Jetson 로컬 고객 API에 함께 반영한다.
+- 앱의 얼굴 등록 상태와 선호정보는 Firestore `users/{uid}`를 기준으로 관리한다.
 - 앱의 `customer_id`, 얼굴인식의 `customer_id`, Firebase Auth `user.uid`는 동일하다.
 - 앱은 `EXPO_PUBLIC_API_BASE_URL`에 공개 Cloud Run URL을 사용하므로 Jetson LAN IP가 바뀌어도 주문 생성에 영향이 없다.
 
@@ -208,37 +194,24 @@ READY 사전주문 > PREPARING/RECEIVED 상태 > 단골 선호 메뉴 제안 > �
 
 | 실행 위치 | 변수 | 의미 |
 |---|---|---|
-| 앱 | `EXPO_PUBLIC_ORDER_API_BASE_URL` | 공개 Cloud Run 주문 relay URL |
-| 앱 | `EXPO_PUBLIC_FACE_API_BASE_URL` | 현재 Jetson 얼굴등록 API URL |
+| 앱 | `EXPO_PUBLIC_API_BASE_URL` | 공개 Cloud Run 주문 relay URL |
+| 앱 | `EXPO_PUBLIC_FACE_EMBEDDING_API_BASE_URL` | 얼굴 임베딩 Cloud Run 백엔드 URL |
 | Cloud Run | `JETSON_RELAY_TOKEN` | Jetson/POS 서버용 비밀 토큰 |
 | Jetson | `PUMPKIN_PREORDER_API_URL` | 동일 Cloud Run relay URL |
 | Jetson | `PUMPKIN_PREORDER_API_TOKEN` | relay 토큰; 없으면 `JETSON_RELAY_TOKEN` 사용 |
 | Jetson | `PUMPKIN_PREORDER_TIMEOUT_SEC` | 조회/상태 변경 제한 시간, 기본 2.5초 |
 | Jetson | `PUMPKIN_PREORDER_AUTO_PICKUP_DELAY_SEC` | READY 픽업 안내 TTS 종료 후 자동 `PICKED_UP`까지 대기 시간, 기본 3.0초 |
 
-## 7. 담당과 완료 조건
+## 7. 통합 검증 기준
 
-### 앱·얼굴 픽업 브랜치
+최종 통합에서는 다음 동작을 확인한다.
 
-- [x] 기존 앱 주문 생성 API 재사용
-- [x] 앱 주문 상태 조회 API 및 폴링 구현
-- [x] 고객별 APP 주문 조회 필터
-- [x] 얼굴 UID 기반 활성 주문 선택
-- [x] READY 음성 렌더링
-- [x] 기존 왼쪽 픽업 물리 동작 재사용
-- [x] READY 안내 TTS 종료 후 3초 뒤 자동 `PICKED_UP` 요청
-- [x] 조회/자동 완료 실패 시 기존 상태·흐름 유지
-- [ ] Expo 실제 기기 상태 갱신 확인
-- [ ] Jetson 얼굴·TTS·목·팔·자동 완료 실기 확인
-
-### POS 웹 팀
-
-- [ ] 서버 측 relay proxy, 브라우저 Relay 토큰 비노출, 로컬 기본 바인딩
-- [ ] APP/ROBOT/POS 주문 구분
-- [ ] 최신 주문 목록
-- [ ] 허용된 상태 전이만 제공
-- [ ] 수동 `READY → PICKED_UP` fallback 제공
-- [ ] Jetson 자동 `PICKED_UP` 변경이 POS와 앱에 반영되는지 확인
+- 앱 주문 생성 후 `RECEIVED → PREPARING → READY → PICKED_UP` 상태가 동일 주문 ID로 이어지는지 확인한다.
+- 얼굴 인식 UID와 Firebase `user.uid`가 같은 고객을 가리키는지 확인한다.
+- `READY` 주문만 픽업 위치 안내를 실행하고, 안내 TTS 완료 전에는 `PICKED_UP`으로 변경하지 않는다.
+- Relay 조회나 자동 완료가 실패하면 기존 서버 상태를 유지하고 다른 고객의 주문을 추측해 표시하지 않는다.
+- Relay 토큰은 Jetson/POS 서버에서만 사용하고 Expo·브라우저 번들에는 포함하지 않는다.
+- 얼굴 임베딩 등록은 `EXPO_PUBLIC_FACE_EMBEDDING_API_BASE_URL`의 Cloud Run 백엔드를 사용한다.
 
 ## 8. 변경 기록
 
