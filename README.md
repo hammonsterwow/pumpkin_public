@@ -312,12 +312,9 @@ created = self.client.submit_confirmed_order(
 | [`firebase.json`](firebase.json) | firebase 설정 또는 구조화 데이터 파일입니다. | 56 B |
 | [`firestore.rules`](firestore.rules) | firestore 프로젝트 소스·설정·데이터 파일입니다. | 547 B |
 | [`JETSON_RUNTIME_README.md`](JETSON_RUNTIME_README.md) | JETSON RUNTIME README 관련 프로젝트 문서입니다. | 3.1 KB |
-| [`pixi.lock`](pixi.lock) | pixi 프로젝트 소스·설정·데이터 파일입니다. | 514.6 KB |
-| [`pixi.toml`](pixi.toml) | pixi 프로젝트 소스·설정·데이터 파일입니다. | 1.6 KB |
 | [`README.md`](README.md) | 한이음 제출용 프로젝트 소개, 실행 흐름, 주요 코드와 전체 파일 가이드입니다. | 125.6 KB |
 | [`requirements-face-recognition.txt`](requirements-face-recognition.txt) | requirements face recognition 프로젝트 소스·설정·데이터 파일입니다. | 279 B |
 | [`requirements.txt`](requirements.txt) | requirements 프로젝트 소스·설정·데이터 파일입니다. | 205 B |
-| [`run_customer_mobile_windows.cmd`](run_customer_mobile_windows.cmd) | run customer mobile windows 프로젝트 소스·설정·데이터 파일입니다. | 339 B |
 
 </details>
 
@@ -339,26 +336,15 @@ created = self.client.submit_confirmed_order(
 | 파일 | 역할 | 크기 |
 |---|---|---:|
 | [`api/__init__.py`](api/__init__.py) | Python 패키지 초기화 파일입니다. | 55 B |
-| [`api/customer_store.py`](api/customer_store.py) | customer store 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 5.3 KB |
-| [`api/face_embedding_service.py`](api/face_embedding_service.py) | face embedding service 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 11.9 KB |
-| [`api/face_enrollment_store.py`](api/face_enrollment_store.py) | face enrollment store 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 8.5 KB |
 | [`api/face_pipeline.py`](api/face_pipeline.py) | face pipeline 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 2.3 KB |
 | [`api/firebase_face_backend.py`](api/firebase_face_backend.py) | firebase face backend 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 5.5 KB |
 | [`api/main.py`](api/main.py) | main 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 10.8 KB |
-| [`api/repositories/__init__.py`](api/repositories/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`api/repositories/base.py`](api/repositories/base.py) | base 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 581 B |
-| [`api/repositories/sqlite_order_repository.py`](api/repositories/sqlite_order_repository.py) | sqlite order repository 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 7.5 KB |
 | [`api/requirements.txt`](api/requirements.txt) | requirements 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 155 B |
 | [`api/ros_bridge.py`](api/ros_bridge.py) | ros bridge 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 11.7 KB |
 | [`api/ros_process_manager.py`](api/ros_process_manager.py) | ros process manager 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 3.3 KB |
-| [`api/routers/__init__.py`](api/routers/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`api/routers/face_embeddings.py`](api/routers/face_embeddings.py) | face embeddings 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 1.8 KB |
-| [`api/routers/faces.py`](api/routers/faces.py) | faces 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 1020 B |
-| [`api/routers/orders.py`](api/routers/orders.py) | orders 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 2.0 KB |
 | [`api/schemas/__init__.py`](api/schemas/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
 | [`api/schemas/order.py`](api/schemas/order.py) | order 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 1.8 KB |
 | [`api/services/__init__.py`](api/services/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`api/services/order_service.py`](api/services/order_service.py) | order service 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 1.5 KB |
 | [`api/web_main.py`](api/web_main.py) | web main 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 2.2 KB |
 
 </details>
@@ -372,94 +358,10 @@ created = self.client.submit_confirmed_order(
 | [`apps/customer-mobile/.gitignore`](apps/customer-mobile/.gitignore) |  고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8 B |
 | [`apps/customer-mobile/app.json`](apps/customer-mobile/app.json) | Expo/React Native 앱 설정입니다. | 737 B |
 | [`apps/customer-mobile/App.tsx`](apps/customer-mobile/App.tsx) | App 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 50 B |
-| [`apps/customer-mobile/ATTRIBUTIONS.md`](apps/customer-mobile/ATTRIBUTIONS.md) | ATTRIBUTIONS 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 290 B |
-| [`apps/customer-mobile/FaceEnrollmentDemoApp.tsx`](apps/customer-mobile/FaceEnrollmentDemoApp.tsx) | FaceEnrollmentDemoApp 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 9.5 KB |
-| [`apps/customer-mobile/guidelines/Guidelines.md`](apps/customer-mobile/guidelines/Guidelines.md) | Guidelines 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.5 KB |
-| [`apps/customer-mobile/index.html`](apps/customer-mobile/index.html) | index 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 701 B |
 | [`apps/customer-mobile/index.ts`](apps/customer-mobile/index.ts) | index 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 487 B |
 | [`apps/customer-mobile/package.json`](apps/customer-mobile/package.json) | 해당 앱의 npm 의존성과 실행 명령을 정의합니다. | 920 B |
-| [`apps/customer-mobile/postcss.config.mjs`](apps/customer-mobile/postcss.config.mjs) | postcss.config 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 68 B |
 | [`apps/customer-mobile/README.md`](apps/customer-mobile/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 4.4 KB |
-| [`apps/customer-mobile/src/api/faceEnrollmentApi.ts`](apps/customer-mobile/src/api/faceEnrollmentApi.ts) | faceEnrollmentApi 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.0 KB |
-| [`apps/customer-mobile/src/api/faceProfileApi.ts`](apps/customer-mobile/src/api/faceProfileApi.ts) | faceProfileApi 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.7 KB |
 | [`apps/customer-mobile/src/api/orderApi.ts`](apps/customer-mobile/src/api/orderApi.ts) | orderApi 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.3 KB |
-| [`apps/customer-mobile/src/app/App.tsx`](apps/customer-mobile/src/app/App.tsx) | App 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 275 B |
-| [`apps/customer-mobile/src/app/Attributions.md`](apps/customer-mobile/src/app/Attributions.md) | Attributions 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 289 B |
-| [`apps/customer-mobile/src/app/components/AboutUs.tsx`](apps/customer-mobile/src/app/components/AboutUs.tsx) | AboutUs 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 6.6 KB |
-| [`apps/customer-mobile/src/app/components/AdvancedProductCatalog.tsx`](apps/customer-mobile/src/app/components/AdvancedProductCatalog.tsx) | AdvancedProductCatalog 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 22.4 KB |
-| [`apps/customer-mobile/src/app/components/AuthScreen.tsx`](apps/customer-mobile/src/app/components/AuthScreen.tsx) | AuthScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 20.6 KB |
-| [`apps/customer-mobile/src/app/components/BlogSection.tsx`](apps/customer-mobile/src/app/components/BlogSection.tsx) | BlogSection 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 14.1 KB |
-| [`apps/customer-mobile/src/app/components/BottomNavigation.tsx`](apps/customer-mobile/src/app/components/BottomNavigation.tsx) | BottomNavigation 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.5 KB |
-| [`apps/customer-mobile/src/app/components/Cart.tsx`](apps/customer-mobile/src/app/components/Cart.tsx) | Cart 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.0 KB |
-| [`apps/customer-mobile/src/app/components/Checkout.tsx`](apps/customer-mobile/src/app/components/Checkout.tsx) | Checkout 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 7.2 KB |
-| [`apps/customer-mobile/src/app/components/Contact.tsx`](apps/customer-mobile/src/app/components/Contact.tsx) | Contact 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 6.2 KB |
-| [`apps/customer-mobile/src/app/components/EnhancedHomeScreen.tsx`](apps/customer-mobile/src/app/components/EnhancedHomeScreen.tsx) | EnhancedHomeScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 16.2 KB |
-| [`apps/customer-mobile/src/app/components/EnhancedProductDetails.tsx`](apps/customer-mobile/src/app/components/EnhancedProductDetails.tsx) | EnhancedProductDetails 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 23.4 KB |
-| [`apps/customer-mobile/src/app/components/figma/ImageWithFallback.tsx`](apps/customer-mobile/src/app/components/figma/ImageWithFallback.tsx) | ImageWithFallback 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.1 KB |
-| [`apps/customer-mobile/src/app/components/Footer.tsx`](apps/customer-mobile/src/app/components/Footer.tsx) | Footer 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 21.8 KB |
-| [`apps/customer-mobile/src/app/components/Header.tsx`](apps/customer-mobile/src/app/components/Header.tsx) | Header 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 14.5 KB |
-| [`apps/customer-mobile/src/app/components/HomeScreen.tsx`](apps/customer-mobile/src/app/components/HomeScreen.tsx) | HomeScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.9 KB |
-| [`apps/customer-mobile/src/app/components/LoyaltyProgram.tsx`](apps/customer-mobile/src/app/components/LoyaltyProgram.tsx) | LoyaltyProgram 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 6.5 KB |
-| [`apps/customer-mobile/src/app/components/ProductCatalog.tsx`](apps/customer-mobile/src/app/components/ProductCatalog.tsx) | ProductCatalog 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 7.3 KB |
-| [`apps/customer-mobile/src/app/components/ProductDetails.tsx`](apps/customer-mobile/src/app/components/ProductDetails.tsx) | ProductDetails 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 9.3 KB |
-| [`apps/customer-mobile/src/app/components/ui/accordion.tsx`](apps/customer-mobile/src/app/components/ui/accordion.tsx) | accordion 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`apps/customer-mobile/src/app/components/ui/alert-dialog.tsx`](apps/customer-mobile/src/app/components/ui/alert-dialog.tsx) | alert dialog 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.8 KB |
-| [`apps/customer-mobile/src/app/components/ui/alert.tsx`](apps/customer-mobile/src/app/components/ui/alert.tsx) | alert 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`apps/customer-mobile/src/app/components/ui/aspect-ratio.tsx`](apps/customer-mobile/src/app/components/ui/aspect-ratio.tsx) | aspect ratio 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 290 B |
-| [`apps/customer-mobile/src/app/components/ui/avatar.tsx`](apps/customer-mobile/src/app/components/ui/avatar.tsx) | avatar 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.1 KB |
-| [`apps/customer-mobile/src/app/components/ui/badge.tsx`](apps/customer-mobile/src/app/components/ui/badge.tsx) | badge 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`apps/customer-mobile/src/app/components/ui/breadcrumb.tsx`](apps/customer-mobile/src/app/components/ui/breadcrumb.tsx) | breadcrumb 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.3 KB |
-| [`apps/customer-mobile/src/app/components/ui/button.tsx`](apps/customer-mobile/src/app/components/ui/button.tsx) | button 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.2 KB |
-| [`apps/customer-mobile/src/app/components/ui/calendar.tsx`](apps/customer-mobile/src/app/components/ui/calendar.tsx) | calendar 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.9 KB |
-| [`apps/customer-mobile/src/app/components/ui/card.tsx`](apps/customer-mobile/src/app/components/ui/card.tsx) | card 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.9 KB |
-| [`apps/customer-mobile/src/app/components/ui/carousel.tsx`](apps/customer-mobile/src/app/components/ui/carousel.tsx) | carousel 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.5 KB |
-| [`apps/customer-mobile/src/app/components/ui/chart.tsx`](apps/customer-mobile/src/app/components/ui/chart.tsx) | chart 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 9.6 KB |
-| [`apps/customer-mobile/src/app/components/ui/checkbox.tsx`](apps/customer-mobile/src/app/components/ui/checkbox.tsx) | checkbox 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.2 KB |
-| [`apps/customer-mobile/src/app/components/ui/collapsible.tsx`](apps/customer-mobile/src/app/components/ui/collapsible.tsx) | collapsible 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 812 B |
-| [`apps/customer-mobile/src/app/components/ui/command.tsx`](apps/customer-mobile/src/app/components/ui/command.tsx) | command 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 4.6 KB |
-| [`apps/customer-mobile/src/app/components/ui/context-menu.tsx`](apps/customer-mobile/src/app/components/ui/context-menu.tsx) | context menu 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8.1 KB |
-| [`apps/customer-mobile/src/app/components/ui/dialog.tsx`](apps/customer-mobile/src/app/components/ui/dialog.tsx) | dialog 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.8 KB |
-| [`apps/customer-mobile/src/app/components/ui/drawer.tsx`](apps/customer-mobile/src/app/components/ui/drawer.tsx) | drawer 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 4.0 KB |
-| [`apps/customer-mobile/src/app/components/ui/dropdown-menu.tsx`](apps/customer-mobile/src/app/components/ui/dropdown-menu.tsx) | dropdown menu 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8.1 KB |
-| [`apps/customer-mobile/src/app/components/ui/form.tsx`](apps/customer-mobile/src/app/components/ui/form.tsx) | form 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.7 KB |
-| [`apps/customer-mobile/src/app/components/ui/hover-card.tsx`](apps/customer-mobile/src/app/components/ui/hover-card.tsx) | hover card 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.5 KB |
-| [`apps/customer-mobile/src/app/components/ui/input-otp.tsx`](apps/customer-mobile/src/app/components/ui/input-otp.tsx) | input otp 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.2 KB |
-| [`apps/customer-mobile/src/app/components/ui/input.tsx`](apps/customer-mobile/src/app/components/ui/input.tsx) | input 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 963 B |
-| [`apps/customer-mobile/src/app/components/ui/label.tsx`](apps/customer-mobile/src/app/components/ui/label.tsx) | label 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 620 B |
-| [`apps/customer-mobile/src/app/components/ui/menubar.tsx`](apps/customer-mobile/src/app/components/ui/menubar.tsx) | menubar 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8.2 KB |
-| [`apps/customer-mobile/src/app/components/ui/navigation-menu.tsx`](apps/customer-mobile/src/app/components/ui/navigation-menu.tsx) | navigation menu 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 6.5 KB |
-| [`apps/customer-mobile/src/app/components/ui/pagination.tsx`](apps/customer-mobile/src/app/components/ui/pagination.tsx) | pagination 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.7 KB |
-| [`apps/customer-mobile/src/app/components/ui/popover.tsx`](apps/customer-mobile/src/app/components/ui/popover.tsx) | popover 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`apps/customer-mobile/src/app/components/ui/progress.tsx`](apps/customer-mobile/src/app/components/ui/progress.tsx) | progress 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 749 B |
-| [`apps/customer-mobile/src/app/components/ui/radio-group.tsx`](apps/customer-mobile/src/app/components/ui/radio-group.tsx) | radio group 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.5 KB |
-| [`apps/customer-mobile/src/app/components/ui/resizable.tsx`](apps/customer-mobile/src/app/components/ui/resizable.tsx) | resizable 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`apps/customer-mobile/src/app/components/ui/scroll-area.tsx`](apps/customer-mobile/src/app/components/ui/scroll-area.tsx) | scroll area 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`apps/customer-mobile/src/app/components/ui/select.tsx`](apps/customer-mobile/src/app/components/ui/select.tsx) | select 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 6.1 KB |
-| [`apps/customer-mobile/src/app/components/ui/separator.tsx`](apps/customer-mobile/src/app/components/ui/separator.tsx) | separator 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 713 B |
-| [`apps/customer-mobile/src/app/components/ui/sheet.tsx`](apps/customer-mobile/src/app/components/ui/sheet.tsx) | sheet 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 4.0 KB |
-| [`apps/customer-mobile/src/app/components/ui/sidebar.tsx`](apps/customer-mobile/src/app/components/ui/sidebar.tsx) | sidebar 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 21.2 KB |
-| [`apps/customer-mobile/src/app/components/ui/skeleton.tsx`](apps/customer-mobile/src/app/components/ui/skeleton.tsx) | skeleton 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 275 B |
-| [`apps/customer-mobile/src/app/components/ui/slider.tsx`](apps/customer-mobile/src/app/components/ui/slider.tsx) | slider 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`apps/customer-mobile/src/app/components/ui/sonner.tsx`](apps/customer-mobile/src/app/components/ui/sonner.tsx) | sonner 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 583 B |
-| [`apps/customer-mobile/src/app/components/ui/switch.tsx`](apps/customer-mobile/src/app/components/ui/switch.tsx) | switch 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.2 KB |
-| [`apps/customer-mobile/src/app/components/ui/table.tsx`](apps/customer-mobile/src/app/components/ui/table.tsx) | table 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.4 KB |
-| [`apps/customer-mobile/src/app/components/ui/tabs.tsx`](apps/customer-mobile/src/app/components/ui/tabs.tsx) | tabs 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.9 KB |
-| [`apps/customer-mobile/src/app/components/ui/textarea.tsx`](apps/customer-mobile/src/app/components/ui/textarea.tsx) | textarea 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 767 B |
-| [`apps/customer-mobile/src/app/components/ui/toggle-group.tsx`](apps/customer-mobile/src/app/components/ui/toggle-group.tsx) | toggle group 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.9 KB |
-| [`apps/customer-mobile/src/app/components/ui/toggle.tsx`](apps/customer-mobile/src/app/components/ui/toggle.tsx) | toggle 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.5 KB |
-| [`apps/customer-mobile/src/app/components/ui/tooltip.tsx`](apps/customer-mobile/src/app/components/ui/tooltip.tsx) | tooltip 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.9 KB |
-| [`apps/customer-mobile/src/app/components/ui/use-mobile.ts`](apps/customer-mobile/src/app/components/ui/use-mobile.ts) | use mobile 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 585 B |
-| [`apps/customer-mobile/src/app/components/ui/utils.ts`](apps/customer-mobile/src/app/components/ui/utils.ts) | utils 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 169 B |
-| [`apps/customer-mobile/src/app/components/UserProfile.tsx`](apps/customer-mobile/src/app/components/UserProfile.tsx) | UserProfile 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 21.0 KB |
-| [`apps/customer-mobile/src/app/src/context/CartContext.tsx`](apps/customer-mobile/src/app/src/context/CartContext.tsx) | CartContext 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`apps/customer-mobile/src/app/src/data/menu.ts`](apps/customer-mobile/src/app/src/data/menu.ts) | menu 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`apps/customer-mobile/src/app/src/layouts/MobileLayout.tsx`](apps/customer-mobile/src/app/src/layouts/MobileLayout.tsx) | MobileLayout 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.8 KB |
-| [`apps/customer-mobile/src/app/src/pages/Cart.tsx`](apps/customer-mobile/src/app/src/pages/Cart.tsx) | Cart 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 7.0 KB |
-| [`apps/customer-mobile/src/app/src/pages/Home.tsx`](apps/customer-mobile/src/app/src/pages/Home.tsx) | Home 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.2 KB |
-| [`apps/customer-mobile/src/app/src/pages/Order.tsx`](apps/customer-mobile/src/app/src/pages/Order.tsx) | Order 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.2 KB |
-| [`apps/customer-mobile/src/app/src/pages/ProductDetail.tsx`](apps/customer-mobile/src/app/src/pages/ProductDetail.tsx) | ProductDetail 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 7.5 KB |
-| [`apps/customer-mobile/src/app/src/routes.tsx`](apps/customer-mobile/src/app/src/routes.tsx) | routes 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1020 B |
-| [`apps/customer-mobile/src/assets/a036880becd196a5d2e97bf1f820e1310f4579dc.png`](apps/customer-mobile/src/assets/a036880becd196a5d2e97bf1f820e1310f4579dc.png) | a036880becd196a5d2e97bf1f820e1310f4579dc 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 7.8 KB |
 | [`apps/customer-mobile/src/auth/AuthProvider.tsx`](apps/customer-mobile/src/auth/AuthProvider.tsx) | AuthProvider 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.7 KB |
 | [`apps/customer-mobile/src/components/FaceCameraView.tsx`](apps/customer-mobile/src/components/FaceCameraView.tsx) | FaceCameraView 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8.4 KB |
 | [`apps/customer-mobile/src/components/FaceGuideOverlay.tsx`](apps/customer-mobile/src/components/FaceGuideOverlay.tsx) | FaceGuideOverlay 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.0 KB |
@@ -469,7 +371,6 @@ created = self.client.submit_confirmed_order(
 | [`apps/customer-mobile/src/firebase/faceEmbeddingBackend.ts`](apps/customer-mobile/src/firebase/faceEmbeddingBackend.ts) | faceEmbeddingBackend 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.3 KB |
 | [`apps/customer-mobile/src/firebase/faceEnrollment.ts`](apps/customer-mobile/src/firebase/faceEnrollment.ts) | faceEnrollment 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.2 KB |
 | [`apps/customer-mobile/src/FirebaseAuthRoot.tsx`](apps/customer-mobile/src/FirebaseAuthRoot.tsx) | FirebaseAuthRoot 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.3 KB |
-| [`apps/customer-mobile/src/main.tsx`](apps/customer-mobile/src/main.tsx) | main 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 183 B |
 | [`apps/customer-mobile/src/native/CareScreen.tsx`](apps/customer-mobile/src/native/CareScreen.tsx) | CareScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 11.1 KB |
 | [`apps/customer-mobile/src/native/menuData.ts`](apps/customer-mobile/src/native/menuData.ts) | menuData 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
 | [`apps/customer-mobile/src/native/theme.ts`](apps/customer-mobile/src/native/theme.ts) | theme 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 325 B |
@@ -479,13 +380,9 @@ created = self.client.submit_confirmed_order(
 | [`apps/customer-mobile/src/screens/FaceConsentScreen.tsx`](apps/customer-mobile/src/screens/FaceConsentScreen.tsx) | FaceConsentScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 11.7 KB |
 | [`apps/customer-mobile/src/screens/FaceRegistrationResultScreen.tsx`](apps/customer-mobile/src/screens/FaceRegistrationResultScreen.tsx) | FaceRegistrationResultScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.4 KB |
 | [`apps/customer-mobile/src/screens/ProfileScreen.tsx`](apps/customer-mobile/src/screens/ProfileScreen.tsx) | ProfileScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 10.5 KB |
-| [`apps/customer-mobile/src/styles/default_theme.css`](apps/customer-mobile/src/styles/default_theme.css) | default theme 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 4.2 KB |
-| [`apps/customer-mobile/src/styles/globals.css`](apps/customer-mobile/src/styles/globals.css) | globals 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 7.7 KB |
-| [`apps/customer-mobile/src/styles/index.css`](apps/customer-mobile/src/styles/index.css) | index 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 156 B |
 | [`apps/customer-mobile/src/types/faceProfile.ts`](apps/customer-mobile/src/types/faceProfile.ts) | faceProfile 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.1 KB |
 | [`apps/customer-mobile/src/utils/imageValidation.ts`](apps/customer-mobile/src/utils/imageValidation.ts) | imageValidation 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 796 B |
 | [`apps/customer-mobile/tsconfig.json`](apps/customer-mobile/tsconfig.json) | TypeScript 컴파일과 타입 검사 설정입니다. | 429 B |
-| [`apps/customer-mobile/vite.config.ts`](apps/customer-mobile/vite.config.ts) | vite.config 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 764 B |
 | [`apps/demo-web/app.js`](apps/demo-web/app.js) | app 프로젝트 소스·설정·데이터 파일입니다. | 11.4 KB |
 | [`apps/demo-web/index.html`](apps/demo-web/index.html) | index 프로젝트 소스·설정·데이터 파일입니다. | 2.9 KB |
 | [`apps/demo-web/README.md`](apps/demo-web/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 7.6 KB |
@@ -570,14 +467,7 @@ created = self.client.submit_confirmed_order(
 | [`docs/cloud_run_relay.md`](docs/cloud_run_relay.md) | cloud run relay 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 3.4 KB |
 | [`docs/data_collection_flow.md`](docs/data_collection_flow.md) | data collection flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.1 KB |
 | [`docs/DEMO_TEST_SCENARIOS.md`](docs/DEMO_TEST_SCENARIOS.md) | DEMO TEST SCENARIOS 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.3 KB |
-| [`docs/diagrams/01_service_system_architecture.drawio`](docs/diagrams/01_service_system_architecture.drawio) | 01 service system architecture 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.8 KB |
-| [`docs/diagrams/02_ros2_node_topic_architecture.drawio`](docs/diagrams/02_ros2_node_topic_architecture.drawio) | 02 ros2 node topic architecture 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 23.7 KB |
-| [`docs/diagrams/03_nlu_item_query_architecture.drawio`](docs/diagrams/03_nlu_item_query_architecture.drawio) | 03 nlu item query architecture 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 17.0 KB |
-| [`docs/diagrams/09_2_entity_relationship_diagram.drawio`](docs/diagrams/09_2_entity_relationship_diagram.drawio) | 09 2 entity relationship diagram 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 9.3 KB |
-| [`docs/diagrams/data_collection_processing_flow.drawio`](docs/diagrams/data_collection_processing_flow.drawio) | data collection processing flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 19.1 KB |
-| [`docs/diagrams/pumpkin_network_architecture_simple.drawio`](docs/diagrams/pumpkin_network_architecture_simple.drawio) | pumpkin network architecture simple 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.3 KB |
 | [`docs/HAND_GESTURE_QUANTITY.md`](docs/HAND_GESTURE_QUANTITY.md) | HAND GESTURE QUANTITY 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 5.8 KB |
-| [`docs/images/data_collection_simple_ppt.svg`](docs/images/data_collection_simple_ppt.svg) | data collection simple ppt 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 8.1 KB |
 | [`docs/JETSON_ENVIRONMENT_STATUS.md`](docs/JETSON_ENVIRONMENT_STATUS.md) | JETSON ENVIRONMENT STATUS 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.9 KB |
 | [`docs/jetson_realtime_face_recognition.md`](docs/jetson_realtime_face_recognition.md) | jetson realtime face recognition 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.7 KB |
 | [`docs/menu_catalog_policy.md`](docs/menu_catalog_policy.md) | menu catalog policy 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.3 KB |
@@ -793,7 +683,6 @@ created = self.client.submit_confirmed_order(
 | [`ros2_ws/src/robot_controller/package.xml`](ros2_ws/src/robot_controller/package.xml) | package 패키지 빌드·설치·메타데이터 설정 파일입니다. | 673 B |
 | [`ros2_ws/src/robot_controller/README.md`](ros2_ws/src/robot_controller/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 17.0 KB |
 | [`ros2_ws/src/robot_controller/requirements-head-gesture.txt`](ros2_ws/src/robot_controller/requirements-head-gesture.txt) | requirements head gesture 프로젝트 소스·설정·데이터 파일입니다. | 62 B |
-| [`ros2_ws/src/robot_controller/resource/robot_controller`](ros2_ws/src/robot_controller/resource/robot_controller) | robot controller 프로젝트 소스·설정·데이터 파일입니다. | 0 B |
 | [`ros2_ws/src/robot_controller/robot_controller/__init__.py`](ros2_ws/src/robot_controller/robot_controller/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
 | [`ros2_ws/src/robot_controller/robot_controller/action_node.py`](ros2_ws/src/robot_controller/robot_controller/action_node.py) | TTS·LCD·고개·팔 행동과 STT 재시도·주문 인계를 처리하는 production Action 노드입니다. | 통합 |
 | [`ros2_ws/src/robot_controller/robot_controller/arm_motion.py`](ros2_ws/src/robot_controller/robot_controller/arm_motion.py) | arm motion 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 4.7 KB |
