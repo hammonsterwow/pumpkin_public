@@ -5,7 +5,11 @@ from __future__ import annotations
 import argparse
 import json
 
-from .config import DEFAULT_CONFIDENCE_THRESHOLD, DEFAULT_MODEL_DIR
+from .config import (
+    DEFAULT_CONFIDENCE_THRESHOLD,
+    DEFAULT_DEVICE,
+    DEFAULT_MODEL_DIR,
+)
 from .predictor import StructureBNLUPredictor
 
 
@@ -20,7 +24,11 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=DEFAULT_CONFIDENCE_THRESHOLD,
     )
-    parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
+    parser.add_argument(
+        "--device",
+        choices=["auto", "cpu", "cuda"],
+        default=DEFAULT_DEVICE,
+    )
     return parser.parse_args()
 
 
