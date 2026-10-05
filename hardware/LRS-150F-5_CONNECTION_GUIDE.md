@@ -12,7 +12,7 @@ Pumpkin 고정형 로봇의 목·팔 서보 9개 전원 배선을 위한 **최�
 - PCA9685와 서보 전원·GND·Signal 분리 원칙
 - 최초 전원 투입과 분기별 시험 순서
 
-세부 서보 ID/PCA9685 채널은 [`MOTORS.md`](./MOTORS.md), 실제 WAGO 포트별 연결은 [`SERVO_POWER_WAGO_MAP.md`](./SERVO_POWER_WAGO_MAP.md), 구매 수량은 [`LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](./LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md)를 같이 봅니다.
+세부 서보 ID/PCA9685 채널은 [`MOTORS.md`](./MOTORS.md), 실제 WAGO 포트별 연결은 [`SERVO_POWER_WAGO_MAP.md`](./SERVO_POWER_WAGO_MAP.md), 구매 수량은 [`SERVO_POWER_CONNECTION_PLAN.md`](./SERVO_POWER_CONNECTION_PLAN.md)를 같이 봅니다.
 
 > [!DANGER]
 > LRS 입력에는 220 V AC가 직접 연결됩니다. AC 배선은 플러그를 완전히 분리한 상태에서 작업하고, 최초 전원 인가는 경험 있는 작업자 또는 자격 있는 기술자의 검토를 받습니다.
@@ -348,12 +348,12 @@ PCA9685 CHx
 
 | 시험 | 피크전류 | 최저전압 | 발열/결과 |
 |---|---:|---:|---|
-| F1 목 MG996R ×2 | TODO | TODO | TODO |
-| F2 DS3218 ×2 | TODO | TODO | TODO |
-| F3 팔 MG996R ×2 | TODO | TODO | TODO |
-| F4 MG90S ×3 | TODO | TODO | TODO |
-| 목+팔 실제 서비스 동작 | TODO | TODO | TODO |
-| 30분 반복 동작 | TODO | TODO | TODO |
+| F1 목 MG996R ×2 | 미확인 | 미확인 | 미확인 |
+| F2 DS3218 ×2 | 미확인 | 미확인 | 미확인 |
+| F3 팔 MG996R ×2 | 미확인 | 미확인 | 미확인 |
+| F4 MG90S ×3 | 미확인 | 미확인 | 미확인 |
+| 목+팔 실제 서비스 동작 | 미확인 | 미확인 | 미확인 |
+| 30분 반복 동작 | 미확인 | 미확인 | 미확인 |
 
 추가 확인:
 
@@ -371,7 +371,7 @@ PCA9685 CHx
 - [`MOTORS.md`](./MOTORS.md): 서보 ID·PCA9685 채널·퓨즈 번호
 - [`wiring.md`](./wiring.md): 전체 로봇 배선
 - [`power-budget.md`](./power-budget.md): 전류 예산과 실측 기록
-- [`LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](./LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md): 구매·수량 실행표
+- [`SERVO_POWER_CONNECTION_PLAN.md`](./SERVO_POWER_CONNECTION_PLAN.md): 구매·수량 실행표
 - [`TERMINAL_PURCHASE_GUIDE.md`](./TERMINAL_PURCHASE_GUIDE.md): 압착단자 규격
 
 ## 변경 기록

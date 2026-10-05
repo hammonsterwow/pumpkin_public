@@ -3,7 +3,7 @@
 Pumpkin 고정형 로봇의 최종 전원·신호 배선 기준입니다.
 
 - 공식 설치·안전: [`LRS-150F-5_CONNECTION_GUIDE.md`](./LRS-150F-5_CONNECTION_GUIDE.md)
-- 구매 부품·단자 수량: [`LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](./LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md)
+- 구매 부품·단자 수량: [`SERVO_POWER_CONNECTION_PLAN.md`](./SERVO_POWER_CONNECTION_PLAN.md)
 - 서보 ID·PCA9685 채널·퓨즈 배정: [`MOTORS.md`](./MOTORS.md)
 - ESP32·얼굴 LCD 상세: [`components/ESP32_LCD.md`](./components/ESP32_LCD.md)
 

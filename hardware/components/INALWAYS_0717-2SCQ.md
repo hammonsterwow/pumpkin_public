@@ -140,23 +140,23 @@ C13 입력 PE ──────────────────────
 
 | 항목 | 실물 확인값 |
 |---|---|
-| 제품 모델 | TODO |
+| 제품 모델 | 미확인 |
 | 후면 탭 폭 | 4.8 mm 확인 예정 |
-| 퓨즈 크기 | TODO |
-| 장착 퓨즈 정격 | TODO |
-| 패널 실제 두께 | TODO mm |
-| 사용 나사 길이 | TODO mm |
-| LINE→LOAD 연속성 | TODO |
-| N→LOAD 연속성 | TODO |
-| PE→FG 연속성 | TODO |
+| 퓨즈 크기 | 미확인 |
+| 장착 퓨즈 정격 | 미확인 |
+| 패널 실제 두께 | 미확인 mm |
+| 사용 나사 길이 | 미확인 mm |
+| LINE→LOAD 연속성 | 미확인 |
+| N→LOAD 연속성 | 미확인 |
+| PE→FG 연속성 | 미확인 |
 
 ## 관련 문서
 
 - [`MEAN_WELL_LRS-150F-5.md`](./MEAN_WELL_LRS-150F-5.md): 연결 대상 전원공급장치
 - [`../LRS-150F-5_CONNECTION_GUIDE.md`](../LRS-150F-5_CONNECTION_GUIDE.md): 공식 설치·안전 절차
-- [`../LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](../LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md): 구매 수량과 단자 연결표
+- [`../SERVO_POWER_CONNECTION_PLAN.md`](../SERVO_POWER_CONNECTION_PLAN.md): 구매 수량과 단자 연결표
 - [`../wiring.md`](../wiring.md): 전체 시스템 배선
-- [`../TODO.md`](../TODO.md): 실물 확인 작업
+- [`../components.yaml`](../components.yaml): 실물 확인 작업
 
 ## 근거 자료
 

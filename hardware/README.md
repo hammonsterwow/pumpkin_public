@@ -10,13 +10,13 @@ Pumpkin 고정형 무인매장 응대 로봇의 부품, 전력, 배선, 구매�
 | 2 | [`components.yaml`](./components.yaml) | 부품 ID·모델·수량·상태·핵심 사양의 기계 판독 기준 |
 | 단자 구매 기준 | [`TERMINAL_PURCHASE_GUIDE.md`](./TERMINAL_PURCHASE_GUIDE.md) | 암 평단자·절연 포크·절연 링단자의 최종 규격, 쇼핑몰 검색어와 실제 사용 수량 |
 | 3 | [`PARTS.md`](./PARTS.md) | 사람이 빠르게 보는 보유·구매 목록과 수량 |
-| 4 | [`TODO.md`](./TODO.md) | 미확정 규격, 결제 전 확인, 수령·조립·시험 작업 |
+| 4 | [`components.yaml`](./components.yaml) | 미확정 규격, 결제 전 확인, 수령·조립·시험 작업 |
 | 5 | [`wiring.md`](./wiring.md) | 실제 전체 전원·신호 배선 |
 | 얼굴 LCD 설치 기준 | [`JETSON_ESP32_LCD_SETUP.md`](./JETSON_ESP32_LCD_SETUP.md) | Jetson CH340 드라이버, brltty 충돌, 권한 설정과 실행 절차 |
 | 6 | [`power-budget.md`](./power-budget.md) | 전원 용량, 서보 전류 예산과 실측값 |
 | 7 | [`MOTORS.md`](./MOTORS.md) | 서보 위치·역할과 PCA9685 채널 |
 | 공식 설치 기준 | [`LRS-150F-5_CONNECTION_GUIDE.md`](./LRS-150F-5_CONNECTION_GUIDE.md) | MEAN WELL 공식 사양·안전·장착·시험 절차 |
-| 구매 실행 기준 | [`LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`](./LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md) | 결제할 전선·분배 부품·단자·WAGO 수량 |
+| 구매 실행 기준 | [`SERVO_POWER_CONNECTION_PLAN.md`](./SERVO_POWER_CONNECTION_PLAN.md) | 결제할 전선·분배 부품·단자·WAGO 수량 |
 
 > [!IMPORTANT]
 > LRS 공식 사양·설치 조건은 `LRS-150F-5_CONNECTION_GUIDE.md`와 `components/MEAN_WELL_LRS-150F-5.md`를 우선합니다. 압착단자 구매는 `TERMINAL_PURCHASE_GUIDE.md`를 우선하며, LRS에는 `1.25-3.5`·`2.5-3.5` 절연 포크단자를 사용하는 것으로 결정했습니다. PCA9685 채널은 `MOTORS.md`를 우선합니다.
@@ -84,11 +84,11 @@ python3 robot_face/jetson/face_controller.py --demo
 1. `hardware/components/<MANUFACTURER>_<MODEL>.md`
 2. `hardware/components.yaml`
 3. `hardware/PARTS.md`
-4. `hardware/TODO.md`
+4. `hardware/components.yaml`
 5. 연결이 바뀌면 `hardware/wiring.md`
 6. 전력 조건이 바뀌면 `hardware/power-budget.md`
 7. 모터이면 `hardware/MOTORS.md`
-8. 전원 구매품이면 `hardware/LRS-150F-5_CONNECTION_PLAN_FROM_CHAT.md`
+8. 전원 구매품이면 `hardware/SERVO_POWER_CONNECTION_PLAN.md`
 9. 단자 규격·수량이 바뀌면 `hardware/TERMINAL_PURCHASE_GUIDE.md`
 10. `hardware/components/README.md`와 이 README의 인덱스
 
@@ -96,7 +96,7 @@ python3 robot_face/jetson/face_controller.py --demo
 
 - 공식 문서로 확인된 값은 `확정`으로 기록합니다.
 - 판매 페이지에만 있는 값은 출처를 표시합니다.
-- 실물 확인이 필요한 나사·퓨즈·단자·핀 순서는 임의로 확정하지 않고 `TODO.md`에 추가합니다.
+- 실물 확인이 필요한 나사·퓨즈·단자·핀 순서는 임의로 확정하지 않고 `components.yaml`에 추가합니다.
 - 구매 후 상태는 `planned → ordered → received → mounted → unit_tested → integrated` 순으로 갱신합니다.
 - 동일 값이 여러 문서에 있으면 상세 component 문서와 `components.yaml`을 먼저 고친 뒤 요약 문서를 동기화합니다.
 
@@ -215,7 +215,7 @@ LRS-75-5와 LRS-150F-5의 출력을 병렬 연결하지 않습니다.
 5. AC 배선 검토와 무부하 약 5.0 V 시험
 6. 서보 단품 → 분기 → 전체 서비스 동작 순서로 전류·전압·발열 측정
 7. 분기별 최종 퓨즈 정격 확정
-8. 실측값을 `components.yaml`, `PARTS.md`, `TODO.md`, `wiring.md`, `power-budget.md`에 동기화
+8. 실측값을 `components.yaml`, `PARTS.md`, `components.yaml`, `wiring.md`, `power-budget.md`에 동기화
 
 ## 변경 기록
 
