@@ -7,7 +7,7 @@
 저장소 루트에서:
 
 ```bash
-bash scripts/run_tod_review_web.sh
+python experiments/tod_slm/review/app.py
 ```
 
 기본 주소:
