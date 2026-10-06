@@ -37,7 +37,6 @@ class GenerateResponse(BaseModel):
     embedding_ready: bool
     model: str
     embedding_dimension: int
-    centroid: list[float]
     generated_at: str
     temporary_frames_deleted: bool
     quality: dict[str, dict[str, object]]
@@ -255,7 +254,6 @@ def generate_embedding(
         embedding_ready=True,
         model=MODEL_NAME,
         embedding_dimension=int(centroid.shape[0]),
-        centroid=centroid.astype(float).tolist(),
         generated_at=generated_at,
         temporary_frames_deleted=deleted,
         quality=quality,
