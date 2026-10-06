@@ -1,5 +1,5 @@
 import { auth } from './config';
-import { deleteTemporaryFaceFrames, markFaceEnrollmentProcessing, saveFaceEmbeddingResult } from './faceEnrollment';
+import { deleteTemporaryFaceFrames, markFaceEnrollmentProcessing } from './faceEnrollment';
 
 const FACE_EMBEDDING_API_BASE_URL = process.env.EXPO_PUBLIC_FACE_EMBEDDING_API_BASE_URL?.replace(/\/$/, '');
 
@@ -8,7 +8,6 @@ export type FaceEmbeddingBackendResponse = {
   embedding_ready: boolean;
   model: string;
   embedding_dimension: number;
-  centroid: number[];
   generated_at?: string;
   temporary_frames_deleted?: boolean;
 };
@@ -47,17 +46,14 @@ export async function requestFaceEmbedding(uid: string): Promise<FaceEmbeddingBa
   }
 
   const result = await response.json() as FaceEmbeddingBackendResponse;
-  if (!result.embedding_ready || !Array.isArray(result.centroid) || result.centroid.length === 0) {
-    throw new Error('백엔드가 유효한 얼굴 임베딩을 반환하지 않았습니다.');
+  if (!result.embedding_ready || result.embedding_dimension <= 0) {
+    throw new Error('백엔드가 유효한 얼굴 임베딩 생성 결과를 반환하지 않았습니다.');
   }
 
-  // 백엔드가 먼저 저장·삭제한다. 아래 작업은 네트워크 단절이나 이전 백엔드와의
-  // 호환성을 위한 멱등성 보강이며, 이미 삭제된 파일은 정상 처리된다.
-  await saveFaceEmbeddingResult(uid, {
-    model: result.model,
-    dimension: result.embedding_dimension,
-    centroid: result.centroid,
-  });
-  await deleteTemporaryFaceFrames(uid);
+  // 임베딩은 백엔드가 Firestore에 직접 저장한다. 클라이언트에는 원본 벡터를
+  // 반환하지 않으며, 임시 프레임 삭제가 일부 실패한 경우에만 한 번 더 정리한다.
+  if (result.temporary_frames_deleted === false) {
+    await deleteTemporaryFaceFrames(uid);
+  }
   return result;
 }
