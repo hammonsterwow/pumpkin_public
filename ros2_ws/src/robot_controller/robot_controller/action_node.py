@@ -113,7 +113,7 @@ class _CoreActionNode(Node):
             self.trigger_pending_stt("empty_tts")
 
     def decision_callback(self, msg):
-        """Compatibility alias for older callback tests; ROS subscribes to response_result."""
+        """Alias used by existing callback tests."""
         self.response_callback(msg)
 
     def stt_status_callback(self, msg):
@@ -122,11 +122,7 @@ class _CoreActionNode(Node):
         if status in {"ready", "recording", "transcribing", "done"}:
             return
         if status.startswith("error") or status in {"empty", "too_quiet", "rejected"}:
-            # A wake-gate capture is started directly by HandQuantityDecisionNode,
-            # so ActionNode has no pending listen token for it. If there is no
-            # pending token, stay completely silent and let the wake gate re-arm.
-            # This prevents background/noisy speech from producing STT_RETRY
-            # ("다시 말씀해 주세요") + SHAKE/UNSURE while waiting for "주문할게요".
+            # Wake-gate captures have no pending ActionNode listen token.
             if not self._listen_pending:
                 return
             self.handle_stt_failed(status)
@@ -604,13 +600,7 @@ class _OrderHandoffActionMixin:
         )
 
     def handle_stt_runtime_error(self, status):
-        """Stop automatic listening when the microphone/runtime itself is broken.
-
-        Recognition misses are safe to retry indefinitely, but an audio-device or
-        STT runtime error cannot be fixed by asking the customer to repeat the same
-        sentence. Publishing STT_FAILED once keeps the dialogue/order state intact
-        while preventing TTS -> listen -> runtime-error -> TTS retry loops.
-        """
+        """Stop automatic retries on an STT runtime error."""
         self.cancel_pending_listen()
         self.stt_retry_count = 0
         self.publish_response_request({
@@ -680,7 +670,7 @@ class _OrderHandoffActionMixin:
 
 
 class ActionNode(_OrderHandoffActionMixin, _CoreActionNode):
-    """Production action node with order handoff and resilient STT retry behavior."""
+    """ROS2 action node for robot responses and STT retry handling."""
 
 
 def main(args=None):
