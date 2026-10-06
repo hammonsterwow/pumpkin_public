@@ -77,34 +77,3 @@ tail -n 100 /tmp/pumpkin-logs/motor_controller_node.log
 | S27 | POS DEMO MODE APP 주문 | RECEIVED→PREPARING→READY에서 멈춤 |
 | S28 | POS DEMO MODE ROBOT 주문 | READY 이후 PICKED_UP까지 진행 |
 | S29 | 5인치 화면 | 내부 JSON/confidence 대신 고객용 주문 상태만 표시 |
-
-## 합격 기준
-
-- P0 S01~S10은 모두 통과합니다.
-- 핵심 주문·TTS/STT·복수 주문 시나리오는 여러 번 반복해 동일하게 동작하는지 확인합니다.
-- 비언어 기능을 시연에 포함하면 손 수량과 NOD/SHAKE를 실제 시연 거리에서 확인합니다.
-- Cloud/POS/얼굴 픽업을 시연하면 S21~S28까지 같은 네트워크 환경에서 확인합니다.
-
-## 실패 기록
-
-```text
-시나리오:
-실제 입력/행동:
-실제 결과:
-재현 횟수:
-
-처음 이상이 보인 단계:
-[ ] STT
-[ ] NLU
-[ ] Decision/FSM
-[ ] Response
-[ ] Action
-[ ] Vision
-[ ] Face
-[ ] Motor
-[ ] Cloud/POS
-
-관련 로그:
-```
-
-판정 순서는 입력(STT/Vision) → NLU → Decision → Response → Action → 실제 장치/Cloud 순으로 따라가며 최초로 달라진 지점을 원인 후보로 잡습니다.
