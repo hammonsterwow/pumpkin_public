@@ -191,7 +191,7 @@ robot_face/jetson/requirements.txt
 평소 실행:
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 git switch main
 git pull
 source .venv/bin/activate
