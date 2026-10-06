@@ -109,25 +109,6 @@ kips_2026_results/
 └── experiment_manifest.json
 ```
 
-## 8. 논문용 권장 결과표
-
-### Main comparison
-
-| Model | 1-item EM | 2-item EM | 3-item EM | Overall Order EM |
-|---|---:|---:|---:|---:|
-| M0 Independent Heads | mean±std | mean±std | mean±std | mean±std |
-| M1 Item Query | mean±std | mean±std | mean±std | mean±std |
-| M2 Improved Item Query | mean±std | mean±std | mean±std | mean±std |
-
-### Ablation
-
-| Setting | Multi-item EM | Overall Order EM |
-|---|---:|---:|
-| A0 Item Query | ... | ... |
-| A1 + Diff LR | ... | ... |
-| A2 + Oversampling | ... | ... |
-| A3 + Weighted Loss | ... | ... |
-| A4 + R-Drop (optional) | ... | ... |
 
 ## 9. 주의
 
