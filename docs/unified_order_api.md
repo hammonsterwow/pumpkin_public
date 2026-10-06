@@ -39,7 +39,9 @@ Content-Type: application/json
     }
   ],
   "original_text": null,
-  "metadata": {}
+  "metadata": {
+    "pickup_store": "HANIUM_01"
+  }
 }
 ```
 
