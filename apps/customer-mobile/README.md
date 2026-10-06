@@ -24,10 +24,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_customer_mobil
 실행 스크립트는 다음을 수행합니다.
 
 1. `apps/customer-mobile/.env.example`의 공개 Firebase/Cloud Run 설정을 `.env`에 반영합니다.
-2. 얼굴 촬영 단독 데모 플래그를 제거해 Firebase 연동 앱 모드로 실행합니다.
-3. 필수 공개 설정이 있는지 검사합니다.
-4. `npm install`로 의존성을 준비합니다.
-5. Expo tunnel을 기본 포트 `8099`에서 시작합니다.
+2. 필수 공개 설정이 있는지 검사합니다.
+3. `npm install`로 의존성을 준비합니다.
+4. Expo tunnel을 기본 포트 `8099`에서 시작합니다.
 
 터미널에 `Tunnel ready`가 표시된 뒤 Expo Go에서 QR을 스캔합니다.
 
@@ -62,12 +61,6 @@ Firebase Auth 로그인
 - Firebase Auth / Firestore / Storage 공개 설정
 
 `EXPO_PUBLIC_*` 값은 앱 번들에 포함되는 공개 클라이언트 설정입니다. 서비스 계정 JSON, Relay token, Firebase Admin 자격증명 같은 서버 비밀값을 넣으면 안 됩니다.
-
-별도 얼굴 촬영 UI만 시험할 때 사용하는 개발 플래그는 일반 실행에 설정하지 않습니다.
-
-```dotenv
-EXPO_PUBLIC_FACE_ENROLLMENT_DEMO=1
-```
 
 ## 수동 실행
 
