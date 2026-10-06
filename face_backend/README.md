@@ -27,7 +27,6 @@ Prerequisites:
 
 ```powershell
 gcloud auth login
-gcloud auth application-default login
 ```
 
 Then run:
@@ -40,7 +39,7 @@ The script performs all project-side setup:
 
 - enables Cloud Run, Cloud Build, Artifact Registry, and IAM APIs
 - creates a dedicated runtime service account
-- grants only Firestore user and Storage object permissions
+- grants the runtime service account Firestore user and Storage object permissions
 - builds the InsightFace image with the model baked in
 - deploys with 2 CPU, 4 GiB memory, concurrency 1, and scale-to-zero
 - reads the Cloud Run URL
