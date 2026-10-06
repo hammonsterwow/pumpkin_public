@@ -1,0 +1,59 @@
+name: Repository Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/**'
+      - 'apps/demo-web/**'
+      - 'apps/monitor-web/**'
+      - 'apps/pos-web/**'
+      - 'cloud_relay/**'
+      - 'nlu/**'
+      - 'robot_face/jetson/**'
+      - 'ros2_ws/src/robot_controller/**'
+      - 'scripts/**'
+      - '.github/workflows/repository-check.yml'
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python syntax
+        run: |
+          python3 -m compileall -q             api             apps/demo-web             apps/monitor-web             cloud_relay             nlu             robot_face/jetson             ros2_ws/src/robot_controller/robot_controller             scripts
+
+      - name: JavaScript syntax
+        run: |
+          node --check apps/demo-web/app.js
+          node --check apps/monitor-web/app.js
+          node --check apps/pos-web/server/index.mjs
+
+      - name: Shell syntax
+        run: |
+          find scripts -type f -name '*.sh' -print0             | xargs -0 -r -n1 bash -n
+
+  pos-web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/pos-web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
