@@ -3,9 +3,9 @@
 <package format="3">
   <name>robot_controller</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="pumpkin@todo.todo">pumpkin</maintainer>
-  <license>TODO: License declaration</license>
+  <description>ROS2 controller package for the Pumpkin Physical AI cafe robot</description>
+  <maintainer email="hammonsterwow@users.noreply.github.com">Pumpkin Team</maintainer>
+  <license>Apache-2.0</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
