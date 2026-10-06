@@ -1,7 +1,0 @@
-fastapi>=0.115,<1
-uvicorn[standard]>=0.34,<1
-firebase-admin>=6.5,<8
-insightface==0.7.3
-numpy>=1.24,<2
-onnxruntime>=1.18,<2
-opencv-python-headless>=4.10,<5
