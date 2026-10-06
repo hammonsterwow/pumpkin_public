@@ -636,6 +636,11 @@ class _OrderHandoffActionMixin:
             self.handle_stt_runtime_error(status)
             return
         if status in self.RECOVERABLE_STT_FAILURES:
+            # Wake-gate captures are started directly by the decision node, so
+            # the action node has no pending listen token for them. Stay silent
+            # and let the wake gate re-arm instead of emitting STT_RETRY actions.
+            if not self._listen_pending:
+                return
             self.handle_stt_failed(status)
 
     def get_action_rule(self, response_result):
