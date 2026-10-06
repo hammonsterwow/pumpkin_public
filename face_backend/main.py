@@ -116,7 +116,7 @@ def _download_pose(uid: str, pose: str) -> np.ndarray:
         ) from error
 
     if blob.size is not None and int(blob.size) > MAX_IMAGE_BYTES:
-        raise HTTPException(status_code=413, detail=f"{pose} 사진이 5MB 제한을 초과했습니다.")
+        raise HTTPException(status_code=413, detail=f"{pose} 사진이 허용된 크기 제한을 초과했습니다.")
     if blob.content_type and blob.content_type != "image/jpeg":
         raise HTTPException(status_code=415, detail=f"{pose} 사진은 JPEG 형식이어야 합니다.")
 
