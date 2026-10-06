@@ -21,9 +21,9 @@ Pumpkin 로봇의 ROS2 대화 파이프라인에서 사용하는 **한국어 주
 → TTS · LCD · 고개 · 팔 동작
 ```
 
-NLU 모델은 ROS2의 `nlu_node`에서 한 번 로딩합니다. 관리자 웹과 FastAPI는 별도 NLU 모델을 중복 로딩하지 않고 ROS Topic에서 발생한 NLU·Decision·Action 결과를 표시합니다.
+NLU 모델은 ROS2의 `nlu_node`에서 한 번 로딩합니다. 시연 웹과 고객 화면은 별도 NLU 모델을 중복 로딩하지 않고 ROS Topic에서 발생한 NLU·Decision·Action 결과를 표시합니다.
 
-관리자 웹이 관찰하는 주요 Topic:
+시연 웹이 관찰하는 주요 Topic:
 
 ```text
 /stt/status
@@ -34,8 +34,6 @@ NLU 모델은 ROS2의 `nlu_node`에서 한 번 로딩합니다. 관리자 웹과
 /fsm/state
 /face/recognition
 ```
-
-웹의 텍스트 테스트도 별도 mock NLU를 수행하지 않고 `/voice_text`에 입력을 발행하여 실제 `nlu_node → decision_node → action_node` 흐름을 실행합니다.
 
 ## 폴더 구성
 
@@ -242,8 +240,8 @@ NONE, 1, 2, 3, ... , 20
 | `nlu_node` | `/voice_text`를 받아 NLU 결과를 `/intent_result`로 발행 |
 | `decision_node` | FSM 상태, 재질문, 주문 확인·수정·취소 및 발화 결정 |
 | `action_node` | Decision 결과를 TTS·LCD·고개·팔 명령으로 변환 |
-| `api/ros_bridge.py` | ROS Topic 결과를 관리자 웹에 전달 |
-| 관리자 웹 | 실제 ROS 대화 흐름 표시 및 테스트 입력 제공 |
+| `apps/demo-web/server.py` | ROS Topic 결과와 카메라 스트림을 시연 웹에 전달 |
+| 시연 웹 | 실제 ROS 대화 흐름과 로봇 상태를 표시 |
 
 사용자에게 말할 문장, FSM 상태 전환, TTS 및 로봇 동작은 `nlu/`의 책임이 아닙니다.
 
