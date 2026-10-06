@@ -3,20 +3,14 @@ name: Validate TOD training code
 on:
   push:
     branches:
-      - feat/tod-rule-label-generator
+      - main
     paths:
       - .github/workflows/validate_tod_training.yml
       - experiments/tod_slm/training/**
-      - scripts/train_tod_qwen_lora.sh
-      - scripts/eval_tod_qwen.sh
-      - scripts/merge_tod_qwen_lora.sh
       - .gitignore
   pull_request:
     paths:
       - experiments/tod_slm/training/**
-      - scripts/train_tod_qwen_lora.sh
-      - scripts/eval_tod_qwen.sh
-      - scripts/merge_tod_qwen_lora.sh
       - .gitignore
 
 jobs:
@@ -32,12 +26,6 @@ jobs:
             experiments/tod_slm/training/evaluate.py \
             experiments/tod_slm/training/merge_lora.py \
             experiments/tod_slm/training/inspect_token_lengths.py
-
-      - name: Validate shell launchers
-        run: |
-          bash -n scripts/train_tod_qwen_lora.sh
-          bash -n scripts/eval_tod_qwen.sh
-          bash -n scripts/merge_tod_qwen_lora.sh
 
       - name: Validate training contract files
         run: |
