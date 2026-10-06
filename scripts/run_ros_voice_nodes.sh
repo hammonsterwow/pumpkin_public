@@ -433,7 +433,7 @@ fi
 echo
 echo "Pumpkin ROS voice pipeline is READY."
 echo "Flow: STT(VAD) -> NLU -> Decision -> Response Manager -> Action -> TTS/Face LCD -> STT"
-echo "Multimodal: NOD/SHAKE confirmation + TWO_FINGERS quantity=2"
+echo "Multimodal: NOD/SHAKE confirmation + ONE_FINGER..FIVE_FINGERS quantity=1..5"
 echo "NLU: saved_models/structure_b_item_query_decoder (${PUMPKIN_NLU_DEVICE}, ${NLU_PYTHON_BIN})"
 echo "STT runtime: robot_controller.stt_node"
 echo "Decision runtime: robot_controller.decision_node"
