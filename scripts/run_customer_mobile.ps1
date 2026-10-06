@@ -63,8 +63,8 @@ if (Test-Path $EnvFile) {
   $EnvLines = @()
 }
 
-# Always use the repository's verified public endpoints. Keep unrelated local
-# variables, but remove the standalone face demo flag and duplicate public keys.
+# Keep unrelated local variables, remove the obsolete standalone-face demo flag,
+# and replace each public key with the repository's current client configuration.
 $EnvLines = @($EnvLines | Where-Object {
   $_ -notmatch "^\s*EXPO_PUBLIC_FACE_ENROLLMENT_DEMO\s*="
 })
@@ -86,8 +86,7 @@ foreach ($Key in $RequiredKeys) {
 }
 
 $EnvLines | Set-Content -Encoding UTF8 $EnvFile
-Write-Host "[OK] 검증된 Firebase/Cloud Run 설정을 .env에 적용했습니다." -ForegroundColor Green
-Write-Host "[OK] Firebase 연동 완성 고객 앱 모드로 설정했습니다." -ForegroundColor Green
+Write-Host "[OK] 검증된 Firebase/Cloud Run 공개 설정을 .env에 적용했습니다." -ForegroundColor Green
 
 Push-Location $AppDir
 try {
