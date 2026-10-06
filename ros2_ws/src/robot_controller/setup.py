@@ -20,8 +20,7 @@ setup(
         'setuptools',
     ],
     zip_safe=True,
-    maintainer='pumpkin',
-    maintainer_email='pumpkin@todo.todo',
+    maintainer='Pumpkin Team',
     description='Robot controller package for the Pumpkin Physical AI project',
     license='Apache-2.0',
     extras_require={
