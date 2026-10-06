@@ -9,7 +9,7 @@
 3. 다음 명령을 실행한다.
 
 ~~~bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 bash scripts/servo_power_on.sh
 ~~~
 
@@ -41,7 +41,7 @@ CH10 = 179   Gripper
 4. 다음 명령을 실행한다.
 
 ~~~bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 bash scripts/servo_power_off.sh
 ~~~
 
@@ -58,7 +58,7 @@ Jetson의 종료가 끝나기 전에 전원을 강제로 차단하지 않는다.
 ## 긴급 PWM 차단
 
 ~~~bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 python3 scripts/pca9685/servo_power_sequence.py emergency-disable
 ~~~
 
