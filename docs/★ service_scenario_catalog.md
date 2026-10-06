@@ -19,7 +19,7 @@
 - 사용자 감지·고개 제스처: `vision_node.py`, `head_gesture_recognizer.py`
 - 얼굴 식별·개인화: `realtime_face_recognition.py`, `face_identity.py`, `face_personalization_node.py`
 - 메뉴 기준: `config/menu_catalog.json`
-- 사전 주문/주문 저장: `api/`, `apps/customer-mobile/`
+- 사전 주문/주문 저장: `cloud_relay/`, `apps/customer-mobile/`, `apps/pos-web/`
 
 ### 시나리오 상태 표기
 
