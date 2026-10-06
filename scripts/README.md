@@ -51,7 +51,6 @@ run_robot_with_monitor.sh
 | `servo_power_on.sh` | PCA9685 서보 전원 시퀀스를 ON 방향으로 수행 | 하드웨어 점검 시 사용 |
 | `servo_power_off.sh` | PCA9685 서보 전원 시퀀스를 OFF 방향으로 수행 | 하드웨어 점검 시 사용 |
 | `pca9685/servo_power_sequence.py` | 서보 전원 ON/OFF 시퀀스 실제 구현 | 위 두 스크립트에서 호출 |
-| `run_web_api.sh` | FastAPI 웹 API 서버 실행 | 웹 API 단독 실행 시 사용 |
 | `run_customer_mobile.ps1` | Windows PowerShell에서 고객용 모바일 앱 개발 서버 실행 | 앱 개발 시 사용 |
 
 ## 시연 전 확인
