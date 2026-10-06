@@ -481,38 +481,7 @@ koELECTRA-base Encoder
 
 ---
 
-## 14. 팀 공유용 요약
-
-팀원에게는 아래 내용만 우선 공유하면 된다.
-
-```text
-[Pumpkin NLU 최종 데이터셋]
-
-학습/검증:
-data/structure_b_train_valid.jsonl
-22,512개
-
-테스트:
-data/structure_b_test.jsonl
-1,507개
-
-총 24,019개
-
-Intent:
-ORDER / AFFIRM / DENY / MODIFY / CANCEL / GUIDE / UNKNOWN
-
-PAYMENT는 코드 라벨에는 있지만 현재 데이터는 0개.
-
-기존 데이터는 삭제하지 않고
-experiments/nlu/data_archive/
-에 보관함.
-
-학습할 때는 반드시 data/의 두 파일을 사용.
-```
-
----
-
-## 15. 최종 기준
+## 14. 최종 기준
 
 앞으로 Structure B 데이터 관련 수치나 파일 경로가 다른 문서와 충돌할 경우 **이 문서와 현재 `main/data/`의 canonical JSONL 파일을 최종 기준으로 본다.**
 
