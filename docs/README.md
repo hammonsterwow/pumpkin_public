@@ -11,7 +11,7 @@
 
 - 고객 유형 및 화면 역할: [`service_customer_and_display_policy.md`](./service_customer_and_display_policy.md) → 단골/사전주문 조합별 로봇 응대와 POS 웹·시연 웹·가슴 모니터 웹의 역할을 정의한 현재 서비스 기준
 - 메뉴 카탈로그 및 공식 `menu_id`: [`menu_catalog_policy.md`](./menu_catalog_policy.md) → `config/menu_catalog.json`을 서비스 메뉴의 Single Source of Truth로 사용
-- 관리자 웹과 주문 API의 현재 구현은 `web/`, `api/` 및 각 README를 기준으로 확인한다.
+- 관리자 POS와 화면 구현은 `apps/pos-web/`, `apps/demo-web/`, `apps/monitor-web/`, 주문 API는 `api/` 및 각 README를 기준으로 확인한다.
 
 ## NLU 및 데이터셋
 
@@ -27,13 +27,13 @@ NLU 데이터셋은 **모델의 학습 라벨·출력 구조 기준**이다. 가
 - [`response_manager.md`](./response_manager.md): 응답 생성 역할과 규칙
 - [`★ order_interaction_flow.md`](./★%20order_interaction_flow.md): 주문 상호작용 흐름 기록
 
-`★`가 포함된 파일명은 과거 중요도 표시 방식이다. 향후 링크 의존성을 확인한 뒤 일반적인 파일명으로 정리한다.
+`★`가 포함된 파일명은 기존 문서 링크 호환을 위해 현재 파일명을 유지한다.
 
 ## API · 앱 · 웹 연동
 
 - [`unified_order_api.md`](./unified_order_api.md): 통합 주문 API
 
-기존 관리자 웹은 현재 참고·연동 확인용으로 보존한다. 신규 관리자 웹 UI/구조는 별도로 재구축할 예정이다.
+관리자 POS는 `apps/pos-web/`, 시연용 상태 화면은 `apps/demo-web/`, 로봇 5인치 고객 화면은 `apps/monitor-web/`을 기준으로 한다.
 
 ## Jetson · 실행 환경
 
