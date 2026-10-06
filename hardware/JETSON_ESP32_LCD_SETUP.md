@@ -33,7 +33,7 @@ robot_face/jetson/requirements.txt
 robot_face/esp32_lcd/esp32_lcd_face.ino
 ```
 
-Jetson 제어 코드는 `feat/jetson-lcd-face-controller`에서 실제 장비 시험을 완료한 뒤 PR #61로 `main`에 병합했습니다.
+Jetson 제어 코드는 실제 장비 시험을 완료한 뒤 현재 `main`에 통합되어 있습니다.
 
 ## 시험한 하드웨어·OS
 
@@ -132,7 +132,7 @@ sudo usermod -aG dialout $USER
 ESP32를 Jetson USB 포트에 연결한 뒤:
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 git switch main
 git pull
 source .venv/bin/activate
