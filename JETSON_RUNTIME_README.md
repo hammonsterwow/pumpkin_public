@@ -29,7 +29,7 @@ Jetson Orin Nano에서는 ROS2/STT 환경과 NLU CUDA PyTorch 환경을 **서로
 ## 실행 방법
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 
 PUMPKIN_ENABLE_VISION=0 \
 PUMPKIN_NLU_DEVICE=cuda \
@@ -62,7 +62,7 @@ Pumpkin ROS voice pipeline is READY.
 
 ```bash
 source /opt/ros/humble/setup.bash
-source ~/pumpkin/ros2_ws/install/setup.bash
+source ~/pumpkin_public/ros2_ws/install/setup.bash
 ros2 topic echo /intent_result
 ```
 
@@ -70,7 +70,7 @@ ros2 topic echo /intent_result
 
 ```bash
 source /opt/ros/humble/setup.bash
-source ~/pumpkin/ros2_ws/install/setup.bash
+source ~/pumpkin_public/ros2_ws/install/setup.bash
 
 ros2 topic pub --once \
   /voice_text \
@@ -78,7 +78,7 @@ ros2 topic pub --once \
   "{data: '아이스 아메리카노 두 잔 주세요'}"
 ```
 
-현재 확인된 범위는 `/voice_text → CUDA NLU 추론 → /intent_result`입니다. 마이크 입력부터 STT, FSM, TTS, 로봇 동작까지 이어지는 전체 서비스 흐름은 별도 통합 테스트가 필요합니다.
+NLU 단독 확인은 `/voice_text → CUDA NLU 추론 → /intent_result` 경로를 점검합니다. 마이크·STT·FSM·TTS·Vision·하드웨어까지 포함한 전체 서비스는 저장소 루트의 `bash scripts/run_robot_with_monitor.sh`로 실행합니다.
 
 ## 로그
 
