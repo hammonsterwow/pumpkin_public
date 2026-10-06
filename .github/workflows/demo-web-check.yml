@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - "apps/demo-web/**"
-      - "scripts/run_demo_web.sh"
       - "ros2_ws/src/robot_controller/robot_controller/vision_node.py"
       - "ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py"
       - "ros2_ws/src/robot_controller/package.xml"
@@ -14,7 +13,6 @@ on:
       - main
     paths:
       - "apps/demo-web/**"
-      - "scripts/run_demo_web.sh"
       - "ros2_ws/src/robot_controller/robot_controller/vision_node.py"
       - "ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py"
       - "ros2_ws/src/robot_controller/package.xml"
@@ -33,6 +31,3 @@ jobs:
 
       - name: JavaScript syntax
         run: node --check apps/demo-web/app.js
-
-      - name: Shell syntax
-        run: bash -n scripts/run_demo_web.sh
