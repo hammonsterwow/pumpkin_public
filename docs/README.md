@@ -11,7 +11,7 @@
 
 - 고객 유형 및 화면 역할: [`service_customer_and_display_policy.md`](./service_customer_and_display_policy.md) → 단골/사전주문 조합별 로봇 응대와 POS 웹·시연 웹·가슴 모니터 웹의 역할을 정의한 현재 서비스 기준
 - 메뉴 카탈로그 및 공식 `menu_id`: [`menu_catalog_policy.md`](./menu_catalog_policy.md) → `config/menu_catalog.json`을 서비스 메뉴의 Single Source of Truth로 사용
-- 관리자 POS와 화면 구현은 `apps/pos-web/`, `apps/demo-web/`, `apps/monitor-web/`, 주문 API는 `api/` 및 각 README를 기준으로 확인한다.
+- 관리자 POS와 화면 구현은 `apps/pos-web/`, `apps/demo-web/`, `apps/monitor-web/`, 주문 API는 `cloud_relay/`와 관련 README를 기준으로 확인한다.
 
 ## NLU 및 데이터셋
 
