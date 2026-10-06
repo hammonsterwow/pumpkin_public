@@ -99,7 +99,7 @@ ros2 topic info /demo/camera/compressed
 
 ```bash
 source .venv/bin/activate
-pip install -r api/requirements.txt
+pip install -r requirements.txt
 ```
 
 ROS2 workspace를 갱신한 뒤에는:
