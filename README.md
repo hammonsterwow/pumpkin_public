@@ -303,12 +303,11 @@ created = self.client.submit_confirmed_order(
 | 경로 | 역할 |
 |---|---|
 | [`.github/workflows/`](.github/workflows/) | 모바일 앱, 시연 웹, 얼굴 백엔드, TOD 학습 코드 자동 검증 |
-| [`api/`](api/) | Jetson/웹 연동용 FastAPI 및 ROS bridge |
 | [`apps/customer-mobile/`](apps/customer-mobile/) | Expo 기반 고객 앱: 로그인, 사전주문, 얼굴 등록, 선호정보 |
 | [`apps/demo-web/`](apps/demo-web/) | ROS2 처리 흐름과 카메라를 보여주는 시연용 웹 |
 | [`apps/monitor-web/`](apps/monitor-web/) | 로봇 5인치 고객 화면 |
 | [`apps/pos-web/`](apps/pos-web/) | 주문 상태와 제조 흐름을 관리하는 POS |
-| [`cloud_relay/`](cloud_relay/) | Cloud Run 주문 중계 서비스 |
+| [`cloud_relay/`](cloud_relay/) | 고객 앱·로봇·POS가 공유하는 Cloud Run 주문 중계 API |
 | [`config/menu_catalog.json`](config/menu_catalog.json) | 메뉴명·가격·별칭·허용 온도의 Single Source of Truth |
 | [`data/`](data/) | NLU/TOD 학습·검증·테스트 데이터 |
 | [`docs/`](docs/) | 서비스 정책, 대화 흐름, 실행 환경, 통합 기록 |
