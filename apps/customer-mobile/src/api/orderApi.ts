@@ -95,7 +95,9 @@ export async function submitAppOrder(
       unit_price: item.menu.price,
     })),
     original_text: null,
-    metadata: {},
+    metadata: {
+      pickup_store: 'HANIUM_01',
+    },
   });
 }
 
