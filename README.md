@@ -296,448 +296,61 @@ created = self.client.submit_confirmed_order(
 )
 ```
 
-## **📚 전체 파일 가이드**
+## **📚 저장소 구조 및 실행 진입점**
 
-현재 `main` 브랜치의 주요 파일을 폴더별로 정리했습니다. 파일명을 누르면 실제 소스로 이동합니다.
+현재 `main` 브랜치의 구조를 기능 단위로 정리했습니다. 세부 파일 목록은 각 폴더의 README와 실제 소스 트리를 기준으로 확인합니다.
 
-<details>
-<summary><strong>최상위(root)/</strong> — 저장소 전체 설정·실행 환경·최상위 문서 (13개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`.dockerignore`](.dockerignore) |  프로젝트 소스·설정·데이터 파일입니다. | 97 B |
-| [`.gitignore`](.gitignore) |  프로젝트 소스·설정·데이터 파일입니다. | 1.2 KB |
-| [`Dockerfile`](Dockerfile) | Dockerfile 프로젝트 소스·설정·데이터 파일입니다. | 325 B |
-| [`Dockerfile.face`](Dockerfile.face) | Dockerfile 프로젝트 소스·설정·데이터 파일입니다. | 946 B |
-| [`firebase.json`](firebase.json) | firebase 설정 또는 구조화 데이터 파일입니다. | 56 B |
-| [`firestore.rules`](firestore.rules) | firestore 프로젝트 소스·설정·데이터 파일입니다. | 547 B |
-| [`JETSON_RUNTIME_README.md`](JETSON_RUNTIME_README.md) | JETSON RUNTIME README 관련 프로젝트 문서입니다. | 3.1 KB |
-| [`README.md`](README.md) | 한이음 제출용 프로젝트 소개, 실행 흐름, 주요 코드와 전체 파일 가이드입니다. | 125.6 KB |
-| [`requirements-face-recognition.txt`](requirements-face-recognition.txt) | requirements face recognition 프로젝트 소스·설정·데이터 파일입니다. | 279 B |
-| [`requirements.txt`](requirements.txt) | requirements 프로젝트 소스·설정·데이터 파일입니다. | 205 B |
-
-</details>
-
-<details>
-<summary><strong>.github/</strong> — GitHub Actions 자동 검증/CI (4개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`.github/workflows/customer-mobile-check.yml`](.github/workflows/customer-mobile-check.yml) | customer mobile check 자동 검증을 수행하는 GitHub Actions workflow입니다. | 808 B |
-| [`.github/workflows/demo-web-check.yml`](.github/workflows/demo-web-check.yml) | demo web check 자동 검증을 수행하는 GitHub Actions workflow입니다. | 1.2 KB |
-| [`.github/workflows/face-backend-check.yml`](.github/workflows/face-backend-check.yml) | face backend check 자동 검증을 수행하는 GitHub Actions workflow입니다. | 781 B |
-| [`.github/workflows/validate_tod_training.yml`](.github/workflows/validate_tod_training.yml) | validate tod training 자동 검증을 수행하는 GitHub Actions workflow입니다. | 1.8 KB |
-
-</details>
-
-<details>
-<summary><strong>api/</strong> — FastAPI 주문·고객·얼굴 백엔드 API (22개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`api/__init__.py`](api/__init__.py) | Python 패키지 초기화 파일입니다. | 55 B |
-| [`api/face_pipeline.py`](api/face_pipeline.py) | face pipeline 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 2.3 KB |
-| [`api/firebase_face_backend.py`](api/firebase_face_backend.py) | firebase face backend 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 5.5 KB |
-| [`api/main.py`](api/main.py) | main 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 10.8 KB |
-| [`api/requirements.txt`](api/requirements.txt) | requirements 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 155 B |
-| [`api/ros_bridge.py`](api/ros_bridge.py) | ros bridge 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 11.7 KB |
-| [`api/ros_process_manager.py`](api/ros_process_manager.py) | ros process manager 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 3.3 KB |
-| [`api/schemas/__init__.py`](api/schemas/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`api/schemas/order.py`](api/schemas/order.py) | order 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 1.8 KB |
-| [`api/services/__init__.py`](api/services/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`api/web_main.py`](api/web_main.py) | web main 주문·고객·얼굴 관련 FastAPI 백엔드 파일입니다. | 2.2 KB |
-
-</details>
-
-<details>
-<summary><strong>apps/</strong> — 고객 앱·POS·로봇 모니터 애플리케이션 (144개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`apps/customer-mobile/.env.example`](apps/customer-mobile/.env.example) | .env 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 896 B |
-| [`apps/customer-mobile/.gitignore`](apps/customer-mobile/.gitignore) |  고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8 B |
-| [`apps/customer-mobile/app.json`](apps/customer-mobile/app.json) | Expo/React Native 앱 설정입니다. | 737 B |
-| [`apps/customer-mobile/App.tsx`](apps/customer-mobile/App.tsx) | App 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 50 B |
-| [`apps/customer-mobile/index.ts`](apps/customer-mobile/index.ts) | index 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 487 B |
-| [`apps/customer-mobile/package.json`](apps/customer-mobile/package.json) | 해당 앱의 npm 의존성과 실행 명령을 정의합니다. | 920 B |
-| [`apps/customer-mobile/README.md`](apps/customer-mobile/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 4.4 KB |
-| [`apps/customer-mobile/src/api/orderApi.ts`](apps/customer-mobile/src/api/orderApi.ts) | orderApi 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.3 KB |
-| [`apps/customer-mobile/src/auth/AuthProvider.tsx`](apps/customer-mobile/src/auth/AuthProvider.tsx) | AuthProvider 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.7 KB |
-| [`apps/customer-mobile/src/components/FaceCameraView.tsx`](apps/customer-mobile/src/components/FaceCameraView.tsx) | FaceCameraView 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8.4 KB |
-| [`apps/customer-mobile/src/components/FaceGuideOverlay.tsx`](apps/customer-mobile/src/components/FaceGuideOverlay.tsx) | FaceGuideOverlay 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.0 KB |
-| [`apps/customer-mobile/src/components/RegistrationStatusBadge.tsx`](apps/customer-mobile/src/components/RegistrationStatusBadge.tsx) | RegistrationStatusBadge 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.4 KB |
-| [`apps/customer-mobile/src/CustomerMobileApp.tsx`](apps/customer-mobile/src/CustomerMobileApp.tsx) | CustomerMobileApp 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 28.0 KB |
-| [`apps/customer-mobile/src/firebase/config.ts`](apps/customer-mobile/src/firebase/config.ts) | config 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.2 KB |
-| [`apps/customer-mobile/src/firebase/faceEmbeddingBackend.ts`](apps/customer-mobile/src/firebase/faceEmbeddingBackend.ts) | faceEmbeddingBackend 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.3 KB |
-| [`apps/customer-mobile/src/firebase/faceEnrollment.ts`](apps/customer-mobile/src/firebase/faceEnrollment.ts) | faceEnrollment 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.2 KB |
-| [`apps/customer-mobile/src/FirebaseAuthRoot.tsx`](apps/customer-mobile/src/FirebaseAuthRoot.tsx) | FirebaseAuthRoot 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.3 KB |
-| [`apps/customer-mobile/src/native/CareScreen.tsx`](apps/customer-mobile/src/native/CareScreen.tsx) | CareScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 11.1 KB |
-| [`apps/customer-mobile/src/native/menuData.ts`](apps/customer-mobile/src/native/menuData.ts) | menuData 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 1.6 KB |
-| [`apps/customer-mobile/src/native/theme.ts`](apps/customer-mobile/src/native/theme.ts) | theme 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 325 B |
-| [`apps/customer-mobile/src/native/types.ts`](apps/customer-mobile/src/native/types.ts) | types 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 741 B |
-| [`apps/customer-mobile/src/screens/AuthScreen.tsx`](apps/customer-mobile/src/screens/AuthScreen.tsx) | AuthScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 5.1 KB |
-| [`apps/customer-mobile/src/screens/FaceCaptureScreen.tsx`](apps/customer-mobile/src/screens/FaceCaptureScreen.tsx) | FaceCaptureScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 8.8 KB |
-| [`apps/customer-mobile/src/screens/FaceConsentScreen.tsx`](apps/customer-mobile/src/screens/FaceConsentScreen.tsx) | FaceConsentScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 11.7 KB |
-| [`apps/customer-mobile/src/screens/FaceRegistrationResultScreen.tsx`](apps/customer-mobile/src/screens/FaceRegistrationResultScreen.tsx) | FaceRegistrationResultScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 3.4 KB |
-| [`apps/customer-mobile/src/screens/ProfileScreen.tsx`](apps/customer-mobile/src/screens/ProfileScreen.tsx) | ProfileScreen 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 10.5 KB |
-| [`apps/customer-mobile/src/types/faceProfile.ts`](apps/customer-mobile/src/types/faceProfile.ts) | faceProfile 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 2.1 KB |
-| [`apps/customer-mobile/src/utils/imageValidation.ts`](apps/customer-mobile/src/utils/imageValidation.ts) | imageValidation 고객 모바일 앱의 화면·상태·API·설정 파일입니다. | 796 B |
-| [`apps/customer-mobile/tsconfig.json`](apps/customer-mobile/tsconfig.json) | TypeScript 컴파일과 타입 검사 설정입니다. | 429 B |
-| [`apps/demo-web/app.js`](apps/demo-web/app.js) | app 프로젝트 소스·설정·데이터 파일입니다. | 11.4 KB |
-| [`apps/demo-web/index.html`](apps/demo-web/index.html) | index 프로젝트 소스·설정·데이터 파일입니다. | 2.9 KB |
-| [`apps/demo-web/README.md`](apps/demo-web/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 7.6 KB |
-| [`apps/demo-web/server.py`](apps/demo-web/server.py) | server 기능을 구현하는 Python 소스입니다. | 21.2 KB |
-| [`apps/demo-web/styles.css`](apps/demo-web/styles.css) | styles 프로젝트 소스·설정·데이터 파일입니다. | 9.6 KB |
-| [`apps/monitor-web/app.js`](apps/monitor-web/app.js) | app 로봇 5인치 고객 화면의 표시·상태 파일입니다. | 8.7 KB |
-| [`apps/monitor-web/index.html`](apps/monitor-web/index.html) | index 로봇 5인치 고객 화면의 표시·상태 파일입니다. | 3.1 KB |
-| [`apps/monitor-web/monitor_state.py`](apps/monitor-web/monitor_state.py) | monitor state 로봇 5인치 고객 화면의 표시·상태 파일입니다. | 8.4 KB |
-| [`apps/monitor-web/README.md`](apps/monitor-web/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 2.9 KB |
-| [`apps/monitor-web/requirements.txt`](apps/monitor-web/requirements.txt) | requirements 로봇 5인치 고객 화면의 표시·상태 파일입니다. | 58 B |
-| [`apps/monitor-web/server.py`](apps/monitor-web/server.py) | server 로봇 5인치 고객 화면의 표시·상태 파일입니다. | 5.4 KB |
-| [`apps/monitor-web/styles.css`](apps/monitor-web/styles.css) | styles 로봇 5인치 고객 화면의 표시·상태 파일입니다. | 6.7 KB |
-| [`apps/pos-web/.env.example`](apps/pos-web/.env.example) | .env 관리자 POS 웹의 화면·상태·설정 파일입니다. | 575 B |
-| [`apps/pos-web/HANDOFF.md`](apps/pos-web/HANDOFF.md) | HANDOFF 관리자 POS 웹의 화면·상태·설정 파일입니다. | 7.6 KB |
-| [`apps/pos-web/index.html`](apps/pos-web/index.html) | index 관리자 POS 웹의 화면·상태·설정 파일입니다. | 348 B |
-| [`apps/pos-web/package-lock.json`](apps/pos-web/package-lock.json) | npm 의존성 버전과 무결성 정보를 고정합니다. | 163.7 KB |
-| [`apps/pos-web/package.json`](apps/pos-web/package.json) | 해당 앱의 npm 의존성과 실행 명령을 정의합니다. | 757 B |
-| [`apps/pos-web/README.md`](apps/pos-web/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 5.2 KB |
-| [`apps/pos-web/server/index.mjs`](apps/pos-web/server/index.mjs) | index 관리자 POS 웹의 화면·상태·설정 파일입니다. | 11.4 KB |
-| [`apps/pos-web/src/App.tsx`](apps/pos-web/src/App.tsx) | App 관리자 POS 웹의 화면·상태·설정 파일입니다. | 35.5 KB |
-| [`apps/pos-web/src/main.tsx`](apps/pos-web/src/main.tsx) | main 관리자 POS 웹의 화면·상태·설정 파일입니다. | 267 B |
-| [`apps/pos-web/src/manufacturing-board.css`](apps/pos-web/src/manufacturing-board.css) | manufacturing board 관리자 POS 웹의 화면·상태·설정 파일입니다. | 7.3 KB |
-| [`apps/pos-web/src/passwordless.css`](apps/pos-web/src/passwordless.css) | passwordless 관리자 POS 웹의 화면·상태·설정 파일입니다. | 114 B |
-| [`apps/pos-web/src/styles.css`](apps/pos-web/src/styles.css) | styles 관리자 POS 웹의 화면·상태·설정 파일입니다. | 18.5 KB |
-| [`apps/pos-web/tsconfig.json`](apps/pos-web/tsconfig.json) | TypeScript 컴파일과 타입 검사 설정입니다. | 527 B |
-| [`apps/pos-web/vite.config.ts`](apps/pos-web/vite.config.ts) | vite.config 관리자 POS 웹의 화면·상태·설정 파일입니다. | 228 B |
-
-</details>
-
-<details>
-<summary><strong>cloud_relay/</strong> — 클라우드 주문 상태 중계 서비스 (3개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`cloud_relay/__init__.py`](cloud_relay/__init__.py) | Python 패키지 초기화 파일입니다. | 43 B |
-| [`cloud_relay/main.py`](cloud_relay/main.py) | main 기능을 구현하는 Python 소스입니다. | 11.2 KB |
-| [`cloud_relay/requirements.txt`](cloud_relay/requirements.txt) | requirements 프로젝트 소스·설정·데이터 파일입니다. | 77 B |
-
-</details>
-
-<details>
-<summary><strong>config/</strong> — 서비스 공통 설정과 메뉴 카탈로그 (1개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`config/menu_catalog.json`](config/menu_catalog.json) | 서비스 메뉴명·가격·별칭·허용 온도의 Single Source of Truth입니다. | 2.1 KB |
-
-</details>
-
-<details>
-<summary><strong>data/</strong> — NLU/TOD 학습·검증·테스트 데이터 (12개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`data/single_menu_quantity_1_20_augmented.csv`](data/single_menu_quantity_1_20_augmented.csv) | single menu quantity 1 20 augmented 학습 데이터 또는 실험 결과 CSV입니다. | 2.3 MB |
-| [`data/structure_b_test.jsonl`](data/structure_b_test.jsonl) | structure b test 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 552.3 KB |
-| [`data/structure_b_train_valid.jsonl`](data/structure_b_train_valid.jsonl) | structure b train valid 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 7.5 MB |
-| [`data/tod/pumpkin_tod_v1_multiturn_stats.json`](data/tod/pumpkin_tod_v1_multiturn_stats.json) | pumpkin tod v1 multiturn stats 데이터셋 통계·설정·요약 JSON입니다. | 2.5 KB |
-| [`data/tod/pumpkin_tod_v1_review_results.jsonl`](data/tod/pumpkin_tod_v1_review_results.jsonl) | pumpkin tod v1 review results 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 72.4 KB |
-| [`data/tod/pumpkin_tod_v1_review_sample.jsonl`](data/tod/pumpkin_tod_v1_review_sample.jsonl) | pumpkin tod v1 review sample 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 280.3 KB |
-| [`data/tod/pumpkin_tod_v1_review_stats.json`](data/tod/pumpkin_tod_v1_review_stats.json) | pumpkin tod v1 review stats 데이터셋 통계·설정·요약 JSON입니다. | 1.3 KB |
-| [`data/tod/pumpkin_tod_v1_stats.json`](data/tod/pumpkin_tod_v1_stats.json) | pumpkin tod v1 stats 데이터셋 통계·설정·요약 JSON입니다. | 22.3 KB |
-| [`data/tod/qwen/pumpkin_tod_v1_qwen_stats.json`](data/tod/qwen/pumpkin_tod_v1_qwen_stats.json) | pumpkin tod v1 qwen stats 데이터셋 통계·설정·요약 JSON입니다. | 8.3 KB |
-| [`data/tod/qwen/pumpkin_tod_v1_qwen_test.jsonl`](data/tod/qwen/pumpkin_tod_v1_qwen_test.jsonl) | pumpkin tod v1 qwen test 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 2.4 MB |
-| [`data/tod/qwen/pumpkin_tod_v1_qwen_train.jsonl`](data/tod/qwen/pumpkin_tod_v1_qwen_train.jsonl) | pumpkin tod v1 qwen train 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 40.1 MB |
-| [`data/tod/qwen/pumpkin_tod_v1_qwen_validation.jsonl`](data/tod/qwen/pumpkin_tod_v1_qwen_validation.jsonl) | pumpkin tod v1 qwen validation 학습·검증·평가에 사용하는 JSON Lines 데이터입니다. | 4.5 MB |
-
-</details>
-
-<details>
-<summary><strong>docs/</strong> — 설계·정책·실행법·시연/디버깅 문서 (41개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`docs/★ order_interaction_flow.md`](docs/%E2%98%85%20order_interaction_flow.md) | ★ order interaction flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 18.8 KB |
-| [`docs/★ service_scenario_catalog.md`](docs/%E2%98%85%20service_scenario_catalog.md) | ★ service scenario catalog 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 26.2 KB |
-| [`docs/★ structure_b_final_dataset.md`](docs/%E2%98%85%20structure_b_final_dataset.md) | ★ structure b final dataset 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 12.9 KB |
-| [`docs/2026-08-10_stt_respeaker_debug_log.md`](docs/2026-08-10_stt_respeaker_debug_log.md) | 2026 08 10 stt respeaker debug log 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.3 KB |
-| [`docs/2026-09-05_qwen3_multiturn_repeat_issue.md`](docs/2026-09-05_qwen3_multiturn_repeat_issue.md) | 2026 09 05 qwen3 multiturn repeat issue 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 6.1 KB |
-| [`docs/2026-09-05_qwen3_smalltalk_standalone_log.md`](docs/2026-09-05_qwen3_smalltalk_standalone_log.md) | 2026 09 05 qwen3 smalltalk standalone log 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 12.1 KB |
-| [`docs/ARM_GESTURE_INTEGRATION.md`](docs/ARM_GESTURE_INTEGRATION.md) | ARM GESTURE INTEGRATION 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 3.6 KB |
-| [`docs/cloud_run_relay.md`](docs/cloud_run_relay.md) | cloud run relay 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 3.4 KB |
-| [`docs/data_collection_flow.md`](docs/data_collection_flow.md) | data collection flow 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.1 KB |
-| [`docs/DEMO_TEST_SCENARIOS.md`](docs/DEMO_TEST_SCENARIOS.md) | DEMO TEST SCENARIOS 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.3 KB |
-| [`docs/HAND_GESTURE_QUANTITY.md`](docs/HAND_GESTURE_QUANTITY.md) | HAND GESTURE QUANTITY 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 5.8 KB |
-| [`docs/JETSON_ENVIRONMENT_STATUS.md`](docs/JETSON_ENVIRONMENT_STATUS.md) | JETSON ENVIRONMENT STATUS 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 7.9 KB |
-| [`docs/jetson_realtime_face_recognition.md`](docs/jetson_realtime_face_recognition.md) | jetson realtime face recognition 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.7 KB |
-| [`docs/menu_catalog_policy.md`](docs/menu_catalog_policy.md) | menu catalog policy 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.3 KB |
-| [`docs/nlu_labeling_guidelines.md`](docs/nlu_labeling_guidelines.md) | nlu labeling guidelines 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 11.5 KB |
-| [`docs/nlu_training_data_gap_guide.md`](docs/nlu_training_data_gap_guide.md) | nlu training data gap guide 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 15.4 KB |
-| [`docs/order_dialogue_rules.md`](docs/order_dialogue_rules.md) | order dialogue rules 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 10.2 KB |
-| [`docs/order_validation_rules.md`](docs/order_validation_rules.md) | order validation rules 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 6.9 KB |
-| [`docs/preorder_face_pickup_contract.md`](docs/preorder_face_pickup_contract.md) | preorder face pickup contract 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 11.1 KB |
-| [`docs/README.md`](docs/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 5.0 KB |
-| [`docs/response_manager.md`](docs/response_manager.md) | response manager 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 4.9 KB |
-| [`docs/service_customer_and_display_policy.md`](docs/service_customer_and_display_policy.md) | service customer and display policy 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 13.4 KB |
-| [`docs/single_menu_quantity_dataset_summary.md`](docs/single_menu_quantity_dataset_summary.md) | single menu quantity dataset summary 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 5.1 KB |
-| [`docs/table_definition.md`](docs/table_definition.md) | table definition 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 8.6 KB |
-| [`docs/unified_order_api.md`](docs/unified_order_api.md) | unified order api 프로젝트 설계·정책·실행·검증 문서/자료입니다. | 2.8 KB |
-
-</details>
-
-<details>
-<summary><strong>experiments/</strong> — KIPS NLU 및 TOD SLM 실험 코드/결과 (101개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`experiments/nlu/kips_2026_item_query/__init__.py`](experiments/nlu/kips_2026_item_query/__init__.py) | Python 패키지 초기화 파일입니다. | 50 B |
-| [`experiments/nlu/kips_2026_item_query/01_M0_independent_heads.ipynb`](experiments/nlu/kips_2026_item_query/01_M0_independent_heads.ipynb) | 01 M0 independent heads KIPS Item Query NLU 실험 재현 노트북입니다. | 5.0 KB |
-| [`experiments/nlu/kips_2026_item_query/02_M1_item_query.ipynb`](experiments/nlu/kips_2026_item_query/02_M1_item_query.ipynb) | 02 M1 item query KIPS Item Query NLU 실험 재현 노트북입니다. | 4.9 KB |
-| [`experiments/nlu/kips_2026_item_query/03_M2_improved_item_query.ipynb`](experiments/nlu/kips_2026_item_query/03_M2_improved_item_query.ipynb) | 03 M2 improved item query KIPS Item Query NLU 실험 재현 노트북입니다. | 5.0 KB |
-| [`experiments/nlu/kips_2026_item_query/04_ablation.ipynb`](experiments/nlu/kips_2026_item_query/04_ablation.ipynb) | 04 ablation KIPS Item Query NLU 실험 재현 노트북입니다. | 7.2 KB |
-| [`experiments/nlu/kips_2026_item_query/COLAB_RUN.md`](experiments/nlu/kips_2026_item_query/COLAB_RUN.md) | COLAB RUN KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 5.9 KB |
-| [`experiments/nlu/kips_2026_item_query/config.py`](experiments/nlu/kips_2026_item_query/config.py) | config KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 1.8 KB |
-| [`experiments/nlu/kips_2026_item_query/data_utils.py`](experiments/nlu/kips_2026_item_query/data_utils.py) | data utils KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 9.0 KB |
-| [`experiments/nlu/kips_2026_item_query/kips_item_query_experiments_colab.ipynb`](experiments/nlu/kips_2026_item_query/kips_item_query_experiments_colab.ipynb) | kips item query experiments colab KIPS Item Query NLU 실험 재현 노트북입니다. | 5.4 KB |
-| [`experiments/nlu/kips_2026_item_query/models.py`](experiments/nlu/kips_2026_item_query/models.py) | models KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 4.5 KB |
-| [`experiments/nlu/kips_2026_item_query/README.md`](experiments/nlu/kips_2026_item_query/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 6.0 KB |
-| [`experiments/nlu/kips_2026_item_query/requirements-colab.txt`](experiments/nlu/kips_2026_item_query/requirements-colab.txt) | requirements colab KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 85 B |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/ablation_runs_seed42.csv`](experiments/nlu/kips_2026_item_query/results/ablation/ablation_runs_seed42.csv) | ablation runs seed42 KIPS NLU 비교 실험 결과 산출물입니다. | 1.5 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/ablation_summary_seed42.csv`](experiments/nlu/kips_2026_item_query/results/ablation/ablation_summary_seed42.csv) | ablation summary seed42 KIPS NLU 비교 실험 결과 산출물입니다. | 1.3 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/experiment_manifest.json`](experiments/nlu/kips_2026_item_query/results/ablation/experiment_manifest.json) | experiment manifest KIPS NLU 비교 실험 결과 산출물입니다. | 1.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 2.7 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 788 B |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 207.3 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A1_plus_diff_lr_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 416.6 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 4.0 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 795 B |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 199.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/A2_plus_oversampling_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 415.0 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 3.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 787 B |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 224.8 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M1_item_query_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 413.2 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 2.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 792 B |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 196.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/ablation/runs/M2_improved_item_query_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 415.1 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/experiment_manifest.json`](experiments/nlu/kips_2026_item_query/results/M0/experiment_manifest.json) | experiment manifest KIPS NLU 비교 실험 결과 산출물입니다. | 1.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/M0_paper_table.csv`](experiments/nlu/kips_2026_item_query/results/M0/M0_paper_table.csv) | M0 paper table KIPS NLU 비교 실험 결과 산출물입니다. | 169 B |
-| [`experiments/nlu/kips_2026_item_query/results/M0/M0_runs.csv`](experiments/nlu/kips_2026_item_query/results/M0/M0_runs.csv) | M0 runs KIPS NLU 비교 실험 결과 산출물입니다. | 1.2 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/M0_summary.csv`](experiments/nlu/kips_2026_item_query/results/M0/M0_summary.csv) | M0 summary KIPS NLU 비교 실험 결과 산출물입니다. | 905 B |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 4.8 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 797 B |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 239.5 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 407.5 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/history.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 5.0 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/result.json`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 789 B |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 227.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed43/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 406.1 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/history.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 4.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/result.json`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 789 B |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 236.0 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M0/runs/M0_independent_heads_seed44/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 407.2 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/experiment_manifest.json`](experiments/nlu/kips_2026_item_query/results/M1/experiment_manifest.json) | experiment manifest KIPS NLU 비교 실험 결과 산출물입니다. | 1.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/M1_paper_table.csv`](experiments/nlu/kips_2026_item_query/results/M1/M1_paper_table.csv) | M1 paper table KIPS NLU 비교 실험 결과 산출물입니다. | 164 B |
-| [`experiments/nlu/kips_2026_item_query/results/M1/M1_runs.csv`](experiments/nlu/kips_2026_item_query/results/M1/M1_runs.csv) | M1 runs KIPS NLU 비교 실험 결과 산출물입니다. | 1.2 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/M1_summary.csv`](experiments/nlu/kips_2026_item_query/results/M1/M1_summary.csv) | M1 summary KIPS NLU 비교 실험 결과 산출물입니다. | 920 B |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 3.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 787 B |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 224.8 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 413.2 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/history.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 4.1 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/result.json`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 785 B |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 203.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed43/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 403.1 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/history.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 3.7 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/result.json`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 776 B |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 211.8 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M1/runs/M1_item_query_seed44/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 415.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/experiment_manifest.json`](experiments/nlu/kips_2026_item_query/results/M2/experiment_manifest.json) | experiment manifest KIPS NLU 비교 실험 결과 산출물입니다. | 1.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/M2_paper_table.csv`](experiments/nlu/kips_2026_item_query/results/M2/M2_paper_table.csv) | M2 paper table KIPS NLU 비교 실험 결과 산출물입니다. | 173 B |
-| [`experiments/nlu/kips_2026_item_query/results/M2/M2_runs.csv`](experiments/nlu/kips_2026_item_query/results/M2/M2_runs.csv) | M2 runs KIPS NLU 비교 실험 결과 산출물입니다. | 1.3 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/M2_summary.csv`](experiments/nlu/kips_2026_item_query/results/M2/M2_summary.csv) | M2 summary KIPS NLU 비교 실험 결과 산출물입니다. | 915 B |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/history.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 2.4 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/result.json`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 792 B |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 196.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed42/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 415.1 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/history.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 3.6 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/result.json`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 813 B |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 193.6 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed43/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 408.9 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/history.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/history.csv) | history KIPS NLU 비교 실험 결과 산출물입니다. | 3.1 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/result.json`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/result.json) | result KIPS NLU 비교 실험 결과 산출물입니다. | 812 B |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_errors.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_errors.csv) | test errors KIPS NLU 비교 실험 결과 산출물입니다. | 209.8 KB |
-| [`experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_predictions.csv`](experiments/nlu/kips_2026_item_query/results/M2/runs/M2_improved_item_query_seed44/test_predictions.csv) | test predictions KIPS NLU 비교 실험 결과 산출물입니다. | 415.2 KB |
-| [`experiments/nlu/kips_2026_item_query/run_all.py`](experiments/nlu/kips_2026_item_query/run_all.py) | run all KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 7.1 KB |
-| [`experiments/nlu/kips_2026_item_query/train_eval.py`](experiments/nlu/kips_2026_item_query/train_eval.py) | train eval KIPS Item Query NLU 비교 실험 구성/재현 파일입니다. | 16.9 KB |
-| [`experiments/nlu/README.md`](experiments/nlu/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 997 B |
-| [`experiments/tod_slm/data_generation/build_multiturn_scenarios.py`](experiments/tod_slm/data_generation/build_multiturn_scenarios.py) | build multiturn scenarios TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 36.2 KB |
-| [`experiments/tod_slm/data_generation/build_review_samples.py`](experiments/tod_slm/data_generation/build_review_samples.py) | build review samples TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 9.4 KB |
-| [`experiments/tod_slm/data_generation/generate_rule_labels.py`](experiments/tod_slm/data_generation/generate_rule_labels.py) | generate rule labels TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 28.4 KB |
-| [`experiments/tod_slm/data_generation/prepare_qwen_sft.py`](experiments/tod_slm/data_generation/prepare_qwen_sft.py) | prepare qwen sft TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 18.9 KB |
-| [`experiments/tod_slm/data_generation/QWEN_SFT_PREP.md`](experiments/tod_slm/data_generation/QWEN_SFT_PREP.md) | QWEN SFT PREP TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 7.5 KB |
-| [`experiments/tod_slm/data_generation/README.md`](experiments/tod_slm/data_generation/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 9.4 KB |
-| [`experiments/tod_slm/review/app.py`](experiments/tod_slm/review/app.py) | app TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 13.3 KB |
-| [`experiments/tod_slm/review/index.html`](experiments/tod_slm/review/index.html) | index TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 21.8 KB |
-| [`experiments/tod_slm/review/README.md`](experiments/tod_slm/review/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 3.9 KB |
-| [`experiments/tod_slm/training/analyze_test_errors.py`](experiments/tod_slm/training/analyze_test_errors.py) | TOD SLM의 고정 test set 예측 오류를 분석하는 실험 분석 도구이며 unit test 파일이 아닙니다. | 15.9 KB |
-| [`experiments/tod_slm/training/configs/qwen3_0.6b_lora_v1.yaml`](experiments/tod_slm/training/configs/qwen3_0.6b_lora_v1.yaml) | qwen3 0.6b lora v1 TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 1.5 KB |
-| [`experiments/tod_slm/training/evaluate.py`](experiments/tod_slm/training/evaluate.py) | evaluate TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 13.6 KB |
-| [`experiments/tod_slm/training/inspect_token_lengths.py`](experiments/tod_slm/training/inspect_token_lengths.py) | inspect token lengths TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 6.0 KB |
-| [`experiments/tod_slm/training/merge_lora.py`](experiments/tod_slm/training/merge_lora.py) | merge lora TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 2.4 KB |
-| [`experiments/tod_slm/training/README.md`](experiments/tod_slm/training/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 9.3 KB |
-| [`experiments/tod_slm/training/requirements.txt`](experiments/tod_slm/training/requirements.txt) | requirements TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 295 B |
-| [`experiments/tod_slm/training/STUDENT_V1_RESULTS_AND_V2_PLAN.md`](experiments/tod_slm/training/STUDENT_V1_RESULTS_AND_V2_PLAN.md) | STUDENT V1 RESULTS AND V2 PLAN TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 6.5 KB |
-| [`experiments/tod_slm/training/train_lora.py`](experiments/tod_slm/training/train_lora.py) | train lora TOD SLM 데이터 생성·학습·평가·분석 파일입니다. | 14.0 KB |
-
-</details>
-
-<details>
-<summary><strong>face_backend/</strong> — 얼굴 임베딩 Cloud Run 백엔드 (6개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`face_backend/cloudbuild.yaml`](face_backend/cloudbuild.yaml) | cloudbuild 얼굴 임베딩 Cloud Run 백엔드 파일입니다. | 233 B |
-| [`face_backend/deploy.ps1`](face_backend/deploy.ps1) | deploy 얼굴 임베딩 Cloud Run 백엔드 파일입니다. | 5.0 KB |
-| [`face_backend/Dockerfile`](face_backend/Dockerfile) | Dockerfile 얼굴 임베딩 Cloud Run 백엔드 파일입니다. | 1.1 KB |
-| [`face_backend/main.py`](face_backend/main.py) | main 얼굴 임베딩 Cloud Run 백엔드 파일입니다. | 8.9 KB |
-| [`face_backend/README.md`](face_backend/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 2.0 KB |
-| [`face_backend/requirements.txt`](face_backend/requirements.txt) | requirements 얼굴 임베딩 Cloud Run 백엔드 파일입니다. | 211 B |
-
-</details>
-
-<details>
-<summary><strong>hardware/</strong> — 부품·전원·배선·제작 자료 (29개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`hardware/components.yaml`](hardware/components.yaml) | components 하드웨어 부품·전원·배선·제작 자료입니다. | 21.8 KB |
-| [`hardware/components/ATO_ATC_FUSE_BLOCK_6WAY.md`](hardware/components/ATO_ATC_FUSE_BLOCK_6WAY.md) | ATO ATC FUSE BLOCK 6WAY 하드웨어 부품·전원·배선·제작 자료입니다. | 7.2 KB |
-| [`hardware/components/ESP32_LCD.md`](hardware/components/ESP32_LCD.md) | ESP32 LCD 하드웨어 부품·전원·배선·제작 자료입니다. | 9.6 KB |
-| [`hardware/components/INALWAYS_0717-2SCQ.md`](hardware/components/INALWAYS_0717-2SCQ.md) | INALWAYS 0717 2SCQ 하드웨어 부품·전원·배선·제작 자료입니다. | 6.5 KB |
-| [`hardware/components/MAIN_DISPLAY_5INCH.md`](hardware/components/MAIN_DISPLAY_5INCH.md) | MAIN DISPLAY 5INCH 하드웨어 부품·전원·배선·제작 자료입니다. | 3.4 KB |
-| [`hardware/components/MEAN_WELL_LRS-150F-5.md`](hardware/components/MEAN_WELL_LRS-150F-5.md) | MEAN WELL LRS 150F 5 하드웨어 부품·전원·배선·제작 자료입니다. | 8.5 KB |
-| [`hardware/components/MG90S.md`](hardware/components/MG90S.md) | MG90S 하드웨어 부품·전원·배선·제작 자료입니다. | 3.1 KB |
-| [`hardware/components/README.md`](hardware/components/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 3.8 KB |
-| [`hardware/components/SMG_TYE-TB003.md`](hardware/components/SMG_TYE-TB003.md) | SMG TYE TB003 하드웨어 부품·전원·배선·제작 자료입니다. | 9.4 KB |
-| [`hardware/components/USB_CAMERA.md`](hardware/components/USB_CAMERA.md) | USB CAMERA 하드웨어 부품·전원·배선·제작 자료입니다. | 1.6 KB |
-| [`hardware/CONTRIBUTING.md`](hardware/CONTRIBUTING.md) | CONTRIBUTING 하드웨어 부품·전원·배선·제작 자료입니다. | 6.4 KB |
-| [`hardware/diagrams/01_power_architecture.drawio`](hardware/diagrams/01_power_architecture.drawio) | 01 power architecture 하드웨어 부품·전원·배선·제작 자료입니다. | 10.6 KB |
-| [`hardware/diagrams/02_servo_power_distribution.drawio`](hardware/diagrams/02_servo_power_distribution.drawio) | 02 servo power distribution 하드웨어 부품·전원·배선·제작 자료입니다. | 9.2 KB |
-| [`hardware/diagrams/03_control_wiring.drawio`](hardware/diagrams/03_control_wiring.drawio) | 03 control wiring 하드웨어 부품·전원·배선·제작 자료입니다. | 7.9 KB |
-| [`hardware/diagrams/06_3_SENSOR_ACTUATOR_CONFIGURATION.drawio`](hardware/diagrams/06_3_SENSOR_ACTUATOR_CONFIGURATION.drawio) | 06 3 SENSOR ACTUATOR CONFIGURATION 하드웨어 부품·전원·배선·제작 자료입니다. | 10.1 KB |
-| [`hardware/JETSON_ESP32_LCD_SETUP.md`](hardware/JETSON_ESP32_LCD_SETUP.md) | JETSON ESP32 LCD SETUP 하드웨어 부품·전원·배선·제작 자료입니다. | 7.2 KB |
-| [`hardware/LRS-150F-5_CONNECTION_GUIDE.md`](hardware/LRS-150F-5_CONNECTION_GUIDE.md) | LRS 150F 5 CONNECTION GUIDE 하드웨어 부품·전원·배선·제작 자료입니다. | 15.4 KB |
-| [`hardware/SERVO_POWER_CONNECTION_PLAN.md`](hardware/SERVO_POWER_CONNECTION_PLAN.md) | LRS 150F 5 CONNECTION PLAN FROM CHAT 하드웨어 부품·전원·배선·제작 자료입니다. | 11.0 KB |
-| [`hardware/MOTORS.md`](hardware/MOTORS.md) | MOTORS 하드웨어 부품·전원·배선·제작 자료입니다. | 10.8 KB |
-| [`hardware/PARTS.md`](hardware/PARTS.md) | PARTS 하드웨어 부품·전원·배선·제작 자료입니다. | 11.8 KB |
-| [`hardware/power-budget.md`](hardware/power-budget.md) | power budget 하드웨어 부품·전원·배선·제작 자료입니다. | 8.8 KB |
-| [`hardware/README.md`](hardware/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 11.0 KB |
-| [`hardware/robot_arm/ARM_MOTIONS.md`](hardware/robot_arm/ARM_MOTIONS.md) | ARM MOTIONS 하드웨어 부품·전원·배선·제작 자료입니다. | 4.6 KB |
-| [`hardware/robot_arm/README.md`](hardware/robot_arm/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 11.3 KB |
-| [`hardware/SERVO_POWER_ON_OFF_MANUAL.md`](hardware/SERVO_POWER_ON_OFF_MANUAL.md) | SERVO POWER ON OFF MANUAL 하드웨어 부품·전원·배선·제작 자료입니다. | 11.0 KB |
-| [`hardware/SERVO_POWER_WAGO_MAP.md`](hardware/SERVO_POWER_WAGO_MAP.md) | SERVO POWER WAGO MAP 하드웨어 부품·전원·배선·제작 자료입니다. | 8.0 KB |
-| [`hardware/TERMINAL_PURCHASE_GUIDE.md`](hardware/TERMINAL_PURCHASE_GUIDE.md) | TERMINAL PURCHASE GUIDE 하드웨어 부품·전원·배선·제작 자료입니다. | 5.0 KB |
-| [`hardware/wiring.md`](hardware/wiring.md) | wiring 하드웨어 부품·전원·배선·제작 자료입니다. | 10.1 KB |
-
-</details>
-
-<details>
-<summary><strong>nlu/</strong> — 현재 서비스용 NLU 추론 모듈 (8개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`nlu/__init__.py`](nlu/__init__.py) | Python 패키지 초기화 파일입니다. | 223 B |
-| [`nlu/cli.py`](nlu/cli.py) | cli 현재 서비스용 NLU 추론 모듈/설정입니다. | 1.2 KB |
-| [`nlu/config.py`](nlu/config.py) | production NLU의 기본 koELECTRA-small encoder, 모델 경로, device, threshold를 정의합니다. | 1004 B |
-| [`nlu/model.py`](nlu/model.py) | koELECTRA Encoder와 2-layer Item Query Transformer Decoder 구조를 정의합니다. | 4.8 KB |
-| [`nlu/predictor.py`](nlu/predictor.py) | NLU 모델 로딩과 실제 구조화 추론을 수행합니다. | 9.1 KB |
-| [`nlu/README.md`](nlu/README.md) | 현재 production NLU 구조·데이터·실험·실행 방법을 설명합니다. | 8.9 KB |
-| [`nlu/requirements-jetson-inference.txt`](nlu/requirements-jetson-inference.txt) | requirements jetson inference 현재 서비스용 NLU 추론 모듈/설정입니다. | 187 B |
-| [`nlu/schema.py`](nlu/schema.py) | schema 현재 서비스용 NLU 추론 모듈/설정입니다. | 704 B |
-
-</details>
-
-<details>
-<summary><strong>robot_face/</strong> — ESP32 LCD 표정 및 Jetson 얼굴 제어 (5개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`robot_face/esp32_lcd/esp32_lcd_face.ino`](robot_face/esp32_lcd/esp32_lcd_face.ino) | esp32 lcd face LCD 얼굴 표현과 Jetson-ESP32 제어 파일입니다. | 5.7 KB |
-| [`robot_face/jetson/__init__.py`](robot_face/jetson/__init__.py) | Python 패키지 초기화 파일입니다. | 194 B |
-| [`robot_face/jetson/face_controller.py`](robot_face/jetson/face_controller.py) | face controller LCD 얼굴 표현과 Jetson-ESP32 제어 파일입니다. | 11.8 KB |
-| [`robot_face/jetson/README.md`](robot_face/jetson/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 5.7 KB |
-| [`robot_face/jetson/requirements.txt`](robot_face/jetson/requirements.txt) | requirements LCD 얼굴 표현과 Jetson-ESP32 제어 파일입니다. | 17 B |
-
-</details>
-
-<details>
-<summary><strong>ros2_ws/</strong> — ROS2 실물 로봇 통합 runtime (52개)</summary>
-
-| 파일 | 역할 | 크기 |
-|---|---|---:|
-| [`ros2_ws/src/robot_controller/gesture_data/raw/head_gesture_samples_p01_20260715_105828.csv`](ros2_ws/src/robot_controller/gesture_data/raw/head_gesture_samples_p01_20260715_105828.csv) | head gesture samples p01 20260715 105828 표 형식 데이터/결과 파일입니다. | 2.5 MB |
-| [`ros2_ws/src/robot_controller/gesture_data/raw/head_gesture_samples_p02_20260715_110637.csv`](ros2_ws/src/robot_controller/gesture_data/raw/head_gesture_samples_p02_20260715_110637.csv) | head gesture samples p02 20260715 110637 표 형식 데이터/결과 파일입니다. | 877.5 KB |
-| [`ros2_ws/src/robot_controller/gesture_data/raw/head_gesture_samples_p03_20260715_111935.csv`](ros2_ws/src/robot_controller/gesture_data/raw/head_gesture_samples_p03_20260715_111935.csv) | head gesture samples p03 20260715 111935 표 형식 데이터/결과 파일입니다. | 1.2 MB |
-| [`ros2_ws/src/robot_controller/package.xml`](ros2_ws/src/robot_controller/package.xml) | package 패키지 빌드·설치·메타데이터 설정 파일입니다. | 673 B |
-| [`ros2_ws/src/robot_controller/README.md`](ros2_ws/src/robot_controller/README.md) | 해당 폴더의 역할, 구조와 사용 방법을 설명합니다. | 17.0 KB |
-| [`ros2_ws/src/robot_controller/requirements-head-gesture.txt`](ros2_ws/src/robot_controller/requirements-head-gesture.txt) | requirements head gesture 프로젝트 소스·설정·데이터 파일입니다. | 62 B |
-| [`ros2_ws/src/robot_controller/robot_controller/__init__.py`](ros2_ws/src/robot_controller/robot_controller/__init__.py) | Python 패키지 초기화 파일입니다. | 0 B |
-| [`ros2_ws/src/robot_controller/robot_controller/action_node.py`](ros2_ws/src/robot_controller/robot_controller/action_node.py) | TTS·LCD·고개·팔 행동과 STT 재시도·주문 인계를 처리하는 production Action 노드입니다. | 통합 |
-| [`ros2_ws/src/robot_controller/robot_controller/arm_motion.py`](ros2_ws/src/robot_controller/robot_controller/arm_motion.py) | arm motion 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 4.7 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/decision_node.py`](ros2_ws/src/robot_controller/robot_controller/decision_node.py) | 주문 FSM, 추가·수정 주문, 고객 인계, NOD/SHAKE·손가락 수량 입력을 통합한 production Decision 노드입니다. | 통합 |
-| [`ros2_ws/src/robot_controller/robot_controller/dialogue_act_resolver.py`](ros2_ws/src/robot_controller/robot_controller/dialogue_act_resolver.py) | dialogue act resolver 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 9.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/dialogue_slots.py`](ros2_ws/src/robot_controller/robot_controller/dialogue_slots.py) | dialogue slots 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 17.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/face_display_node.py`](ros2_ws/src/robot_controller/robot_controller/face_display_node.py) | face display node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 7.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/face_identity.py`](ros2_ws/src/robot_controller/robot_controller/face_identity.py) | face identity 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 3.1 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/face_personalization_node.py`](ros2_ws/src/robot_controller/robot_controller/face_personalization_node.py) | face personalization node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 5.8 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/hand_quantity_gesture.py`](ros2_ws/src/robot_controller/robot_controller/hand_quantity_gesture.py) | hand quantity gesture 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 7.4 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py`](ros2_ws/src/robot_controller/robot_controller/head_gesture_frame_estimator.py) | head gesture frame estimator 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 8.4 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/head_gesture_recognizer.py`](ros2_ws/src/robot_controller/robot_controller/head_gesture_recognizer.py) | head gesture recognizer 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 14.0 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/head_motion_node.py`](ros2_ws/src/robot_controller/robot_controller/head_motion_node.py) | head motion node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 3.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/menu_policy.py`](ros2_ws/src/robot_controller/robot_controller/menu_policy.py) | menu policy 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 5.7 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/motor_controller_node.py`](ros2_ws/src/robot_controller/robot_controller/motor_controller_node.py) | motor controller node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 12.8 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/motor_driver.py`](ros2_ws/src/robot_controller/robot_controller/motor_driver.py) | motor driver 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 4.7 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/multi_item_span_grounding.py`](ros2_ws/src/robot_controller/robot_controller/multi_item_span_grounding.py) | multi item span grounding 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 6.2 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/nlu_node.py`](ros2_ws/src/robot_controller/robot_controller/nlu_node.py) | nlu node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 10.8 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/nlu_postprocess.py`](ros2_ws/src/robot_controller/robot_controller/nlu_postprocess.py) | nlu postprocess 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 17.4 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/order_api_client.py`](ros2_ws/src/robot_controller/robot_controller/order_api_client.py) | order api client 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 3.3 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/order_dialogue_manager.py`](ros2_ws/src/robot_controller/robot_controller/order_dialogue_manager.py) | order dialogue manager 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 10.5 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/order_exception_policy.py`](ros2_ws/src/robot_controller/robot_controller/order_exception_policy.py) | order exception policy 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 9.0 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/order_schema.py`](ros2_ws/src/robot_controller/robot_controller/order_schema.py) | order schema 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 4.7 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/order_submission_node.py`](ros2_ws/src/robot_controller/robot_controller/order_submission_node.py) | order submission node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 8.1 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/preorder.py`](ros2_ws/src/robot_controller/robot_controller/preorder.py) | preorder 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 3.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py`](ros2_ws/src/robot_controller/robot_controller/realtime_face_recognition.py) | 등록 얼굴 임베딩과 실시간 얼굴을 비교해 고객을 식별합니다. | 8.2 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/response_manager_node.py`](ros2_ws/src/robot_controller/robot_controller/response_manager_node.py) | response manager node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 2.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/response_manager.py`](ros2_ws/src/robot_controller/robot_controller/response_manager.py) | response manager 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 20.6 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/response_payload_builder.py`](ros2_ws/src/robot_controller/robot_controller/response_payload_builder.py) | response payload builder 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 1.9 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/stt_node.py`](ros2_ws/src/robot_controller/robot_controller/stt_node.py) | Faster-Whisper, VAD, 안전한 turn 취소·복구, unbiased decoding을 통합한 production STT 노드입니다. | 통합 |
-| [`ros2_ws/src/robot_controller/robot_controller/tts_node.py`](ros2_ws/src/robot_controller/robot_controller/tts_node.py) | tts node 실물 로봇 인식·판단·행동 pipeline의 ROS2 Python 모듈입니다. | 15.1 KB |
-| [`ros2_ws/src/robot_controller/robot_controller/vision_node.py`](ros2_ws/src/robot_controller/robot_controller/vision_node.py) | 사람·얼굴·NOD/SHAKE·손가락 수량 제스처를 통합 처리하는 production Vision 노드입니다. | 통합 |
-| [`ros2_ws/src/robot_controller/setup.cfg`](ros2_ws/src/robot_controller/setup.cfg) | setup 패키지 빌드·설치·메타데이터 설정 파일입니다. | 101 B |
-| [`ros2_ws/src/robot_controller/setup.py`](ros2_ws/src/robot_controller/setup.py) | setup 패키지 빌드·설치·메타데이터 설정 파일입니다. | 2.0 KB |
-
-</details>
-
-<details>
-<summary><strong>scripts/</strong> — 실물 로봇 실행·시연·하드웨어 보조 스크립트 (12개)</summary>
-
-| 파일 | 역할 |
+| 경로 | 역할 |
 |---|---|
-| [`scripts/README.md`](scripts/README.md) | 현재 시연 실행 흐름과 각 스크립트의 역할을 설명합니다. |
-| [`scripts/run_robot_with_monitor.sh`](scripts/run_robot_with_monitor.sh) | 5인치 고객 화면과 전체 ROS2 로봇 파이프라인을 시작하는 최종 시연 런처입니다. |
-| [`scripts/run_robot_interaction_demo.sh`](scripts/run_robot_interaction_demo.sh) | 주문 전송·모터 제어·ROS 대화 파이프라인을 통합 실행합니다. |
-| [`scripts/run_ros_voice_nodes.sh`](scripts/run_ros_voice_nodes.sh) | STT, NLU, Decision, Response, Action, TTS, Face LCD, Vision 노드를 순차 실행합니다. |
-| [`scripts/run_nlu_node_cuda.sh`](scripts/run_nlu_node_cuda.sh) | Jetson CUDA 환경에서 NLU 노드를 실행합니다. |
-| [`scripts/resolve_camera_device.py`](scripts/resolve_camera_device.py) | 실제 프레임 입력이 가능한 USB 카메라 장치를 자동 탐색합니다. |
-| [`scripts/stop_robot_interaction_nodes.sh`](scripts/stop_robot_interaction_nodes.sh) | 이전 실행에서 남은 Pumpkin 관련 프로세스를 종료합니다. |
-| [`scripts/servo_power_on.sh`](scripts/servo_power_on.sh) | 서보 전원 ON 시퀀스를 실행합니다. |
-| [`scripts/servo_power_off.sh`](scripts/servo_power_off.sh) | 서보 전원 OFF 시퀀스를 실행합니다. |
-| [`scripts/pca9685/servo_power_sequence.py`](scripts/pca9685/servo_power_sequence.py) | PCA9685 서보 전원 시퀀스의 실제 제어 로직입니다. |
-| [`scripts/run_web_api.sh`](scripts/run_web_api.sh) | FastAPI 웹 API 서버를 실행합니다. |
-| [`scripts/run_customer_mobile.ps1`](scripts/run_customer_mobile.ps1) | Windows PowerShell에서 고객용 모바일 앱 개발 서버를 실행합니다. |
+| [`.github/workflows/`](.github/workflows/) | 모바일 앱, 시연 웹, 얼굴 백엔드, TOD 학습 코드 자동 검증 |
+| [`api/`](api/) | Jetson/웹 연동용 FastAPI 및 ROS bridge |
+| [`apps/customer-mobile/`](apps/customer-mobile/) | Expo 기반 고객 앱: 로그인, 사전주문, 얼굴 등록, 선호정보 |
+| [`apps/demo-web/`](apps/demo-web/) | ROS2 처리 흐름과 카메라를 보여주는 시연용 웹 |
+| [`apps/monitor-web/`](apps/monitor-web/) | 로봇 5인치 고객 화면 |
+| [`apps/pos-web/`](apps/pos-web/) | 주문 상태와 제조 흐름을 관리하는 POS |
+| [`cloud_relay/`](cloud_relay/) | Cloud Run 주문 중계 서비스 |
+| [`config/menu_catalog.json`](config/menu_catalog.json) | 메뉴명·가격·별칭·허용 온도의 Single Source of Truth |
+| [`data/`](data/) | NLU/TOD 학습·검증·테스트 데이터 |
+| [`docs/`](docs/) | 서비스 정책, 대화 흐름, 실행 환경, 통합 기록 |
+| [`experiments/`](experiments/) | KIPS NLU 비교 실험 및 TOD SLM 연구 코드·결과 |
+| [`face_backend/`](face_backend/) | InsightFace 임베딩 생성 Cloud Run 백엔드 |
+| [`hardware/`](hardware/) | 최종 부품 구성, 배선, 전원, 서보 및 LCD 문서 |
+| [`nlu/`](nlu/) | 현재 서비스용 koELECTRA Item Query Decoder 추론 모듈 |
+| [`robot_face/`](robot_face/) | ESP32 ILI9488 표정 펌웨어와 Jetson Serial 제어 |
+| [`ros2_ws/`](ros2_ws/) | STT → NLU → Decision → Action → Hardware 실물 로봇 ROS2 runtime |
+| [`scripts/`](scripts/) | 실제 실행·시연·하드웨어 운용 스크립트 |
 
-</details>
+### 주요 실행 진입점
 
+실물 Jetson에서 5인치 고객 화면과 로봇 파이프라인을 함께 실행:
 
+```bash
+cd ~/pumpkin_public
+bash scripts/run_robot_with_monitor.sh
+```
+
+고객 앱을 Windows PowerShell에서 실행:
+
+```powershell
+cd <pumpkin_public 저장소 경로>
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_customer_mobile.ps1
+```
+
+POS 웹:
+
+```bash
+cd apps/pos-web
+npm install
+npm run build
+npm start
+```
+
+얼굴 임베딩 Cloud Run 배포:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\face_backend\deploy.ps1
+```
+
+세부 Jetson 환경은 [`JETSON_RUNTIME_README.md`](JETSON_RUNTIME_README.md), 로봇 실행 스크립트 구성은 [`scripts/README.md`](scripts/README.md), NLU 구조는 [`nlu/README.md`](nlu/README.md)를 참고합니다.
+
+> 모델 가중치와 로컬 가상환경, 런타임 로그·비밀 설정은 저장소에 포함하지 않습니다. 학습 데이터와 실험 결과는 재현성을 위해 `data/`와 `experiments/`에 버전 관리합니다.
