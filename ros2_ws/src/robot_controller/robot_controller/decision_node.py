@@ -16,31 +16,13 @@ from .order_exception_policy import detect_order_exception
 from .order_schema import new_session_id
 
 
-# Compatibility defaults are class attributes so lightweight tests and legacy
-# subclasses that construct DecisionNode with __new__ still receive the same
-# delegated behavior without running the ROS constructor.
+# Defaults used by tests that instantiate the node without __init__.
 _DEFAULT_DIALOGUE_ACT_RESOLVER = DialogueActResolver()
 _DEFAULT_ORDER_DIALOGUE_MANAGER = OrderDialogueManager()
 
 
 class _CoreDecisionNode(Node):
-    """ROS adapter and finite-state controller for the order dialogue.
-
-    Responsibilities kept here:
-    - ROS subscriptions and publications
-    - FSM transitions
-    - session and retry lifecycle
-    - human-presence and TTS completion events
-    - selection of structured decision/response keys
-
-    Text-level dialogue-act interpretation is delegated to
-    :class:`DialogueActResolver`. Order item extraction, merging and missing-slot
-    calculations are delegated to :class:`OrderDialogueManager`.
-
-    Compatibility methods such as ``detect_text_command``,
-    ``merge_order_items`` and ``next_missing_target`` remain available so
-    existing subclasses and tests keep working.
-    """
+    """ROS2 finite-state controller for the order dialogue."""
 
     # Fill one item completely before moving to the next item.
     SLOT_PRIORITY = ("menu", "quantity", "temperature")
@@ -513,10 +495,7 @@ class _CoreDecisionNode(Node):
                 )
             return self.reprompt_slot(nlu_result, "missing_slot_answer")
 
-        # A first utterance may be short ("라떼요"). If any slot evidence exists,
-        # let the order flow ask for the remaining values. Literal cancel commands
-        # were already handled above, so model-only CANCEL does not override a
-        # clearly grounded order slot here either.
+        # Short first utterances with slot evidence enter the normal order flow.
         if self.state in {"ORDER_LISTEN", "GREETING"} and has_slots:
             if intent not in {"GUIDE", "PAYMENT"}:
                 return self.handle_order_intent(
@@ -524,11 +503,7 @@ class _CoreDecisionNode(Node):
                     incoming_items=incoming_items,
                 )
 
-        # Learned CANCEL is advisory only. Actual order cancellation requires a
-        # literal cancel command resolved from the user's text (handled at the top
-        # of this method). This prevents low- or high-confidence model-only CANCEL
-        # predictions from wiping an active order because ordinary negative words
-        # such as "안 돼" appeared in a noisy STT transcript.
+        # Only an explicit text command can cancel an active order.
         if intent == "CANCEL":
             return self.reprompt_nlu(
                 nlu_result,
@@ -999,19 +974,7 @@ class _CoreDecisionNode(Node):
 
 
 class _OrderHandoffMixin:
-    """Production FSM with explicit item confirmation and customer handoff.
-
-    Customer presence is intentionally session-latched. A camera ``True`` starts
-    one customer session, then subsequent presence changes are ignored for the
-    entire order. After the customer explicitly finishes the order, the FSM waits
-    for a real ``False`` (customer leaves) and only the following ``True`` starts
-    the next customer session.
-
-    Confirmation states are also latched. Ordinary speech or an accidental menu
-    mention cannot mutate the active order while the robot is waiting for yes/no.
-    Only confirmation, an explicit correction, an explicit additional-order act,
-    cancel, or restart can move those states.
-    """
+    """Handle item confirmation and customer handoff."""
 
     ITEM_CONFIRM_STATE = "ITEM_CONFIRM"
     ORDER_FINISH_STATE = "WAIT_NEXT_CUSTOMER"
@@ -1085,7 +1048,7 @@ class _OrderHandoffMixin:
         self.handle_human_detected()
 
     def _ensure_components(self) -> None:
-        """Support lightweight __new__-based unit tests and legacy subclasses."""
+        """Initialize helpers when tests bypass __init__."""
         if not hasattr(self, "dialogue_act_resolver"):
             self.dialogue_act_resolver = DialogueActResolver()
         if not hasattr(self, "order_manager"):
@@ -1125,19 +1088,7 @@ class _OrderHandoffMixin:
         self,
         nlu_result: dict[str, Any],
     ) -> list[dict[str, Any]] | None:
-        """Return a safe same-item correction spoken during ORDER_CONFIRM.
-
-        Users often correct a summary by simply restating the item, for example
-        ``아이스 아메리카노 두 잔이요`` after the robot asked whether one cup
-        was correct. Requiring a literal word such as ``수정`` or ``바꿔`` makes
-        that natural correction impossible.
-
-        At the same time, live microphone audio can contain unrelated chatter with
-        a bare quantity (for example ``...한 잔...``). To avoid mutating the order
-        from that noise, this implicit path is deliberately narrow: the utterance
-        must explicitly name exactly one menu already present in the current order,
-        and it must explicitly change quantity or temperature for that same item.
-        """
+        """Parse a single-item correction during ORDER_CONFIRM."""
         if self.state != "ORDER_CONFIRM" or self.current_order is None:
             return None
 
@@ -1296,9 +1247,7 @@ class _OrderHandoffMixin:
                 if intent == "MODIFY" and not correction_context:
                     return self.request_correction(nlu_result, "modify_detected")
 
-            # A natural correction may omit words such as "수정" or "바꿔".
-            # Accept it only when the user explicitly repeats exactly one menu that
-            # already exists and changes that item's quantity or temperature.
+            # Allow a correction without a correction keyword when one existing item is clear.
             if (
                 self.state == "ORDER_CONFIRM"
                 and command is None
@@ -1315,9 +1264,7 @@ class _OrderHandoffMixin:
                         overwrite=True,
                     )
 
-        # While a yes/no answer is expected, arbitrary ORDER predictions must not
-        # append items. This prevents surrounding conversation such as a menu name
-        # from silently changing an already-confirmed order.
+        # Do not append items while a yes/no confirmation is pending.
         if (
             self.state in self.CONFIRMATION_STATES
             and command is None
@@ -1373,15 +1320,7 @@ class _OrderHandoffMixin:
         self,
         decision: dict[str, Any],
     ) -> dict[str, Any]:
-        """Turn a single-item quantity question into a separate item confirmation.
-
-        When the NLU has already grounded multiple drinks, confirming only the
-        first incomplete item makes the dialogue sound as if the later drinks were
-        dropped. Multi-item orders therefore keep the normal slot-collection flow:
-        ask the first missing quantity, then the next one, and only confirm the
-        complete order after every item is filled. The legacy CONFIRM_ITEM step is
-        retained for a single tentative drink.
-        """
+        """Use item confirmation only for a single tentative item."""
         if decision.get("decision") != "ASK_QUANTITY":
             return decision
         if decision.get("reason") != "missing_quantity":
@@ -1558,19 +1497,13 @@ class _OrderHandoffMixin:
         )
 
     def is_additional_order_request(self, nlu_result):
-        """Compatibility wrapper for existing tests and callers."""
+        """Keep the existing method name used by callers."""
         self._ensure_components()
         return self.dialogue_act_resolver.is_additional_order_request(nlu_result)
 
 
 class _AdditionalOrderMixin:
-    """Production order flow with additional-order and staged correction support.
-
-    Additional drinks can still be appended while an order is being confirmed.
-    Bare/ambiguous correction requests use a separate two-turn target-selection
-    flow so a multi-item order is never modified by guessing which drink the
-    customer meant.
-    """
+    """Handle additional orders and staged corrections."""
 
     ADDITIONAL_STATES = {"ORDER_CONFIRM", _OrderHandoffMixin.ORDER_FINISH_STATE}
     CORRECTION_TARGET_STATE = "ORDER_CORRECTION_TARGET"
@@ -1630,9 +1563,7 @@ class _AdditionalOrderMixin:
         if not text_addition and not resolver_addition:
             return False, []
 
-        # Use grounded/model items rather than explicit_slots only. Some menus have
-        # a deterministic temperature (for example a smoothie can already be ICE)
-        # that is intentionally absent from explicit text evidence.
+        # Use grounded items so deterministic slot values are preserved.
         incoming_items = self.extract_incoming_items(
             nlu_result,
             prefer_explicit=False,
@@ -1640,8 +1571,7 @@ class _AdditionalOrderMixin:
         if not self.has_slot_values(incoming_items):
             return False, []
 
-        # Require an actual new order slot. This prevents a bare "추가할게요" from
-        # creating an empty phantom item.
+        # Additional-order requests must contain a menu.
         if not any(item.get("menu") for item in incoming_items):
             return False, []
 
@@ -2017,10 +1947,7 @@ class _AdditionalOrderMixin:
             )
             explicit_slots = nlu_result.get("explicit_slots")
 
-            # Preserve the existing one-shot source->replacement path when the
-            # customer says both sides explicitly, e.g. "아메리카노를
-            # 딸기스무디로 바꿀게요". The staged flow is for requests that only
-            # identify a target or are otherwise ambiguous.
+            # Use one-shot replacement when both source and target are explicit.
             if (
                 correction_request
                 and self._has_explicit_from_to_correction(explicit_slots)
@@ -2051,17 +1978,7 @@ class _AdditionalOrderMixin:
 
 
 class _HandQuantityMixin:
-    """Production dialogue node with wake-gated ordering and hand quantity input.
-
-    A camera presence event alone no longer starts the order dialogue. Presence
-    only arms a narrow wake gate and opens STT. The existing order flow begins
-    only after STT/NLU returns the exact wake phrase ``주문할게요`` (ignoring
-    whitespace and punctuation) while the customer is still present.
-
-    Hand gestures are intentionally interpreted only while the FSM is waiting
-    for a quantity slot. This prevents a casual V-sign elsewhere in the
-    conversation from mutating the order.
-    """
+    """Handle wake-phrase ordering and hand-gesture quantity input."""
 
     USER_HAND_GESTURE_TOPIC = "/user/hand_gesture"
     HAND_QUANTITY_MAP = {
@@ -2135,7 +2052,7 @@ class _HandQuantityMixin:
         self._publish_stt_trigger("listen")
 
     def _enter_order_wake_gate(self, *, reason: str) -> None:
-        """Presence arms listening but deliberately does not greet/start an order."""
+        """Enter wake-listen mode without starting an order."""
         self.state = self.WAIT_ORDER_WAKE_STATE
         self.current_order = None
         self.waiting_for = None
@@ -2277,12 +2194,7 @@ class _HandQuantityMixin:
         self,
         gesture: str,
     ) -> dict[str, Any] | None:
-        """Map a supported hand pose to the active quantity slot.
-
-        The synthetic input follows the same structured slot path used by short
-        spoken answers such as "두 잔이요". NLU inference is deliberately
-        skipped because vision already produced a structured quantity value.
-        """
+        """Map a hand pose to the active quantity slot."""
         normalized = str(gesture or "").strip().upper()
         quantity = self.HAND_QUANTITY_MAP.get(normalized)
         if quantity is None:
@@ -2348,7 +2260,7 @@ class DecisionNode(
     _OrderHandoffMixin,
     _CoreDecisionNode,
 ):
-    """Production decision node composed from feature mixins without chained subclasses."""
+    """Decision node composed from feature mixins."""
 
 
 def main(args=None):
