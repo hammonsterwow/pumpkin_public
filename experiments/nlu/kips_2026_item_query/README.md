@@ -1,6 +1,6 @@
-# KIPS 2026 Item Query NLU 실험
+# Item Query NLU 비교 실험
 
-KoELECTRA-small 기반 한국어 카페 주문 NLU에서 Item Query Decoder의 복수 주문 구조화 성능을 비교한 실험 코드입니다.
+Pumpkin 주문 NLU에서 복수 메뉴를 항목별로 구조화하는 방식을 비교한 실험 코드입니다. KoELECTRA-small encoder를 공통으로 사용하고, Independent Item Heads와 Item Query Decoder의 차이 및 학습 전략 적용에 따른 성능 변화를 같은 데이터 조건에서 확인합니다.
 
 ## 데이터셋
 
@@ -15,13 +15,13 @@ KoELECTRA-small 기반 한국어 카페 주문 NLU에서 Item Query Decoder의 �
 - followup: `source.category`
 - 관련 메타데이터가 없으면 intent/item-count 기준으로 분할
 
-## 비교 모델
+## 비교 구성
 
-| ID | 구성 |
-|---|---|
-| M0 | KoELECTRA-small + Independent Item Heads |
-| M1 | KoELECTRA-small + Item Query Decoder |
-| M2 | M1 + differential LR + multi-order oversampling + weighted loss |
+| ID | 구성 | 비교 목적 |
+|---|---|---|
+| M0 | KoELECTRA-small + Independent Item Heads | Item Query Decoder를 사용하지 않는 기준 구조 |
+| M1 | KoELECTRA-small + Item Query Decoder | Item Query 구조 자체의 효과 확인 |
+| M2 | M1 + differential LR + multi-order oversampling + weighted loss | 학습 전략을 함께 적용한 개선 구성 |
 
 공통 설정:
 
@@ -32,6 +32,8 @@ KoELECTRA-small 기반 한국어 카페 주문 NLU에서 Item Query Decoder의 �
 - 동일한 train/validation/test split과 label space 사용
 
 ## Ablation
+
+개선 요소의 영향을 확인하기 위해 다음 순서로 cumulative ablation을 구성합니다.
 
 | ID | 구성 |
 |---|---|
@@ -61,6 +63,8 @@ Colab에서는 `kips_item_query_experiments_colab.ipynb`를 사용합니다.
 - `04_ablation.ipynb`
 
 ## 평가 지표
+
+복수 주문에서는 메뉴별 slot 조합이 모두 맞는지가 중요하므로 Exact Match 계열 지표를 중심으로 확인합니다.
 
 - `order_exact_match`
 - `single_item_em`
