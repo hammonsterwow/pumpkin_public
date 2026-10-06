@@ -62,7 +62,7 @@ CTranslate2 CUDA devices: 1
 중요: `--system-site-packages`를 사용하면 시스템의 CPU PyTorch가 노출되므로 사용하지 않는다.
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 rm -rf .venv-nlu
 python3 -m venv .venv-nlu
 echo 'export PYTHONNOUSERSITE=1' >> .venv-nlu/bin/activate
@@ -99,7 +99,7 @@ ROS2 패키지는 가상환경에 복사하지 않고 ROS2 setup을 통해 사�
 
 ```bash
 source /opt/ros/humble/setup.bash
-source ~/pumpkin/ros2_ws/install/setup.bash
+source ~/pumpkin_public/ros2_ws/install/setup.bash
 ```
 
 확인 결과 `.venv-nlu` Python에서 `rclpy`와 `robot_controller` import가 정상 동작했다.
@@ -107,7 +107,7 @@ source ~/pumpkin/ros2_ws/install/setup.bash
 ## 4. NLU Python 의존성
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 source .venv-nlu/bin/activate
 
 python -m pip install --no-cache-dir \
@@ -146,7 +146,7 @@ Done testing
 설치:
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 source .venv-nlu/bin/activate
 
 python -m pip install \
@@ -199,7 +199,7 @@ JetPack을 6.2.2, L4T를 R36.5로 업데이트한 뒤 같은 CUDA 텐서 테스�
 ## 8. 최종 CUDA 검증
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 source .venv-nlu/bin/activate
 
 env -u LD_LIBRARY_PATH \
@@ -242,10 +242,10 @@ CUDA 기본 연산 성공
 ## 9. NLU 단독 GPU 추론 검증
 
 ```bash
-cd ~/pumpkin
+cd ~/pumpkin_public
 source .venv-nlu/bin/activate
 source /opt/ros/humble/setup.bash
-source ~/pumpkin/ros2_ws/install/setup.bash
+source ~/pumpkin_public/ros2_ws/install/setup.bash
 
 env -u LD_LIBRARY_PATH \
   PYTHONNOUSERSITE=1 \
@@ -281,12 +281,12 @@ env -u LD_LIBRARY_PATH \
 ## 10. 현재 환경 구조
 
 ```text
-~/pumpkin/.venv
+~/pumpkin_public/.venv
 ├── ROS2 통합 노드
 ├── Faster-Whisper
 └── CTranslate2 CUDA
 
-~/pumpkin/.venv-nlu
+~/pumpkin_public/.venv-nlu
 ├── PyTorch 2.8.0 CUDA 12.6
 ├── Transformers 4.40.2
 ├── koELECTRA
