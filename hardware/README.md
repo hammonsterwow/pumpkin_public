@@ -16,8 +16,8 @@ Jetson Orin Nano
 
 ## 서보 구성
 
-- DS3218 × 1: 어깨 루트 관절
-- MG996R × 5: 목 2축 및 팔 관절 3축
+- DS3218 × 2: 어깨 Root·Arm A1
+- MG996R × 4: 목 2축 및 Arm A2·Arm B
 - MG90S × 3: 손목 2축 및 그리퍼
 - 사용 채널: PCA9685 CH0, CH1, CH4–CH10
 

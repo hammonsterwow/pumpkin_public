@@ -7,7 +7,7 @@
 | CH0 | Neck Pitch | MG996R | 60° |
 | CH1 | Neck Yaw | MG996R | 90° |
 | CH4 | Root | DS3218 | 90° |
-| CH5 | Arm A1 | MG996R | 90° |
+| CH5 | Arm A1 | DS3218 | 90° |
 | CH6 | Arm A2 | MG996R | 90° |
 | CH7 | Arm B | MG996R | 1° |
 | CH8 | Wrist A | MG90S | 1° |
@@ -20,8 +20,8 @@ CH2, CH3, CH11–CH15는 사용하지 않는다.
 
 | 모델 | 수량 | 용도 |
 |---|---:|---|
-| DS3218 | 1 | 어깨 루트 |
-| MG996R | 5 | 목 2축, 팔 관절 3축 |
+| DS3218 | 2 | 어깨 Root·Arm A1 |
+| MG996R | 4 | 목 2축, Arm A2·Arm B |
 | MG90S | 3 | 손목 2축, 그리퍼 |
 
 ## 제어 기준

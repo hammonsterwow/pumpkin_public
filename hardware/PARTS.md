@@ -12,8 +12,8 @@
 | 전원 | MEAN WELL LRS-150F-5 | 1 | 서보용 5 V 전원 |
 | 전원 입력 | Inalways 0717-2SCQ | 1 | AC 인렛·스위치·퓨즈 |
 | 전원 분배 | 6구 ATO/ATC 퓨즈박스, GND 버스바 | 각 1 | 서보 전원 분기 및 보호 |
-| 서보 | DS3218 | 1 | 어깨 루트 관절 |
-| 서보 | MG996R | 5 | 목 2축 및 팔 관절 3축 |
+| 서보 | DS3218 | 2 | 어깨 Root·Arm A1 |
+| 서보 | MG996R | 4 | 목 2축 및 Arm A2·Arm B |
 | 서보 | MG90S | 3 | 손목 2축 및 그리퍼 |
 
 세부 배선과 채널은 [wiring.md](./wiring.md), [MOTORS.md](./MOTORS.md)를 기준으로 한다. 개별 부품의 사양과 장착 참고사항은 [components/](./components/)에 정리한다.

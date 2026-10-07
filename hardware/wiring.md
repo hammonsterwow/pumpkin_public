@@ -26,7 +26,7 @@ AC inlet ── LRS-150F-5 ── Fuse block ── Servo +5 V
 | CH0 | Neck Pitch / MG996R |
 | CH1 | Neck Yaw / MG996R |
 | CH4 | Root / DS3218 |
-| CH5 | Arm A1 / MG996R |
+| CH5 | Arm A1 / DS3218 |
 | CH6 | Arm A2 / MG996R |
 | CH7 | Arm B / MG996R |
 | CH8 | Wrist A / MG90S |
